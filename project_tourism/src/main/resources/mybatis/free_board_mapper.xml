@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tour.board">
+	<insert id="register" >
+		insert into free_board(
+			id, 
+			userId, 
+			title, 
+			content,
+			ref, 
+			regDate
+		)
+		values (
+			free_board_seq.nextval,
+			#{userId},
+			#{title},
+			#{content},
+			#{ref},
+			sysdate
+		)
+	</insert>
+	
+	<select id="getMaxRef" resultType="Integer">
+		select max(ref) from free_board
+	</select>
+	
+	<select id="getList" resultType="com.tour.dto.BoardDTO">
+		select * from free_board order by regDate desc
+	</select>
+	
+	<select id="getDetail" resultType="com.tour.dto.BoardDTO">
+		select * from free_board where id=#{id}
+	</select>
+</mapper>

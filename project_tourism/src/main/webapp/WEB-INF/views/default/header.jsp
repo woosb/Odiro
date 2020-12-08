@@ -42,9 +42,9 @@
 			
 			<li>
 				<%if (session.getAttribute("id") == null) {%>
-					<a href="">게시판</a> 
+					<a href="/board/list">게시판</a> 
 				<%} else {%>
-					<a href="">게시판</a>
+					<a href="/board/list">게시판</a>
 				<%} %>
 			</li>
 			<li>
