@@ -9,5 +9,5 @@ import com.tour.dto.NoticeBoardDTO;
 public interface NoticeBoardService {
 	public void selectNoticeList(Model model);
 	public void regBoard(HttpServletRequest req);
-	public NoticeBoardDTO contentView(String no);
+	public NoticeBoardDTO getDetail(String no);
 }
