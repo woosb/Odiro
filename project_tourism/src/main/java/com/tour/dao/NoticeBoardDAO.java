@@ -25,7 +25,15 @@ public class NoticeBoardDAO {
 		sqlSession.insert(namespace+".regBoard",dto);
 	}
 	public NoticeBoardDTO getDetail(String no) {
-		sqlSession.update(namespace+".upHit", no);
 		return sqlSession.selectOne(namespace+".getDetail", no);
+	}
+	public void upHit(String no) {
+		sqlSession.update(namespace+".upHit", no);
+	}
+	public void modifyOk(NoticeBoardDTO dto) {
+		sqlSession.update(namespace+".modifyOk",dto);
+	}
+	public void deleteBoard(String no) {
+		sqlSession.delete(namespace+".deleteBoard",no);
 	}
 }
