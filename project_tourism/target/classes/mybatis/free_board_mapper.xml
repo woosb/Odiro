@@ -88,7 +88,7 @@
 	
 	<select id="getReply" resultType="com.tour.dto.BoardDTO">
 	<![CDATA[
-		select * from free_board where step > 0 and ref = #{ref} order by refOrder
+		select * from free_board where step > 0 and ref = #{ref} order by refOrder desc
 	]]>
 	</select>
 </mapper>

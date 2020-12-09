@@ -2,7 +2,10 @@
 /Servers
 =======
 /Servers/
+<<<<<<< HEAD
 >>>>>>> e7002375a8fa1902aad15b7d15b133360aa7c4c9
+=======
+>>>>>>> woosb
 # Created by https://www.toptal.com/developers/gitignore/api/java,eclipse
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse
 
