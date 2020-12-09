@@ -34,9 +34,9 @@
 			
 			<li>
 				<%if (session.getAttribute("id") == null) {%>
-					<a href="">공지사항</a> 
+					<a href="/notice/noticeList">공지사항</a> 
 				<%} else {%>
-					<a href="">공지사항</a>
+					<a href="/notice/noticeList">공지사항</a>
 				<%} %>
 			</li>
 			

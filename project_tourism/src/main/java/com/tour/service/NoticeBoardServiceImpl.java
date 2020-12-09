@@ -23,4 +23,13 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
 	public NoticeBoardDTO getDetail(String no) {
 		return dao.getDetail(no);
 	}
+	public void upHit(String no) {
+		dao.upHit(no);
+	}
+	public void modifyOk(NoticeBoardDTO dto) {
+		dao.modifyOk(dto);
+	}
+	public void deleteBoard(String no) {
+		dao.deleteBoard(no);
+	}
 }

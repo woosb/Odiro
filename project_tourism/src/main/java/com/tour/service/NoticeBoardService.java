@@ -10,4 +10,7 @@ public interface NoticeBoardService {
 	public void selectNoticeList(Model model);
 	public void regBoard(HttpServletRequest req);
 	public NoticeBoardDTO getDetail(String no);
+	public void upHit(String no);
+	public void modifyOk(NoticeBoardDTO dto);
+	public void deleteBoard(String no);
 }

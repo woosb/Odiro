@@ -1,11 +1,27 @@
 package com.tour.dto;
 
+import java.sql.Date;
+
 public class NoticeBoardDTO {
 	private String notice_no;
 	private String notice_title;
 	private String notice_content;
 	private int notice_hit;
-	private String notice_reg_date;
+	private Date notice_reg_date;
+	private Date notice_upt_date;
+	
+	public Date getNotice_reg_date() {
+		return notice_reg_date;
+	}
+	public void setNotice_reg_date(Date notice_reg_date) {
+		this.notice_reg_date = notice_reg_date;
+	}
+	public Date getNotice_upt_date() {
+		return notice_upt_date;
+	}
+	public void setNotice_upt_date(Date notice_upt_date) {
+		this.notice_upt_date = notice_upt_date;
+	}
 	public String getNotice_no() {
 		return notice_no;
 	}
@@ -30,12 +46,7 @@ public class NoticeBoardDTO {
 	public void setNotice_hit(int notice_hit) {
 		this.notice_hit = notice_hit;
 	}
-	public String getNotice_reg_date() {
-		return notice_reg_date;
-	}
-	public void setNotice_reg_date(String notice_reg_date) {
-		this.notice_reg_date = notice_reg_date;
-	}
+
 	@Override
 	public String toString() {
 		return "NoticeBoardDTO [notice_no=" + notice_no + ", notice_title=" + notice_title + ", notice_content="
