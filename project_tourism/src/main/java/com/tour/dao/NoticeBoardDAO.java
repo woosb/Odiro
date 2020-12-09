@@ -24,7 +24,7 @@ public class NoticeBoardDAO {
 		dto.setNotice_content((String)req.getParameter("notice_content"));
 		sqlSession.insert(namespace+".regBoard",dto);
 	}
-	public NoticeBoardDTO contentView(String no) {
-		return sqlSession.selectOne(namespace+".contentView", no);
+	public NoticeBoardDTO getDetail(String no) {
+		return sqlSession.selectOne(namespace+".getDetail", no);
 	}
 }

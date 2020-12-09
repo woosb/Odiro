@@ -20,7 +20,7 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
 	public void regBoard(HttpServletRequest req) {
 		dao.regBoard(req);
 	}
-	public NoticeBoardDTO contentView(String no) {
-		return dao.contentView(no);
+	public NoticeBoardDTO getDetail(String no) {
+		return dao.getDetail(no);
 	}
 }

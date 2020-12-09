@@ -29,9 +29,9 @@ public class NoticeBoardController {
 		nbs.regBoard(req);
 		return "redirect:noticeList";
 	}
-	@RequestMapping("contentView")
-	public String contentView(@RequestParam("notice_no")String no,Model model) {
-		model.addAttribute("contentView", nbs.contentView(no));
+	@RequestMapping("getDetail")
+	public String getDetail(@RequestParam("notice_no")String no,Model model) {
+		model.addAttribute("contentView", nbs.getDetail(no));
 		return "notice/contentView";
 	}
 }

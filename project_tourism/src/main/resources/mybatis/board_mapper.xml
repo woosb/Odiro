@@ -5,7 +5,7 @@
 		<select id="selectNoticeList" resultType="com.tour.dto.NoticeBoardDTO">
 			select * from notice_board order by notice_no desc
 		</select>
-		<select id="contentView">
+		<select id="getDetail">
 			select * from notice_board where notice_no = #{no,jdbcType=VARCHAR}
 		</select>
 		<insert id="regBoard" parameterType="com.tour.dto.NoticeBoardDTO">
