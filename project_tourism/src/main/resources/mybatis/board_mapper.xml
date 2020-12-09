@@ -24,13 +24,14 @@
 		</update>
 		<update id="modifyOk" parameterType="com.tour.dto.NoticeBoardDTO">
 			update notice_board set 
-			notice_title = #{notice_title,jdbcType=VARCHAR},
-			notice_content = #{notice_content,jdbcType=VARCHAR},
-			notice_upt_date = to_date(sysdate,'YYYY-MM-DD HH24:MI:SS')
+				notice_title = #{notice_title,jdbcType=VARCHAR},
+				notice_content = #{notice_content,jdbcType=VARCHAR},
+				notice_upt_date = sysdate
 			where notice_no = #{notice_no,jdbcType=VARCHAR}
 		</update>
 		
 		<delete id="deleteBoard">
-			delete from notice_board where notice_no = #{no,jdbcType=VARCHAR}
+			delete from notice_board 
+			where notice_no = #{no,jdbcType=VARCHAR}
 		</delete>
 	</mapper>

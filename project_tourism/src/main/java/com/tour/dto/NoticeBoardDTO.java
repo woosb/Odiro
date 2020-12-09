@@ -1,6 +1,17 @@
 package com.tour.dto;
 
 import java.sql.Date;
+/*
+ 	create table notice_board (
+    	notice_no number(5) PRIMARY KEY,
+	    notice_title varchar2(100),
+	    notice_content varchar2(1000),
+	    notice_hit number(5) default 0,
+	    notice_reg_date date DEFAULT SYSDATE,
+	    notice_upt_date date
+	);
+ */
+
 
 public class NoticeBoardDTO {
 	private String notice_no;
