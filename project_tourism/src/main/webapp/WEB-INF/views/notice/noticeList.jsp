@@ -30,7 +30,7 @@
 							<tr>
 								<td>${brd.notice_no }</td>
 								<td>
-								<a href="contentView?${brd.notice_no }">
+								<a href="getDetail?no=${brd.notice_no }">
 								${brd.notice_title }
 								</a>
 								</td>

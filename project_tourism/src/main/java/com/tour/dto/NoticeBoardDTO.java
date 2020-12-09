@@ -36,4 +36,9 @@ public class NoticeBoardDTO {
 	public void setNotice_reg_date(String notice_reg_date) {
 		this.notice_reg_date = notice_reg_date;
 	}
+	@Override
+	public String toString() {
+		return "NoticeBoardDTO [notice_no=" + notice_no + ", notice_title=" + notice_title + ", notice_content="
+				+ notice_content + ", notice_hit=" + notice_hit + ", notice_reg_date=" + notice_reg_date + "]";
+	}
 }

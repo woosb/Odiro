@@ -20,7 +20,7 @@
 			<hr>
 		</div>
 		<div>
-			<textarea class="notice_content" name="content"placeholder="내용 입력"></textarea>
+			<textarea name="notice_content"placeholder="내용 입력"></textarea>
 			<hr>
 		</div>
 		<div>

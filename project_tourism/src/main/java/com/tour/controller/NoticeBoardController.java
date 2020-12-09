@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.tour.service.NoticeBoardService;
 
 @Controller
+@RequestMapping("notice")
 public class NoticeBoardController {
 	@Autowired
 	NoticeBoardService nbs;
@@ -30,7 +31,7 @@ public class NoticeBoardController {
 		return "redirect:noticeList";
 	}
 	@RequestMapping("getDetail")
-	public String getDetail(@RequestParam("notice_no")String no,Model model) {
+	public String getDetail(@RequestParam("no")String no,Model model) {
 		model.addAttribute("contentView", nbs.getDetail(no));
 		return "notice/contentView";
 	}
