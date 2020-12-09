@@ -43,9 +43,7 @@
 		<tr>
 			<th><c:out value="${reply.userId }"/></th>
 			<td>
-				<a href="/board/rereply?ref=${reply.ref }&parentNum=${reply.id }&refOrder=${reply.refOrder}&step=${reply.step}&detailId=${detail.id}" onclick="insertReply()">
-					<c:out value="${reply.content}"/>
-				</a>
+				<c:out value="${reply.content}"/>
 			</td>
 			<td><c:out value="${reply.regDate}"/></td>
 			<td>id : <c:out value="${reply.id}"/></td>

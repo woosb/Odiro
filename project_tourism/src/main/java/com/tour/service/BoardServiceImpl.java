@@ -24,7 +24,7 @@ public class BoardServiceImpl implements BoardService{
 		dto.setUserId("asd");
 		
 		Integer ref = dao.getMaxRef();
-		ref =  (ref == null) ? 0 : ref+1;
+		ref =  (ref == null) ? 1 : ref+1;
 		dto.setRef(ref);
 		
 		int result = dao.register(dto);
@@ -40,6 +40,37 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void getDetail(Model model, int id) {
 		BoardDTO dto = dao.getDetail(id);
+		int ref = dto.getRef();
+		List<BoardDTO> reply = dao.getReply(ref);
+		model.addAttribute("reply", reply);
 		model.addAttribute("detail", dto);
+	}
+
+	@Override
+	public int delete(int id) {
+		return dao.delete(id);
+	}
+
+	@Override
+	public int modify(BoardDTO dto) {
+		return dao.modify(dto);
+	}
+
+	@Override
+	public int reply(BoardDTO dto) {
+		int parentNum = dto.getId();
+		int step = dto.getStep();
+		int refOrder = dto.getRefOrder();
+		String userId = "asd";
+		dto.setUserId(userId);
+		
+		dao.addRefOrder(dto);
+
+		dto.setParentNum(parentNum);
+		dto.setStep(step+1);
+		dto.setRefOrder(refOrder+1);
+		
+		dao.addReplyNum(parentNum);
+		return dao.reply(dto);
 	}
 }

@@ -2,6 +2,7 @@ package com.tour.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,5 +28,29 @@ public class BoardDAO {
 	
 	public BoardDTO getDetail(int id) {
 		return sqlSession.selectOne(namespace+".getDetail", id);
+	}
+	
+	public int delete(int id) {
+		return sqlSession.delete(namespace+".delete", id);
+	}
+	
+	public int modify(BoardDTO dto) {
+		return sqlSession.update(namespace+".modify", dto);
+	}
+	
+	public int reply(BoardDTO dto) {
+		return sqlSession.insert(namespace+".reply", dto);
+	}
+	
+	public int addRefOrder(BoardDTO dto) {
+		return sqlSession.update(namespace+".addRefOrder", dto);
+	}
+	
+	public int addReplyNum(int parentNum) {
+		return sqlSession.update(namespace+".addReplyNum", parentNum);
+	}
+	
+	public List<BoardDTO> getReply(int ref) {
+		return sqlSession.selectList(namespace+".getReply", ref);
 	}
 }
