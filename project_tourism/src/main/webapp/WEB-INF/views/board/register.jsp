@@ -14,7 +14,7 @@
 		<form id="registerForm">
 			<input type="text" name="title" id="title" placeholder="제목"><br><br>
 			<textarea name="content" id="content" placeholder="내용"></textarea><br>
-			<input type="file" name="file" id="file" placeholder="파일첨부"><br>
+			<input type="file" name="uploadFile" id="uploadFile" placeholder="파일첨부" multiple><br>
 			<input type="button" value="작성하기" onclick="register()">
 		</form>
 	</div>
@@ -22,6 +22,27 @@
 </body>
 <script>
 function register(){
+	
+	var formData = new FormData();
+	var inputFile = $("input[name='uploadFile']");
+	var files = inputFile[0].files;
+	console.log(files);
+	
+	for(var i = 0; i < files.length; i++){
+		formData.append("uploadFile", files[i]);
+	}
+	
+	$.ajax({
+		url : "/board/fileUpload",
+		type : "POST",
+		processData: false,
+		contentType: false,
+		data : formData,
+		success : function(data)	{
+			alert("Uploaded");
+		}
+	});
+	
 	var result = 0;
 	$.ajax({
 		url : "/board/register",
@@ -41,7 +62,6 @@ function register(){
 			alert("서버에러!");
 		} 
 	});
-	
 }
 </script>
 </html>
