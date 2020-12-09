@@ -15,6 +15,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --><!-- The contents of this file will be loaded for each web application --><Context>
+
     <!-- Default set of monitored resources. If one of these changes, the    -->
     <!-- web application will be reloaded.                                   -->
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
@@ -25,7 +26,4 @@
     <!--
     <Manager pathname="" />
     -->
-    
-     <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" logintimeout="100" maxActive="500" maxIdle="100" name="jdbc/TestDB" password="111111" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/bbs" username="root"/>
-
 </Context>
