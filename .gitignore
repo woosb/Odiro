@@ -1,7 +1,4 @@
 /Servers/
-target/
-AccountBook/.classpath
-dbData.xml
 # Created by https://www.toptal.com/developers/gitignore/api/java,eclipse
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse
 
