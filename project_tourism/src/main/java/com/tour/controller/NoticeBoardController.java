@@ -7,6 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -26,7 +29,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.tour.common.Pagination;
 import com.tour.dto.NoticeBoardDTO;
 import com.tour.service.NoticeBoardService;
 
@@ -36,11 +41,35 @@ public class NoticeBoardController {
 	private static final Logger log = LoggerFactory.getLogger(NoticeBoardController.class);
 	@Autowired
 	NoticeBoardService nbs;
-	@GetMapping(value = "/noticeList")
-	public String noticeList(Model model) {
-		nbs.selectNoticeList(model);
-		return "notice/noticeList";
+	@RequestMapping(value = "/noticeList")
+	public ModelAndView getList(Model model,@RequestParam(defaultValue = "notice_title") String searchOption,
+									@RequestParam(defaultValue = "") String keyword,
+									@RequestParam(defaultValue = "1") int curPage) throws Exception
+									{
+		// 게시물의 총 개수 계산
+		int count = nbs.countBoardList(searchOption, keyword);
+		
+		// 페이지 나누기 관련 처리
+		Pagination pagination = new Pagination(count, curPage);
+		int start = pagination.getPageBegin();
+		int end = pagination.getPageEnd();
+		
+		List<NoticeBoardDTO> list = nbs.getList(start, end, searchOption, keyword);
+		
+		//데이터를 맵에 저장
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list); // list
+		map.put("count", count); //게시물 개수
+		map.put("searchOption", searchOption); //검색 옵션
+		map.put("keyword", keyword); //검색 키워드
+		map.put("pagination", pagination);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("map",map);
+		mav.setViewName("notice/noticeList");
+		return mav;
 	}
+	
 	@GetMapping(value = "/regForm")
 	public String regFrom() {
 		return "notice/regForm";
@@ -84,7 +113,7 @@ public class NoticeBoardController {
 		model.addAttribute("contentView", nbs.getDetail(no));
 		return "notice/modifyForm";
 	}
-	@GetMapping(value = "/modifyOk")
+	@PostMapping(value = "/modifyOk")
 	public String modifyOk(NoticeBoardDTO dto) {
 		nbs.modifyOk(dto);
 		return "redirect:noticeList";

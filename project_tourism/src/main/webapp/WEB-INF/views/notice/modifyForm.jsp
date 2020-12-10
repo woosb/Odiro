@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="/resources/js/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<c:import url="../default/header.jsp"/>
@@ -21,7 +22,8 @@
 			<hr>
 		</div>
 		<div>
-			<textarea name="notice_content"placeholder="내용 입력">${contentView.notice_content }</textarea>
+			<textarea name="notice_content"placeholder="내용 입력" id="editor4">${contentView.notice_content }</textarea>
+			<script>CKEDITOR.replace('editor4',{filebrowserUploadUrl:'imageUpload'});</script>
 			<hr>
 		</div>
 		<div>
