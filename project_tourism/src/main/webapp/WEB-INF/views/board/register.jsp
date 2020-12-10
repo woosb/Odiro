@@ -13,15 +13,20 @@
 	<h1>게시물 작성</h1>
 		<form id="registerForm">
 			<input type="text" name="title" id="title" placeholder="제목"><br><br>
-			<textarea name="content" id="content" placeholder="내용"></textarea><br>
+			<textarea name="input" id="input" placeholder="내용"></textarea><br>	
+			<input type="hidden" id="content" name="content">		
 			<input type="file" name="uploadFile" id="uploadFile" placeholder="파일첨부" multiple><br>
 			<input type="button" value="작성하기" onclick="register()">
 		</form>
 	</div>
 	<c:import url="../default/footer.jsp"/>
 </body>
+<script src="/resources/js/ckeditor/ckeditor.js"></script>
+<script>CKEDITOR.replace('input',{filebrowserUploadUrl:'fileUpload'});</script>
 <script>
 function register(){
+	var content = CKEDITOR.instances.input.getData();
+	document.getElementById("content").value=content;
 	
 	var formData = new FormData();
 	var inputFile = $("input[name='uploadFile']");
@@ -43,6 +48,7 @@ function register(){
 		}
 	});
 	
+
 	var result = 0;
 	$.ajax({
 		url : "/board/register",

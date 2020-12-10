@@ -24,7 +24,7 @@
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td colspan="7"><textarea name="content"  style="width: 1000px;height: 100px;" readonly>${detail.content }</textarea></td>
+			<td colspan="7">${detail.content }</td>
 		</tr>
 		<tr>
 			<th>작성일</th>
