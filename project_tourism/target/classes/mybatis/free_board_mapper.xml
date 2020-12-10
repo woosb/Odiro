@@ -58,6 +58,7 @@
 				 
 			where rnum > #{amount}*(#{pageNum}-1)
 		]]>
+		order by ref desc
 	</select>
 	
 	<sql id="criteria">
