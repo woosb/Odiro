@@ -1,6 +1,8 @@
 package com.tour.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,8 +17,23 @@ public class NoticeBoardDAO {
 	static final String namespace = "com.tour.noticeMapper";
 	@Autowired
 	SqlSession sqlSession;
-	public List<NoticeBoardDTO> selectNoticeList() {
-		return sqlSession.selectList(namespace+".selectNoticeList");
+	public List<NoticeBoardDTO> getList(int start, int end, String searchOption, String keyword) {
+		//검색 옵션, 키워드 맵에 저장
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		
+		//BETWEEN #{start}, #{end}에 입력될 값을 맵에 저장
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList(namespace+".getList",map);
+	}
+	public int countBoardList(String searchOption, String keyword) {
+		//검색 옵션, 키워드 맵에 저장
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		return sqlSession.selectOne(namespace+".countBoardList",map);
 	}
 	public void regBoard(HttpServletRequest req) {
 		NoticeBoardDTO dto = new NoticeBoardDTO();

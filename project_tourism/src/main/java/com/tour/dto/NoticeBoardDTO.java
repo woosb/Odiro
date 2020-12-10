@@ -2,14 +2,16 @@ package com.tour.dto;
 
 import java.sql.Date;
 /*
- 	create table notice_board (
+ 	--! 테이블 생성
+	create table notice_board (
     	notice_no number(5) PRIMARY KEY,
 	    notice_title varchar2(100),
-	    notice_content varchar2(1000),
+	    notice_content CLOB,
 	    notice_hit number(5) default 0,
 	    notice_reg_date date DEFAULT SYSDATE,
 	    notice_upt_date date
 	);
+	create sequence notice_board_seq;
  */
 
 

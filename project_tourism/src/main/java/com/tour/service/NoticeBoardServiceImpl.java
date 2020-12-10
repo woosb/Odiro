@@ -1,5 +1,7 @@
 package com.tour.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,13 @@ import com.tour.dto.NoticeBoardDTO;
 public class NoticeBoardServiceImpl implements NoticeBoardService{
 	@Autowired
 	NoticeBoardDAO dao;
-	@Override
-	public void selectNoticeList(Model model) {
-		model.addAttribute("noticeList", dao.selectNoticeList());
+	public List<NoticeBoardDTO> getList(int start, int end, String searchOption, String keyword) throws Exception {
+		return dao.getList(start, end, searchOption, keyword);
 	}
+	public int countBoardList(String searchOption, String keyword) {
+		return dao.countBoardList(searchOption, keyword);
+	}
+	
 	public void regBoard(HttpServletRequest req) {
 		dao.regBoard(req);
 	}
