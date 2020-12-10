@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="/resources/js/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<c:import url="../default/header.jsp"/>
@@ -28,7 +29,7 @@
 		<tr>
 			<th>내용</th>
 			<td colspan="3">
-				<textarea name="content" style="width: 99.7%; min-height: 200px;"readonly>${contentView.notice_content }</textarea>
+				${contentView.notice_content }
 			</td>
 		</tr>
 		<tr>
