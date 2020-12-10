@@ -84,7 +84,7 @@ public class NoticeBoardController {
 		model.addAttribute("contentView", nbs.getDetail(no));
 		return "notice/modifyForm";
 	}
-	@GetMapping(value = "/modifyOk")
+	@PostMapping(value = "/modifyOk")
 	public String modifyOk(NoticeBoardDTO dto) {
 		nbs.modifyOk(dto);
 		return "redirect:noticeList";
