@@ -44,7 +44,6 @@ public class BoardServiceImpl implements BoardService{
 		List<BoardDTO> reply = dao.getReply(ref);
 		model.addAttribute("reply", reply);
 		model.addAttribute("detail", dto);
-		log.info("getDetailService");
 	}
 
 	@Override

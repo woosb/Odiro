@@ -53,27 +53,53 @@ public class BoardController {
 	}
 	
 	@GetMapping(value="/detail")
-	public void detail(@RequestParam("id") int id, Model model, HttpServletRequest request, HttpServletResponse response) {
-//		Cookie[] cookies = request.getCookies();
-//		if(cookies != null && cookies.length > 0) {
-//			for (Cookie cookie : cookies) {
-//				String cName = cookie.getName();
-//				String cValue = cookie.getValue();
-//				log.info(cName + " : " + cValue);
-//			}
-//		}else {
-//			service.upHit(id);
-//			Cookie hitCookie = new Cookie("upHit", "userId"+id);
-//			response.addCookie(hitCookie);
-//		}
+	public String detail(@RequestParam("id") int id, Model model, HttpServletResponse response,HttpServletRequest request) {
+		Cookie[] cookies = request.getCookies();
+		Cookie hitCookie = null;
+		
+		if(cookies != null && cookies.length > 0) {
+			for (Cookie cookie : cookies) {
+				String cName = cookie.getName();
+				String cValue = cookie.getValue();
+				log.info(cookie.getName() + " : " + cookie.getValue());
+				if(cName.equals("upHit") && cValue.equals("userId"+id)) {
+					hitCookie = cookie;
+					log.info("이미 존재하는 쿠키");
+				}
+			}
+		}
+		
+		if(hitCookie == null) {
+			service.upHit(id);
+			hitCookie = new Cookie("upHit", "userId"+id);
+			response.addCookie(hitCookie);
+		}
+		
 		service.getDetail(model, id);
-		log.info("getDetailController");
-
+		return "/board/detail";
 	}
 	
 	@GetMapping(value="recommend")
-	public void upRecommend(@RequestParam("id") int id) {
-		service.upRecommend(id);
+	public String upRecommend(@RequestParam("id") int id, HttpServletRequest request, HttpServletResponse response) {
+		Cookie[] cookies = request.getCookies();
+		Cookie recoCookie = null;
+		if(cookies != null && cookies.length > 0) {
+			for(Cookie cookie : cookies) {
+				String cName = cookie.getName();
+				String cValue = cookie.getValue();
+				if(cName.equals("recommend") && cValue.equals("userId"+id)) {
+					recoCookie = cookie;
+					log.info("이미 존재하는 쿠키");
+				}
+			}
+		}
+		
+		if(recoCookie == null) {
+			recoCookie = new Cookie("recommend", "userId"+id);
+			response.addCookie(recoCookie);
+			service.upRecommend(id);
+		}
+		return "redirect:/board/detail?id="+id;
 	}
 	
 	@GetMapping(value="/delete")
