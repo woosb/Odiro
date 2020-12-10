@@ -34,7 +34,7 @@
 	</select>
 	
 	<delete id="delete">
-		delete from free_board where id=#{id}
+		delete from free_board where ref=#{ref}
 	</delete>
 	
 	<update id="modify">

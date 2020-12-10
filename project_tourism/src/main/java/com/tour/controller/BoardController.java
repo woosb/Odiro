@@ -53,8 +53,8 @@ public class BoardController {
 	}
 	
 	@GetMapping(value="/delete")
-	public String delete(@Param("id") int id) {
-		int result = service.delete(id);
+	public String delete(@Param("ref") int ref) {
+		int result = service.delete(ref);
 		return "redirect:/board/list";
 	}
 	

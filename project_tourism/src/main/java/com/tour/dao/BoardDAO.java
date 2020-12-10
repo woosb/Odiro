@@ -30,8 +30,8 @@ public class BoardDAO {
 		return sqlSession.selectOne(namespace+".getDetail", id);
 	}
 	
-	public int delete(int id) {
-		return sqlSession.delete(namespace+".delete", id);
+	public int delete(int ref) {
+		return sqlSession.delete(namespace+".delete", ref);
 	}
 	
 	public int modify(BoardDTO dto) {
