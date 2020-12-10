@@ -91,4 +91,11 @@
 		select * from free_board where step > 0 and ref = #{ref} order by refOrder desc
 	]]>
 	</select>
+	
+	<update id="upHit">
+		update free_board set hit = hit + 1 where id = #{id}
+	</update>
+	<update id="upRecommend">
+		update free_board set recommend = recommend + 1 where id = #{id}
+	</update>
 </mapper>

@@ -44,6 +44,7 @@ public class BoardServiceImpl implements BoardService{
 		List<BoardDTO> reply = dao.getReply(ref);
 		model.addAttribute("reply", reply);
 		model.addAttribute("detail", dto);
+		log.info("getDetailService");
 	}
 
 	@Override
@@ -72,5 +73,15 @@ public class BoardServiceImpl implements BoardService{
 		
 		dao.addReplyNum(parentNum);
 		return dao.reply(dto);
+	}
+
+	@Override
+	public int upHit(int id) {
+		return dao.upHit(id);
+	}
+
+	@Override
+	public int upRecommend(int id) {
+		return dao.upRecommend(id);
 	}
 }

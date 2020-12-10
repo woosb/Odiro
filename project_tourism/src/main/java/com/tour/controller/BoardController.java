@@ -1,5 +1,9 @@
 package com.tour.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -47,9 +52,28 @@ public class BoardController {
 		}
 	}
 	
-	@GetMapping(value="/detail", params= {"id"})
-	public void detail(Model model, int id) {
+	@GetMapping(value="/detail")
+	public void detail(@RequestParam("id") int id, Model model, HttpServletRequest request, HttpServletResponse response) {
+//		Cookie[] cookies = request.getCookies();
+//		if(cookies != null && cookies.length > 0) {
+//			for (Cookie cookie : cookies) {
+//				String cName = cookie.getName();
+//				String cValue = cookie.getValue();
+//				log.info(cName + " : " + cValue);
+//			}
+//		}else {
+//			service.upHit(id);
+//			Cookie hitCookie = new Cookie("upHit", "userId"+id);
+//			response.addCookie(hitCookie);
+//		}
 		service.getDetail(model, id);
+		log.info("getDetailController");
+
+	}
+	
+	@GetMapping(value="recommend")
+	public void upRecommend(@RequestParam("id") int id) {
+		service.upRecommend(id);
 	}
 	
 	@GetMapping(value="/delete")

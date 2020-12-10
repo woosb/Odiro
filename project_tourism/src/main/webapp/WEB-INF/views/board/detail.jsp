@@ -84,7 +84,7 @@
 	<button onclick="self.location='/board/delete?ref='+${detail.ref}">삭제</button>
 	<button onclick="self.location='/board/modify?id='+${detail.id}">수정</button>
 	<button onclick="self.location='/board/list'">뒤로가기</button>
-	<button onclick="self.location='/board/recommend?id=${detail.id}&ref=${detail.ref }'">추천하기</button>
+	<button onclick="self.location='/board/recommend?id=${detail.id}'">추천하기</button>
 	<form action="/board/reply" method="post">
 		댓글달기 : <input type="text" name="content">
 		<input type="hidden" value="${detail.id }" name="id">

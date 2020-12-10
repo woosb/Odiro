@@ -53,4 +53,11 @@ public class BoardDAO {
 	public List<BoardDTO> getReply(int ref) {
 		return sqlSession.selectList(namespace+".getReply", ref);
 	}
+	
+	public int upHit(int id) {
+		return sqlSession.update(namespace+".upHit", id);
+	}
+	public int upRecommend(int id) {
+		return sqlSession.update(namespace+".upRecommend", id);
+	}
 }

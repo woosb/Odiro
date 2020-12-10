@@ -11,4 +11,6 @@ public interface BoardService {
 	public int delete(int id);
 	public int modify(BoardDTO dto);
 	public int reply(BoardDTO dto);
+	public int upHit(int id);
+	public int upRecommend(int id);
 }
