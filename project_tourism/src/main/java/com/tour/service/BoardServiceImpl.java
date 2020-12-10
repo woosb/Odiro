@@ -2,6 +2,10 @@ package com.tour.service;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +15,8 @@ import org.springframework.ui.Model;
 import com.tour.controller.BoardController;
 import com.tour.dao.BoardDAO;
 import com.tour.dto.BoardDTO;
+import com.tour.dto.Criteria;
+import com.tour.dto.PageDTO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -32,8 +38,12 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void getList(Model model) {
-		List<BoardDTO> list = dao.getList();
+	public void getList(Model model, Criteria cri) {
+		log.info(cri.toString());
+		int total = dao.getTotal();
+		PageDTO pageMaker = new PageDTO(cri, total);
+		List<BoardDTO> list = dao.getList(cri);
+		model.addAttribute("pageMaker",pageMaker);
 		model.addAttribute("list", list);
 	}
 
@@ -73,14 +83,54 @@ public class BoardServiceImpl implements BoardService{
 		dao.addReplyNum(parentNum);
 		return dao.reply(dto);
 	}
-
-	@Override
-	public int upHit(int id) {
-		return dao.upHit(id);
+	
+	public int upRecommend(int id) {
+		return dao.upRecommend(id);
 	}
 
 	@Override
-	public int upRecommend(int id) {
-		return dao.upRecommend(id);
+	public void hitCookie(HttpServletRequest request, HttpServletResponse response, int id) {
+		Cookie[] cookies = request.getCookies();
+		Cookie hitCookie = null;
+		
+		if(cookies != null && cookies.length > 0) {
+			for (Cookie cookie : cookies) {
+				String cName = cookie.getName();
+				String cValue = cookie.getValue();
+				log.info(cookie.getName() + " : " + cookie.getValue());
+				if(cName.equals("upHit") && cValue.equals("userId"+id)) {
+					hitCookie = cookie;
+					log.info("이미 존재하는 쿠키");
+				}
+			}
+		}
+		
+		if(hitCookie == null) {
+			dao.upHit(id);
+			hitCookie = new Cookie("upHit", "userId"+id);
+			response.addCookie(hitCookie);
+		}
+	}
+
+	@Override
+	public void recommendCookie(HttpServletRequest request, HttpServletResponse response, int id) {
+		Cookie[] cookies = request.getCookies();
+		Cookie recoCookie = null;
+		if(cookies != null && cookies.length > 0) {
+			for(Cookie cookie : cookies) {
+				String cName = cookie.getName();
+				String cValue = cookie.getValue();
+				if(cName.equals("recommend") && cValue.equals("userId"+id)) {
+					recoCookie = cookie;
+					log.info("이미 존재하는 쿠키");
+				}
+			}
+		}
+		
+		if(recoCookie == null) {
+			recoCookie = new Cookie("recommend", "userId"+id);
+			response.addCookie(recoCookie);
+			dao.upRecommend(id);
+		}
 	}
 }

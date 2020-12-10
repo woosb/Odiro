@@ -26,8 +26,59 @@
 	</select>
 	
 	<select id="getList" resultType="com.tour.dto.BoardDTO">
-		select * from free_board where step = 0 order by regDate desc
+		<![CDATA[
+			select
+				*
+			from (
+				select 
+					rownum as rnum, 
+					id, 
+					userId, 
+					title, 
+					content, 
+					regDate, 
+					updateDate, 
+					hit, 
+					recommend, 
+					ref,
+					refOrder,
+					step,
+					answerNum,
+					parentNum
+				from 
+					free_board 
+				where 
+				
+		]]>
+
+		<include refid="criteria"></include> 
+
+		<![CDATA[
+				rownum <=#{amount}*#{pageNum})
+				 
+			where rnum > #{amount}*(#{pageNum}-1)
+		]]>
 	</select>
+	
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							userId like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 	
 	<select id="getDetail" resultType="com.tour.dto.BoardDTO">
 		select * from free_board where id=#{id}
@@ -98,4 +149,8 @@
 	<update id="upRecommend">
 		update free_board set recommend = recommend + 1 where id = #{id}
 	</update>
+	
+	<select id="getTotal" resultType="Integer">
+		select count(*) from free_board
+	</select>
 </mapper>

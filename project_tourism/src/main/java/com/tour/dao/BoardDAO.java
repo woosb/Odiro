@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tour.dto.BoardDTO;
+import com.tour.dto.Criteria;
 
 @Repository
 public class BoardDAO {
@@ -22,8 +23,9 @@ public class BoardDAO {
 	public Integer getMaxRef() {
 		return sqlSession.selectOne(namespace+".getMaxRef");
 	}
-	public List<BoardDTO> getList(){
-		return sqlSession.selectList(namespace+".getList");
+	
+	public List<BoardDTO> getList(Criteria cri){
+		return sqlSession.selectList(namespace+".getList", cri);
 	}
 	
 	public BoardDTO getDetail(int id) {
@@ -57,7 +59,12 @@ public class BoardDAO {
 	public int upHit(int id) {
 		return sqlSession.update(namespace+".upHit", id);
 	}
+	
 	public int upRecommend(int id) {
 		return sqlSession.update(namespace+".upRecommend", id);
+	}
+	
+	public int getTotal() {
+		return sqlSession.selectOne(namespace+".getTotal");
 	}
 }

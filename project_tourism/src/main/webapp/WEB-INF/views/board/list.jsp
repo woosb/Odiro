@@ -41,7 +41,28 @@
 		</c:forEach>
 	</table>
 	<br>
+	<c:if test="${pageMaker.prev }">
+		<a href="/board/list?pageNum=${pageMaker.startPage-1 }"><c:out value="prev"/></a>
+	</c:if>
+	<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="page">
+		<a href="/board/list?pageNum=${page }"><c:out value="${page }"/></a>
+	</c:forEach>
+	<c:if test="${pageMaker.next }">
+		<a href="/board/list?pageNum=${pageMaker.endPage+1 }"><c:out value="next"/></a>
+	</c:if>
+	<br><br>
 	<a href="/board/register" >글 작성</a>
+	<form id='searchForm' action="/board/list" method='get' >
+		<select name='type'>
+			<option value="" <c:out value="${pageMaker.cri.type == null? 'selected ' : ''}"/>>--</option>
+			<option value="T" <c:out value="${pageMaker.cri.type eq 'T'? 'selected ' : ''}"/>>제목</option>
+			<option value="C" <c:out value="${pageMaker.cri.type eq 'C'? 'selected ' : ''}"/>>내용</option>
+			<option value="W" <c:out value="${pageMaker.cri.type eq 'W'? 'selected ' : ''}"/>>글쓴이</option>
+		</select>
+		<input type='text' name='keyword' value='<c:out value="${pageMaker.cri.keyword }"/>'/>
+		<input type="hidden" name="pageNum" value='<c:out value="${pageMaker.cri.pageNum }"/>'/>
+		<input type="submit" value="Search">
+	</form>
 </div>
 <c:import url="../default/footer.jsp"/>
 </body>
