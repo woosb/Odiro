@@ -48,6 +48,7 @@
 				from 
 					free_board 
 				where 
+					step = 0 and
 				
 		]]>
 
