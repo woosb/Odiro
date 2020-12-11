@@ -153,6 +153,6 @@
 	</update>
 	
 	<select id="getTotal" resultType="Integer">
-		select count(*) from free_board
+		select count(*) from free_board where step = 0
 	</select>
 </mapper>

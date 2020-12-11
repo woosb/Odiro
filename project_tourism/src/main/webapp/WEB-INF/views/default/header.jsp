@@ -29,7 +29,7 @@
 		<div class="head" style="text-align: right; font-size: 22px; background-color:#4d4d4d; height: 35px;">
 		<ul>
 			<li>
-				<a href="/spring/member/index" >HOME</a>
+				<a href="/" >HOME</a>
 			</li>
 			
 			<li>
