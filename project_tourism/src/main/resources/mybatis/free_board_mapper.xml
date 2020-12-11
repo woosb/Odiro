@@ -27,10 +27,10 @@
 	
 	<select id="getList" resultType="com.tour.dto.BoardDTO">
 		<![CDATA[
-			select
+			select 
 				*
 			from (
-				select 
+				select /*+ INDEX_DESC(free_board pk_board) */
 					rownum as rnum, 
 					id, 
 					userId, 
@@ -59,7 +59,6 @@
 				 
 			where rnum > #{amount}*(#{pageNum}-1)
 		]]>
-		order by ref desc
 	</select>
 	
 	<sql id="criteria">

@@ -11,7 +11,7 @@
 <c:import url="../default/header.jsp"/>
 <div align="center">
 	<h1>글 내용</h1>
-	<form action="/board/modify" method="post">
+	<form id="registerForm">
 		<table border="1">
 			<tr>
 				<th>제목</th>
@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td colspan="7"><textarea name="content"  style="width: 1000px;height: 100px;">${detail.content }</textarea></td>
+				<td colspan="7"><textarea name="input"  style="width: 1000px;height: 100px;">${detail.content }</textarea></td>
 			</tr>
 			<tr>
 				<th>작성일</th>
@@ -39,12 +39,42 @@
 				<th colspan="8">댓글</th>
 			</tr>
 		</table>
+		<input type="hidden" name="content" id="content">
 		<input type="hidden" name="id" value="${detail.id }">
-		<input type="submit" value="수정하기">
+		<input type="button" value="수정하기" onclick="modify()">
 	</form>
 	<br>
 	<button onclick="self.location='/board/list'">뒤로가기</button>
 </div>
 <c:import url="../default/footer.jsp"/>
+<script src="/resources/js/ckeditor/ckeditor.js"></script>
+<script>CKEDITOR.replace('input',{filebrowserUploadUrl:'/fileUpload'});</script>
+<script>
+function modify(){
+	var content = CKEDITOR.instances.input.getData();
+	document.getElementById("content").value=content;
+	
+	$.ajax({
+		url : "/board/modify",
+		type : "POST",
+		cache : false,
+		async : false,
+		dataType : "JSON",
+		data : $("#registerForm").serialize(),
+		success : function(data){
+			if(data == 1){
+				alert("수정 완료");
+				self.location="/board/list";
+			}else{
+				alert("등록실패!");
+			}
+		},
+		error : function(data){
+			alert("서버에러!");
+		} 
+	});
+}
+
+</script>
 </body>
 </html>

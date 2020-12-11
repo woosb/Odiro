@@ -69,10 +69,11 @@ public class BoardController {
 	}
 	
 	@PostMapping(value="/modify")
-	public String modify(BoardDTO dto) {
+	@ResponseBody
+	public int modify(BoardDTO dto) {
 		log.info("dto : "+dto.toString());
-		service.modify(dto);
-		return "redirect:/board/list";
+		int result = service.modify(dto);
+		return result;
 	}
 	
 	@PostMapping(value="/reply")
