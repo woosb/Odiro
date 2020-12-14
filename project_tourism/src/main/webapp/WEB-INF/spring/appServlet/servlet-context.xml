@@ -20,14 +20,13 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-<<<<<<< HEAD
 	<beans:bean id="MemberService" class="com.tour.memberService.MemberServiceImpl"/>
+	<beans:bean id="BoardService" class="com.tour.service.BoardServiceImpl"/>
+	<beans:bean id="NoticeBoardService" class="com.tour.service.NoticeBoardServiceImpl"/>
 	<beans:bean id="MemberDAO" class="com.tour.dao.MemberDAOImpl"/>
+	<beans:bean id="BoardDAO" class="com.tour.dao.BoardDAO"/>
+	<beans:bean id="NoticeDAO" class="com.tour.dao.NoticeBoardDAO"/>
 	<context:component-scan base-package="com.tour.controller" />
-=======
-	
-	<context:component-scan base-package="com.tour" />
->>>>>>> 5dd48af4c621e852e443ebe34320bf9b43ee8835
 	
 	
 	
