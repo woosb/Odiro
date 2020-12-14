@@ -6,7 +6,15 @@
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>
+<<<<<<< HEAD
+		/WEB-INF/spring/root-context.xml
+		classpath:database/jdbc-config.xml
+=======
+			/WEB-INF/spring/root-context.xml
+			classpath:database/jdbc_config.xml
+>>>>>>> 5dd48af4c621e852e443ebe34320bf9b43ee8835
+		</param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.tour.noticeMapper">
+		<!-- 게시글 전체 목록 조회 및 검색조회 -->
+		<select id="getList" resultType="com.tour.dto.NoticeBoardDTO">
+			<!-- 목록 조회 및 페이징 전체 처리 -->
+			<include refid="pagingHeader"></include>
+				select rownum, notice_no, notice_title, notice_content, notice_reg_date, notice_hit
+				from notice_board
+			<include refid="search"></include>
+				order by notice_no desc
+			<include refid="pagingFooter"></include>
+		</select>
+		<select id="countBoardList" resultType="int">
+			select count(*) from notice_board
+			<include refid="search"></include>
+		</select>
+		<select id="getDetail" resultType="com.tour.dto.NoticeBoardDTO">
+			select * from notice_board where notice_no = #{no,jdbcType=VARCHAR}
+		</select>
+		
+		<insert id="regBoard" parameterType="com.tour.dto.NoticeBoardDTO">
+			insert into notice_board (notice_no,notice_title,notice_content)
+			values (
+				notice_board_seq.nextval,
+				#{notice_title,jdbcType=VARCHAR},
+				#{notice_content,jdbcType=VARCHAR}
+			)		
+		</insert>
+		
+		<update id="upHit">
+			update notice_board set notice_hit = notice_hit + 1 
+			where notice_no = #{no,jdbcType=VARCHAR}
+		</update>
+		<update id="modifyOk" parameterType="com.tour.dto.NoticeBoardDTO">
+			update notice_board set 
+				notice_title = #{notice_title,jdbcType=VARCHAR},
+				notice_content = #{notice_content,jdbcType=VARCHAR},
+				notice_upt_date = sysdate
+			where notice_no = #{notice_no,jdbcType=VARCHAR}
+		</update>
+		
+		<delete id="deleteBoard">
+			delete from notice_board 
+			where notice_no = #{no,jdbcType=VARCHAR}
+		</delete>
+		
+		<!-- 검색 조건 sql -->
+		<sql id="search">
+			<choose>
+				<!-- 검색 옵션이 전체 검색일 경우 -->
+				<when test="searchOption == 'all'">
+					where (notice_content like '%'||#{keyword}||'%'
+					or notice_title like '%'||#{keyword}||'%') 
+				</when>
+				<!--  검색 옵션이 전체 검색이 아닐 경우 -->
+				<otherwise>
+					where ${searchOption} like '%'||#{keyword}||'%'
+				</otherwise>
+			</choose>
+		</sql>
+		
+		<!-- 페이징 sql -->
+		<sql id="pagingHeader">
+			select * from (
+				select rownum as rn, A.* from (	
+		</sql>
+		<sql id="pagingFooter">
+				) A ) where rn between #{start} and #{end}
+		</sql>
+	</mapper>
