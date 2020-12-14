@@ -7,8 +7,13 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
+<<<<<<< HEAD
 		/WEB-INF/spring/root-context.xml
 		classpath:database/jdbc-config.xml
+=======
+			/WEB-INF/spring/root-context.xml
+			classpath:database/jdbc_config.xml
+>>>>>>> 5dd48af4c621e852e443ebe34320bf9b43ee8835
 		</param-value>
 	</context-param>
 	

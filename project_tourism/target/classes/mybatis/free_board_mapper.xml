@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tour.board">
+	<insert id="register" >
+		insert into free_board(
+			id, 
+			userId, 
+			title, 
+			content,
+			ref, 
+			regDate
+		)
+		values (
+			free_board_seq.nextval,
+			#{userId},
+			#{title},
+			#{content},
+			#{ref},
+			sysdate
+		)
+	</insert>
+	
+	<select id="getMaxRef" resultType="Integer">
+		select max(ref) from free_board
+	</select>
+	
+	<select id="getList" resultType="com.tour.dto.BoardDTO">
+		<![CDATA[
+			select 
+				*
+			from (
+				select /*+ INDEX_DESC(free_board pk_board) */
+					rownum as rnum, 
+					id, 
+					userId, 
+					title, 
+					content, 
+					regDate, 
+					updateDate, 
+					hit, 
+					recommend, 
+					ref,
+					refOrder,
+					step,
+					answerNum,
+					parentNum
+				from 
+					free_board 
+				where 
+					step = 0 and
+				
+		]]>
+
+		<include refid="criteria"></include> 
+
+		<![CDATA[
+				rownum <=#{amount}*#{pageNum})
+				 
+			where rnum > #{amount}*(#{pageNum}-1)
+		]]>
+	</select>
+	
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							userId like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<select id="getDetail" resultType="com.tour.dto.BoardDTO">
+		select * from free_board where id=#{id}
+	</select>
+	
+	<delete id="delete">
+		delete from free_board where ref=#{ref}
+	</delete>
+	
+	<update id="modify">
+		update 
+			free_board set 
+				title = #{title}, 
+				content = #{content}, 
+				updateDate = sysdate 
+			where 
+				id = #{id}
+	</update>
+	
+	<insert id="reply">
+		insert into 
+			free_board(
+			id, 
+			userId, 
+			content, 
+			regDate, 
+			ref, 
+			refOrder, 
+			step, 
+			parentNum)
+		 values(
+		 	free_board_seq.nextval,
+		 	#{userId},
+		 	#{content},
+		 	sysdate,
+		 	#{ref},
+		 	#{refOrder},
+		 	#{step},
+		 	#{parentNum}
+		 )
+	</insert>
+	
+	<update id="addRefOrder">
+		<![CDATA[ 
+		update free_board set 
+			refOrder = refOrder + 1 
+		where 
+			ref = #{ref} and refOrder > #{refOrder}
+		]]>
+	</update>
+	
+	<update id="addReplyNum">
+		update free_board set 
+			answerNum = answerNum+1 
+		where 
+			id=#{parentNum}
+	</update>
+	
+	<select id="getReply" resultType="com.tour.dto.BoardDTO">
+	<![CDATA[
+		select * from free_board where step > 0 and ref = #{ref} order by refOrder desc
+	]]>
+	</select>
+	
+	<update id="upHit">
+		update free_board set hit = hit + 1 where id = #{id}
+	</update>
+	<update id="upRecommend">
+		update free_board set recommend = recommend + 1 where id = #{id}
+	</update>
+	
+	<select id="getTotal" resultType="Integer">
+		select count(*) from free_board where step = 0
+	</select>
+</mapper>
