@@ -1,30 +1,101 @@
 package com.tour.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+ 
+import javax.inject.Inject;
+ 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 
 import com.tour.dto.MemberDTO;
  
  
-public interface MemberDAO {
  
-    public void join(MemberDTO dto);     //회원가입 관련
+@Repository
+public class MemberDAO {
+    @Inject
+    SqlSession sqlSession;
+    //회원가입 관련 메소드
+
+    public void join(MemberDTO dto) {
+        
+        sqlSession.insert("memberMapper.insertUser",dto);        
+    }
     
-    public boolean loginCheck(MemberDTO dto);        //로그인 관련
     
-    public String find_idCheck(MemberDTO dto);        //아이디 찾기
+    //로그인관련 메소드
+    public boolean loginCheck(MemberDTO dto) {
+        String name
+            =sqlSession.selectOne("memberMapper.login_check", dto);
+        
+        //조건식 ? true일때의 값 : false일때의 값
+        return (name==null) ? false : true;
+    }
+ 
     
-    public String find_passCheck(MemberDTO dto);    //비밀번호 찾기
+    //아이디 찾기 관련 메소드
+    public String find_idCheck(MemberDTO dto) {
+        String id = sqlSession.selectOne("memberMapper.find_id_check", dto);
+        return id;
+        
+    }
  
-    public void authentication(MemberDTO dto);        //소셜 로그인 회원인증 관련 메소드
+    
+    //비밀번호 찾기 관련 메소드
+    public String find_passCheck(MemberDTO dto) {
+        String pass = sqlSession.selectOne("memberMapper.find_pass_check", dto);
+        return pass;
+    }
  
-    public void pass_change(Map<String, Object> map, MemberDTO dto)throws Exception;    //비밀번호 변경
+    
+    //회원 인증 관련 메소드
+    //버튼을 클릭한 회원의 정보를 회원 테이블에 저장해서 사용할 수 있게 함
+    public void authentication(MemberDTO dto) {
+        
+        sqlSession.insert("memberMapper.authentication", dto);
+        
+    }
  
-    public boolean email_check(String e_mail) throws Exception;    //이메일 중복 확인
  
-    public boolean join_id_check(String user_id)throws Exception;    //아이디 중복 확인
+
+    public void pass_change(Map<String, Object> map, MemberDTO dto)throws Exception{
+        
+        map.get("member_pass");
+        map.get("e_mail");
  
-    public List<MemberDTO> member_profile(String user_id) throws Exception;    //회원의 프로필 정보를 확인할 수 있는 메소드
+        sqlSession.update("memberMapper.pass_change", map);
+    }
+ 
+ 
+
+    public boolean email_check(String e_mail) throws Exception {
+    	System.out.println(e_mail);
+    	System.out.println(sqlSession);
+        String email
+        =sqlSession.selectOne("memberMapper.email_check", e_mail);
+    
+        //조건식 ? true일때의 값 : false일때의 값
+        return (email==null) ? true : false;
+        
+    }
+ 
+ 
+
+    public boolean join_id_check(String user_id) throws Exception {
+        String user_id1
+        =sqlSession.selectOne("memberMapper.join_id_check", user_id);
+    
+        //조건식 ? true일때의 값 : false일때의 값
+        return (user_id1==null) ? true : false;
+    }
+ 
+    
+    //회원의 프로필 정보를 리턴한다.
+
+    public List<MemberDTO> member_profile(String user_id) throws Exception {
+        
+        return sqlSession.selectList("memberMapper.member_profile", user_id);
+    }
     
 }
