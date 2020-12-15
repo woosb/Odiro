@@ -56,7 +56,7 @@ public class memberController {
 	    @RequestMapping(value="/member/logout", method = RequestMethod.GET)
 	    public ModelAndView logout(HttpServletRequest req) {
 	    	HttpSession session = req.getSession();
-	    	session.removeAttribute("user_id");
+	    	session.removeAttribute("e_mail");
 	    	session.removeAttribute("user_pass");
 	    	ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
             mv.setViewName("/member/login");     //뷰의이름
@@ -64,10 +64,10 @@ public class memberController {
 	    }
 	    //로그인 포스트
     	@RequestMapping(value = "/member/login_form", method = RequestMethod.POST)
-    	public ModelAndView login(MemberDTO dto, HttpServletRequest req,String user_id,String user_pass)throws Exception
+    	public ModelAndView login(MemberDTO dto, HttpServletRequest req,String e_mail,String user_pass)throws Exception
     	{
     		HttpSession session = req.getSession();
-    		dto.setUser_id(user_id);
+    		dto.setE_mail(e_mail);
     		dto.setUser_pass(user_pass);
     		MemberService.loginCheck(dto, session);
     		 ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
@@ -75,11 +75,9 @@ public class memberController {
     		return mv;
     	}
     	//회원가입
-    	@RequestMapping("/member/join_check.do{user_id},{e_mail}")
-        public ModelAndView join(MemberDTO dto,@PathVariable String e_mail,@PathVariable String user_id,String user_pass) throws Exception 
+    	@RequestMapping("/member/join_check.do{e_mail}")
+        public ModelAndView join(MemberDTO dto,@PathVariable String e_mail,String user_pass) throws Exception 
         {
-    		System.out.println(user_pass);
-    		dto.setUser_id(user_id);
     		dto.setUser_pass(user_pass);
     		dto.setE_mail(e_mail);
     		MemberService.join(dto);
@@ -155,7 +153,7 @@ public class memberController {
     
     //이메일 인증 페이지 맵핑 메소드
     @RequestMapping("/member/email.do")
-    public String email() {
+    public String email() throws IOException {
         return "member/email";
     }
     
@@ -310,10 +308,10 @@ public class memberController {
     public ModelAndView member_profile(HttpSession session, MemberDTO dto) throws Exception{
         
         //세션에 저장되어 있는 회원의 아이디를 변수에 저장함
-        String user_id =(String)session.getAttribute("user_id");
-        System.out.println(user_id);
+        String e_mail =(String)session.getAttribute("e_mail");
+        System.out.println(e_mail);
         //데이터베이스에서 검색한 값들을 DTO타입에 LIST에 저장한다.
-        java.util.List<MemberDTO> list = MemberService.member_profile(user_id);
+        java.util.List<MemberDTO> list = MemberService.member_profile(e_mail);
         System.out.println(list);
         Map<String,Object> map = new HashMap<>();
         

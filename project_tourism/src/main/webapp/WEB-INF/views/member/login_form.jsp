@@ -27,7 +27,7 @@ width=device-width" />
 <form action ="/member/login_form" method = "post">
 <center>
 <br>
-아이디 : <input type = "text" name="user_id" placeholder="  ID를 입력하세요 "><br><br>
+아이디 : <input type = "text" name="e_mail" placeholder="  이메일을 입력하세요 "><br><br>
 비밀번호 : <input type = "password" name="user_pass" placeholder="  비밀번호를 입력하세요 "><br><br>
 <button type = "submit" name = "submit" >로그인</button>
  
@@ -131,6 +131,7 @@ Kakao.Auth.createLoginButton({
 <!-- 회원가입 -->
 <form action ="/member/email.do">
 <center>
+${e_mail = null}
 <button>회원가입</button>
 </center>
 </form> 

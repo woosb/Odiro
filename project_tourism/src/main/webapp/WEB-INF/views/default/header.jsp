@@ -33,7 +33,7 @@
 			</li>
 			
 			<li>
-				<%if (session.getAttribute("user_id") == null) {%>
+				<%if (session.getAttribute("e_mail") == null) {%>
 					<a href="/notice/noticeList">공지사항</a> 
 				<%} else {%>
 					<a href="/notice/noticeList">공지사항</a>
@@ -41,14 +41,14 @@
 			</li>
 			
 			<li>
-				<%if (session.getAttribute("user_id") == null) {%>
+				<%if (session.getAttribute("e_mail") == null) {%>
 					<a href="/board/list">게시판</a> 
 				<%} else {%>
 					<a href="/board/list">게시판</a>
 				<%} %>
 			</li>
 			<li>
-				<%if (session.getAttribute("user_id") == null) {%>
+				<%if (session.getAttribute("e_mail") == null) {%>
 					<a href="/member/login">회원정보</a> 
 				<%} else {%>
 					<a href="/member/login">회원정보</a>
@@ -56,7 +56,7 @@
 			</li>
 			
 			<li>
-				<%if (session.getAttribute("user_id") == null) {%>
+				<%if (session.getAttribute("e_mail") == null) {%>
 					<a href="">로그보기</a> 
 				<%} else {%>
 					<a href="">로그보기</a>
@@ -64,7 +64,7 @@
 			</li>
 			
 			<li>
-				<%if (session.getAttribute("user_id") == null) {%> 
+				<%if (session.getAttribute("e_mail") == null) {%> 
 					<a href="/member/login_form">로그인</a> 
 				<%} else { %>
 					<a href="/member/logout">로그아웃

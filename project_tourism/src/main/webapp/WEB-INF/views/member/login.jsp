@@ -12,9 +12,9 @@
 <br>
 <!-- 세션에 id값이 저장되어 있는 경우 로그아웃 버튼과 로그인한 아이디가 출력되도록 코드를 작성함 -->
  
-<c:if test = "${sessionScope.user_id != null}">
+<c:if test = "${sessionScope.e_mail != null}">
  
-(일반)${sessionScope.user_id}님이 로그인 하셨습니다. <br><br>
+(일반)${sessionScope.e_mail}님이 로그인 하셨습니다. <br><br>
 <form action = "member_profile.do" method = "post">
 <button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
  
@@ -57,7 +57,7 @@
  
  
  
-<c:if test = "${sessionScope.user_id == null and sessionScope.navername == null and sessionScope.kakaonickname == null and sessionScope.facebookname == null and sessionScope.admin_id == null}">
+<c:if test = "${sessionScope.e_mail == null and sessionScope.navername == null and sessionScope.kakaonickname == null and sessionScope.facebookname == null and sessionScope.admin_id == null}">
  
 <%
 //url로 보낸 아이디를 세션에 저장하기 위해 변수에 저장함

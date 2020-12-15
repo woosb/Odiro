@@ -34,9 +34,9 @@ public class MemberServiceImpl implements MemberService {
         
         boolean result = memberdao.loginCheck(dto);
         if(result) {    //로그인 성공
-            session.setAttribute("user_id", dto.getUser_id());
+            session.setAttribute("e_mail", dto.getE_mail());
             session.setAttribute("member_pass", dto.getUser_pass());
-            System.out.println(session.getAttribute("user_id"));
+            System.out.println(session.getAttribute("e_mail"));
             System.out.println(session.getAttribute("member_pass"));
         }
         

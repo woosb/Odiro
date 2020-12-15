@@ -26,7 +26,6 @@
                         </div>                                        
  
                         <br> <br>
-                        ${user_id = null}
                         <button type="submit" name="submit">인증번호 전송</button>
  
                         </div>
