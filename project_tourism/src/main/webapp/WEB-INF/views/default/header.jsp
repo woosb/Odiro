@@ -33,7 +33,7 @@
 			</li>
 			
 			<li>
-				<%if (session.getAttribute("id") == null) {%>
+				<%if (session.getAttribute("user_id") == null) {%>
 					<a href="/notice/noticeList">공지사항</a> 
 				<%} else {%>
 					<a href="/notice/noticeList">공지사항</a>
@@ -41,22 +41,22 @@
 			</li>
 			
 			<li>
-				<%if (session.getAttribute("id") == null) {%>
+				<%if (session.getAttribute("user_id") == null) {%>
 					<a href="/board/list">게시판</a> 
 				<%} else {%>
 					<a href="/board/list">게시판</a>
 				<%} %>
 			</li>
 			<li>
-				<%if (session.getAttribute("id") == null) {%>
-					<a href="">회원정보</a> 
+				<%if (session.getAttribute("user_id") == null) {%>
+					<a href="/member/login">회원정보</a> 
 				<%} else {%>
-					<a href="">회원정보</a>
+					<a href="/member/login">회원정보</a>
 				<%} %>
 			</li>
 			
 			<li>
-				<%if (session.getAttribute("id") == null) {%>
+				<%if (session.getAttribute("user_id") == null) {%>
 					<a href="">로그보기</a> 
 				<%} else {%>
 					<a href="">로그보기</a>
@@ -64,10 +64,10 @@
 			</li>
 			
 			<li>
-				<%if (session.getAttribute("id") == null) {%> 
-					<a href="">로그인</a> 
+				<%if (session.getAttribute("user_id") == null) {%> 
+					<a href="/member/login_form">로그인</a> 
 				<%} else { %>
-					<a href="">로그아웃
+					<a href="/member/logout">로그아웃
 				<%} %></a>
 			</li>
 		</ul>

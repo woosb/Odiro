@@ -9,7 +9,7 @@
  
 </head>
 <body>
- 
+ <c:import url="../default/header.jsp"/>
         <center>
         <br>
         <br>
@@ -51,7 +51,7 @@
  
 </c:if>
  
- 
+ <c:import url="../default/footer.jsp"/>
  
 </body>
 </html>

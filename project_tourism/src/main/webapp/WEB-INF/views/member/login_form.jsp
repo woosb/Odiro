@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +11,8 @@
 <meta name = "viewport" content = "user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,
 width=device-width" />
  
-<title>Insert title here</title>
- 
 </head>
- 
+ <c:import url="../default/header.jsp"/>
 <table border="1" width="300">
  
 <tr>
@@ -62,8 +61,8 @@ width=device-width" />
     var naverLogin = new naver.LoginWithNaverId(
         {
             //클라이언트 id와 콜백 url (결과페이지)
-            clientId: "DphfmDygX4WFkf8nghMJ",
-            callbackUrl: "http://localhost/hansub_project/login_result",
+            clientId: "eiAQbH1r7I4HCKucdQLe",
+            callbackUrl: "http://localhost:8081/member/login",
             isPopup: false, /* 팝업을 통한 연동처리 여부 */
             loginButton: {color: "green", type: 3, height: 40} /* 로그인 버튼의 타입을 지정 */
         }
@@ -85,7 +84,7 @@ width=device-width" />
 <a href="http://developers.kakao.com/logout"></a>
 <script type='text/javascript'>
  
-Kakao.init('bd21082a499aaa79b4c08e01935a8a70'); //아까 카카오개발자홈페이지에서 발급받은 자바스크립트 키를 입력함
+Kakao.init('16a5e9f98830b7ff58f7449e5d28067e'); //아까 카카오개발자홈페이지에서 발급받은 자바스크립트 키를 입력함
  
 //카카오 로그인 버튼을 생성합니다. 
  
@@ -113,7 +112,7 @@ Kakao.Auth.createLoginButton({
          
           
  
-          window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/hansub_project/home?kakaonickname="+kakaonickname+"kakaotalk"+"&kakaoe_mail="+kakaoe_mail);
+          window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/tour_project/home?kakaonickname="+kakaonickname+"kakaotalk"+"&kakaoe_mail="+kakaoe_mail);
       
                    }
                  })
@@ -128,7 +127,13 @@ Kakao.Auth.createLoginButton({
  
  
 </form>
- 
+<br>
+<!-- 회원가입 -->
+<form action ="/member/email.do">
+<center>
+<button>회원가입</button>
+</center>
+</form> 
 <br>
 <!-- 아이디 찾기 -->
 <form action ="find.user_id.do">
@@ -149,7 +154,7 @@ Kakao.Auth.createLoginButton({
 </td>
 </tr>
 </table>
- 
+ <c:import url="../default/footer.jsp"/>
  
 <body>
 <!-- 로그인 실패나 성공시 메시지를 받아서 출력하는 자바스크립트 구문 -->
@@ -162,7 +167,5 @@ Kakao.Auth.createLoginButton({
         }
     })
 </script>
- 
- 
 </body>
 </html>

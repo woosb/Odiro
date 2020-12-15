@@ -47,6 +47,21 @@ public class memberController {
 	    public String login() {
 	        return "member/login_form";
 	    }
+	    //회원정보 맵핑
+	    @RequestMapping(value="/member/login", method = RequestMethod.GET)
+	    public String member() {
+	        return "member/login";
+	    }
+	    //로그아웃 맵핑
+	    @RequestMapping(value="/member/logout", method = RequestMethod.GET)
+	    public ModelAndView logout(HttpServletRequest req) {
+	    	HttpSession session = req.getSession();
+	    	session.removeAttribute("user_id");
+	    	session.removeAttribute("user_pass");
+	    	ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
+            mv.setViewName("/member/login");     //뷰의이름
+            return mv;
+	    }
 	    //로그인 포스트
     	@RequestMapping(value = "/member/login_form", method = RequestMethod.POST)
     	public ModelAndView login(MemberDTO dto, HttpServletRequest req,String user_id,String user_pass)throws Exception
