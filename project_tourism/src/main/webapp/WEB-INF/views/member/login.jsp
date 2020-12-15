@@ -5,21 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
  
- 
+ <c:import url="../default/header.jsp"/>
 <body>
 <br>
 <!-- 세션에 id값이 저장되어 있는 경우 로그아웃 버튼과 로그인한 아이디가 출력되도록 코드를 작성함 -->
  
-<c:if test = "${sessionScope.user_id != null}">
+<c:if test = "${sessionScope.e_mail != null}">
  
-(일반)${sessionScope.user_id}님이 로그인 하셨습니다. <br><br>
- 
-<form action = "logout.do" method = "post">
-<button type = "submit" name = "submit">로그아웃</button></form><br><br>
- 
+(일반)${sessionScope.e_mail}님이 로그인 하셨습니다. <br><br>
 <form action = "member_profile.do" method = "post">
 <button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
  
@@ -30,10 +25,6 @@
 <c:if test = "${sessionScope.navername != null}">
  
 (네이버)${sessionScope.navername}님이 로그인 하셨습니다.<br><br>
- 
-<form action = "naver_logout.do" method = "post">
-<button type = "submit" name = "submit">로그아웃</button></form><br><br>
- 
 <form action = "authentication.do" method = "post">
 <button type = "submit" name = "submit">회원 인증하기 (인증을 해야 각종 기능들 사용 가능)</button></form><br><br>
  
@@ -46,10 +37,6 @@
 <c:if test = "${sessionScope.kakaonickname != null}">
  
 (카카오톡)${sessionScope.kakaonickname}님이 로그인 하셨습니다.<br><br>
- 
-<form action = "kakao_logout.do" method = "post">
-<button type = "submit" name = "submit">로그아웃</button></form><br><br>
- 
 <form action = "authentication.do" method = "post">
 <button type = "submit" name = "submit">회원 인증하기 (인증을 해야 각종 기능들 사용 가능)</button></form><br><br>
  
@@ -62,10 +49,6 @@
 <c:if test = "${sessionScope.admin_id != null}">
  
 (관리자)${sessionScope.admin_id}님이 로그인 하셨습니다.<br><br>
- 
-<form action = "logout.do" method = "post">
-<button type = "submit" name = "submit">로그아웃</button></form><br><br>
- 
 <form action = "member_profile.do" method = "post">
 <button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
  
@@ -74,7 +57,7 @@
  
  
  
-<c:if test = "${sessionScope.user_id == null and sessionScope.navername == null and sessionScope.kakaonickname == null and sessionScope.facebookname == null and sessionScope.admin_id == null}">
+<c:if test = "${sessionScope.e_mail == null and sessionScope.navername == null and sessionScope.kakaonickname == null and sessionScope.facebookname == null and sessionScope.admin_id == null}">
  
 <%
 //url로 보낸 아이디를 세션에 저장하기 위해 변수에 저장함
@@ -126,6 +109,6 @@ if (navername == null && kakaonickname == null && facebookname == null && normal
     
     
     </c:if>
- 
+ <c:import url="../default/footer.jsp"/>
 </body>
 </html>

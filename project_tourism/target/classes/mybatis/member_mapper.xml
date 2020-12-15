@@ -9,8 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <!-- 회원가입 mapper -->
     <insert id="insertUser" parameterType="com.tour.dto.MemberDTO">
-    insert into member (USER_ID, user_PASS, E_MAIL)
-    values (#{user_id}, #{user_pass}, #{e_mail})
+    insert into member (E_MAIL, user_PASS)
+    values (#{e_mail}, #{user_pass})
     </insert>
     
     
@@ -18,8 +18,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id = "login_check" parameterType=
     "com.tour.dto.MemberDTO"
     resultType="String">
-        select user_id from member
-        where user_id=#{user_id} and user_pass=#{user_pass}
+        select e_mail from member
+        where e_mail=#{e_mail} and user_pass=#{user_pass}
     </select>    
     
     
@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "com.tour.dto.MemberDTO"
     resultType="String">
         select user_pass from member
-        where user_id=#{user_id} and e_mail=#{e_mail}
+        where e_mail=#{e_mail} and e_mail=#{e_mail}
     </select>
     
     
@@ -70,9 +70,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <!-- 회원 프로필 확인 mapper -->
     <select id = "member_profile" resultType="com.tour.dto.MemberDTO">
-    select user_id, e_mail
+    select e_mail
     from member
-    where user_id=#{user_id}
+    where e_mail=#{e_mail}
     </select>
     
     

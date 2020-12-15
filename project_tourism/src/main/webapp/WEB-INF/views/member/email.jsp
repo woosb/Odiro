@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
- 
- 
- 
+ <c:if test = "${e_mail == null}">
+ <c:import url="../default/header.jsp"/>
+ </c:if>
 <table border="1" width="300" height="300" align= "center">
 <center>
 <span style="color: green; font-weight: bold;">이메일 인증 (이메일을 인증 받아야 다음 단계로 넘어갈 수 있습니다.)</span> <br> <br>    
@@ -46,6 +46,8 @@
             </table>
         </form>
 </center>
- 
+ <c:if test = "${e_mail == null}">
+ <c:import url="../default/footer.jsp"/>
+ </c:if>
 </body>
 </html>

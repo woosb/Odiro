@@ -9,7 +9,7 @@
  
 </head>
 <body>
- 
+ <c:import url="../default/header.jsp"/>
         <center>
         <br>
         <br>
@@ -33,8 +33,6 @@
                         <div>    
     <c:forEach var = "member" items = "${map.list}"><!-- 컨트롤러에서 넘어온 map의 값 --> 
     
-                            아이디 : ${member.user_id} <br><br>
-                            
                             이메일 : ${member.e_mail} <br><br>
                             
                         </div>                        
@@ -51,7 +49,7 @@
  
 </c:if>
  
- 
+ <c:import url="../default/footer.jsp"/>
  
 </body>
 </html>
