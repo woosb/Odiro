@@ -14,7 +14,6 @@ import java.util.Date;
 	create sequence notice_board_seq;
  */
 
-
 public class NoticeBoardDTO {
 	private String notice_no;
 	private String notice_title;

@@ -47,19 +47,20 @@
 					<a href="/board/list">게시판</a>
 				<%} %>
 			</li>
+			
 			<li>
 				<%if (session.getAttribute("e_mail") == null) {%>
-					<a href="/member/login">회원정보</a> 
+					<a href="/tour/tourList">관광정보 검색</a> 
 				<%} else {%>
-					<a href="/member/login">회원정보</a>
+					<a href="/tour/tourList">관광정보 검색</a>
 				<%} %>
 			</li>
 			
 			<li>
 				<%if (session.getAttribute("e_mail") == null) {%>
-					<a href="">로그보기</a> 
+					<a href="/member/login">회원정보</a> 
 				<%} else {%>
-					<a href="">로그보기</a>
+					<a href="/member/login">회원정보</a>
 				<%} %>
 			</li>
 			
