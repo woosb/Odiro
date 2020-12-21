@@ -1,6 +1,7 @@
 package com.tour.dto;
 
-import java.sql.Date;
+import java.util.Date;
+
 /*
  	--! 테이블 생성
 	create table notice_board (
