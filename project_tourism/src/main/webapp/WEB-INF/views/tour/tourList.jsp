@@ -52,6 +52,18 @@
 	function searchTour() {
 		fo.submit()
 	}
+	window.onload = function(){
+	    console.log("onload 실행")
+	    var choice = ${sigunguCode}
+	    console.log(choice)
+	    if (choice != null) {
+	    	$("select[name=sigunguCode] > option").each(function() {
+	    		if ($(this).val() == choice) {
+	    			$(this).attr("selected","selected");
+	    		}
+	    	})
+	    }
+	}
 </script>
 </head>
 <body>
@@ -107,7 +119,20 @@
 							<option value="39"<c:out value="${areaCode == '39'?'selected':''}"/>>제주도</option>		
 						</select>
 						<select name="sigunguCode" title="시군구선택">
-							<option value="" selected="selected">시군구선택</option>
+							<c:choose>
+							<c:when test="${map.sList.size() != 0 }">
+								<option value="">시군구선택</option>
+								<c:forEach var="sigungu" items="${map.sList }">
+									<option value=${sigungu.code }>${sigungu.name }</option>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<option value="" selected="selected">시군구선택</option>
+							</c:otherwise>
+							
+							</c:choose>
+							
+						
 						</select>	
 					</td>
 				</tr>
