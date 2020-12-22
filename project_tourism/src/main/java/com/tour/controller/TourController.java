@@ -47,7 +47,6 @@ public class TourController {
 	public ModelAndView getTourList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "") String contentTypeId,
 									@RequestParam(defaultValue = "") String areaCode, @RequestParam(defaultValue = "") String sigunguCode,
 									@RequestParam(defaultValue = " ") String keyword) throws Exception {
-		String sigunName = "";
 		
 		System.out.println("인코딩 전 keyword : " + keyword);
 		System.out.println("pageNo : "+pageNo);

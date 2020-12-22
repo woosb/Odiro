@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,6 @@
 	function list(page) {
 		location.href="tourList?pageNo="+page+"&keyword=${keyword}"+"&areaCode=${areaCode}"+"&sigunguCode=${sigunguCode}"+"&contentTypeId=${contentTypeId}";
 	}
-	
 	function getSigunguList(code,initFlag){
 		console.log(code)
 		var param = {'code' : code}
@@ -32,7 +32,7 @@
 	        	for(var  i = 0;  i < data.list.length; i ++){	        		
 	        		$("select[name=sigunguCode]").append("<option value="+data.list[i].code+">"+ data.list[i].name +"</option>");
 	        	}
-	        	
+	        	/*
 	        	if( initFlag == "N") {
 	        		// 시군구 selected	        	
 		    		$("select[name=sigunguCode] > option").each(function(){
@@ -41,6 +41,7 @@
 		    			}	    			
 		    		});
 	        	}
+	        	*/
 	        },
 			error:function(args){
 				alert('error' + args);
@@ -134,8 +135,8 @@
 							<h4>${list.title }</h4>
 							<p>${list.addr1 }</p>
 							<p>${list.tel }</p>
-							작성일자 : ${list.createdtime }<br>
-							수정일자 : ${list.modifiedtime }
+							작성일자 : 	${list.createdtime }<br>
+							수정일자 :  ${list.modifiedtime}
 						</div>
 					</a>
 					<hr>
