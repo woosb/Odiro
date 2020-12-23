@@ -43,16 +43,16 @@
 			data: JSON.stringify(list),
 	        contentType: "application/json",
 			success : function(data){
-				alert(data);
+				alert("즐겨찾기 추가 성공!");
 			}
 		});
 	}
 </script>
 <!-- appkey에 카카오 javascript key -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4a3a0c46296d3b6469323a83dab68949"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4a8c2d955aeb07b54a172c2b1b1490d3"></script>
 <script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	    mapCenter = new kakao.maps.LatLng(${map.info.mapy},${map.info.mapx}), // 지도의 중심 좌표
+	    mapCenter = new kakao.maps.LatLng( ${map.info.mapy}, ${map.info.mapx} ), // 지도의 중심 좌표
 	    mapOption = {
 	        center: mapCenter, // 지도의 중심 좌표
 	        level: 4 // 지도의 확대 레벨

@@ -29,9 +29,14 @@ public class MemberDetailRestController {
 	@Autowired
 	MemberDetailService service;
 	
-	@GetMapping(value="/getWishList/{e_mail}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity< List<WishListDTO> > getDetail(@PathVariable("e_mail") String e_mail) {		
+//	@GetMapping(value="/getWishList/{e_mail}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/getWishList", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity< List<WishListDTO> > getDetail(HttpSession session) {
+		String e_mail = (String)session.getAttribute("e_mail");
 		List<WishListDTO> wishList = service.getWishList(e_mail);
+		for(WishListDTO dto : wishList) {
+			System.out.println(dto.toString());
+		}
 		ResponseEntity< List<WishListDTO> > result = null;
 		if(wishList!= null) {
 			result = ResponseEntity.status(HttpStatus.OK).body(wishList);

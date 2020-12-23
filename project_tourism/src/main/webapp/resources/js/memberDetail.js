@@ -2,15 +2,14 @@ console.log("memberDetail.........");
 
 var getDetail = (function(){
 	
-	function getMyWishList(e_mail, callback){
+	function getMyWishList(path, callback){
 		console.log("getMyWishList.....");
-		
 		$.ajax({
-			url:"/memberDetail/getWishList/"+e_mail,
-			data: e_mail,
+			url:"/memberDetail/getWishList",
 			type:"GET",
 			success : 
 				function(data){
+				console.log(data);
 					if(callback){
 						callback(data);
 					}

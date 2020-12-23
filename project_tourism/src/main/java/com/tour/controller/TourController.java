@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -182,7 +183,13 @@ public class TourController {
 	
 	
 	@GetMapping(value="tourdetail")
-	public ModelAndView getRoomInfo(@RequestParam("contentid") String contentid, @RequestParam("contenttypeid") String contenttypeid) throws Exception {
+	public ModelAndView getRoomInfo(HttpSession session, @RequestParam("contentid") String contentid, @RequestParam("contenttypeid") String contenttypeid) throws Exception {
+//		
+//		Map<String, String> map = new HashMap<String, String>();
+//		map.put("contentId", contentid);
+//		map.put("contentTypeId", contenttypeid);
+//		session.setAttribute("", map);
+		
 		TourDetailDTO dto = new TourDetailDTO();
 		try {
 		

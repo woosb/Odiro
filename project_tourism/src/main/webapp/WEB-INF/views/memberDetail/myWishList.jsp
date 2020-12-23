@@ -21,8 +21,8 @@
 <script type="text/javascript" src="/resources/js/memberDetail.js"></script>
 <script>
 function getWishList(){
-	var e_mail = "${sessionScope.e_mail}";
-	getDetail.getMyWishList(e_mail, function(data){
+	var path = "";
+	getDetail.getMyWishList(path, function(data){
 		var str = "";
 		wishList = $("#wishList");
 		for(var i = 0; i < data.length; i++){
