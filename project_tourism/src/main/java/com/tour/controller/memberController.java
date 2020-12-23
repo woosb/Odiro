@@ -33,10 +33,7 @@ public class memberController {
     JavaMailSender mailSender;     //메일 서비스를 사용하기 위해 의존성을 주입함.
 	@Inject
     MemberService MemberService; //서비스를 호출하기 위해 의존성을 주입
-    
-    
-    
-    
+  
     //로깅을 위한 변수
     private static final Logger logger=
     LoggerFactory.getLogger(memberController.class);
@@ -398,7 +395,4 @@ public class memberController {
 
                 return mv;
             }
-
-
-
 }

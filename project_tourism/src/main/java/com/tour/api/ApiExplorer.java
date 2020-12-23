@@ -21,8 +21,7 @@ public class ApiExplorer {
 	public void getList(Model model) throws IOException {
 			String url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaBasedList?ServiceKey=VPzeVba%2BnwCg8Jc3LPiuwaHTj4TMO8InVJsZ%2BQNWQzHjERgDCJqB203xxvuS9RY6dtlXBaz%2BPagLP97uhsVD2g%3D%3D&contentTypeId=12&listYN=Y&MobileOS=ETC&MobileApp=TourAPI3.0_Guide&arrange=A&numOfRows=12&pageNo=1&_type=json";
 	        System.out.println(url);
-	        model.addAttribute("url", url);
-	        
+	        model.addAttribute("url", url);   
 	}
 	
     public static void main(String[] args) throws IOException {

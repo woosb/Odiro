@@ -10,46 +10,26 @@
 </head>
 <body>
  <c:import url="../default/header.jsp"/>
-        <center>
         <br>
         <br>
         <br>
- 
- 
 <c:if test = "${map.list != null}">
- 
- 
-<center>
- 
-<span style="color: green; font-weight: bold;">나의 프로필</span> <br> <br>
- 
-<table border="1" width="300" height="250">
-    
-        <div style="text-align:center;">
-            <tr>        
-                <td>
-                    
-                    <center>
-                        <div>    
-    <c:forEach var = "member" items = "${map.list}"><!-- 컨트롤러에서 넘어온 map의 값 --> 
-    
-                            이메일 : ${member.e_mail} <br><br>
-                            
-                        </div>                        
-                        
-                        
-                    </center>
-                        
-                    </td>
-                </tr>
-                </div>
-                </c:forEach>
-            </table>
-            </center>
- 
+	<span style="color: green; font-weight: bold;">나의 프로필</span> <br> <br>
+	<div align="center">
+		<table border="1" width="300" height="250">
+		<tr>        
+		    <td>
+		        <div>    
+					<c:forEach var = "member" items = "${map.list}"><!-- 컨트롤러에서 넘어온 map의 값 --> 
+					               이메일 : ${member.e_mail} <br><br>    
+					</c:forEach>
+		         </div>                        
+		    </td>
+		</tr>
+		</table> 
+	</div>
 </c:if>
  
- <c:import url="../default/footer.jsp"/>
- 
+<c:import url="../default/footer.jsp"/>
 </body>
 </html>

@@ -18,6 +18,6 @@ var getAPI = (function(){
 	
 	return{
 		getList : getList
-		};
+	};
 	
 })();

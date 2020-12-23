@@ -60,7 +60,7 @@
 				<%if (session.getAttribute("e_mail") == null) {%>
 					<a href="/member/login">회원정보</a> 
 				<%} else {%>
-					<a href="/member/login">회원정보</a>
+					<a href="/memberDetail/detail">회원정보</a>
 				<%} %>
 			</li>
 			

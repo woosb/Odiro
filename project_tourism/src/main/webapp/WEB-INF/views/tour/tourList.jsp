@@ -49,7 +49,7 @@
 	}
 	
 	function searchTour() {
-		fo.submit()
+		fo.submit();
 	}
 </script>
 </head>

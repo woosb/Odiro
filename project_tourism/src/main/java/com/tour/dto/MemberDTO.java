@@ -8,8 +8,6 @@ public class MemberDTO {
     private String user_pass;    //비밀번호
     private String e_mail;    //이메일
     
-    
-    
     public String getUser_id() {
         return user_id;
     }
