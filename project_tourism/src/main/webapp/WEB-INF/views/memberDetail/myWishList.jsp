@@ -31,11 +31,11 @@ function getWishList(){
 			var url = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?serviceKey=VPzeVba%2BnwCg8Jc3LPiuwaHTj4TMO8InVJsZ%2BQNWQzHjERgDCJqB203xxvuS9RY6dtlXBaz%2BPagLP97uhsVD2g%3D%3D&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&contentId="+contentId+"&contentTypeId="+contentTypeId;
 			getDetail.getAPIList(url, function(data){
 				var wishItem = data.response.body.items.item;
-				str += "<div><a href='/tour/tourdetail?contentid="+contentId+"&contenttypeid="+contentTypeId+"'><img src='"+wishItem.firstimage+"' width='300'/><br>";
+				str += "<div><a href='/tour/tourdetail?contentid="+wishItem.contentid+"&contenttypeid="+wishItem.contenttypeid+"'><img src='"+wishItem.firstimage+"' width='300'/><br>";
 				str += "<li>"+wishItem.title+"</li><br>";
 				str += "<li>"+wishItem.overview+"</li><br>";
 				str += "<li>"+wishItem.modifiedtime+"</li><br></a></div>";
-				str += "<input type='button' value='삭제' onclick='del("+contentId+","+contentTypeId+")'><hr>";
+				str += "<input type='button' value='삭제' onclick='del("+wishItem.contentid+","+wishItem.contenttypeid+")'><hr>";
 				wishList.html(str);
 			});
 		}

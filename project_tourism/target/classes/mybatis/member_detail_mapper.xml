@@ -4,7 +4,7 @@
 <mapper namespace="com.tour.memberDetail">
 	
 	<select id="getWishList" resultType="com.tour.dto.WishListDTO">
-		select * from myWishList where e_mail = #{e_mail}
+		select * from myWishList where e_mail = #{e_mail} order by seq desc
 	</select>
 	
 	<delete id="deleteWishList">

@@ -9,8 +9,7 @@ var getDetail = (function(){
 			type:"GET",
 			success : 
 				function(data){
-				console.log(data);
-					if(callback){
+ 					if(callback){
 						callback(data);
 					}
 			},
@@ -25,6 +24,7 @@ var getDetail = (function(){
 		console.log("getList.....");
 		$.getJSON(url, function(data){
 			if(callback){
+				console.log(data);
 				callback(data);
 			}
 		});

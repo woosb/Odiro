@@ -29,14 +29,10 @@ public class MemberDetailRestController {
 	@Autowired
 	MemberDetailService service;
 	
-//	@GetMapping(value="/getWishList/{e_mail}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@GetMapping(value="/getWishList", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity< List<WishListDTO> > getDetail(HttpSession session) {
 		String e_mail = (String)session.getAttribute("e_mail");
 		List<WishListDTO> wishList = service.getWishList(e_mail);
-		for(WishListDTO dto : wishList) {
-			System.out.println(dto.toString());
-		}
 		ResponseEntity< List<WishListDTO> > result = null;
 		if(wishList!= null) {
 			result = ResponseEntity.status(HttpStatus.OK).body(wishList);
@@ -59,9 +55,7 @@ public class MemberDetailRestController {
 	@PostMapping(value="/addWishList")
 	public int addWishList(@RequestBody WishListDTO dto, HttpSession session) {
 		String e_mail = (String)session.getAttribute("e_mail");
-		dto.setE_mail(e_mail);
-		System.out.println(dto.toString());
-		
+		dto.setE_mail(e_mail);		
 		return service.addWishList(dto);
 	}
 }
