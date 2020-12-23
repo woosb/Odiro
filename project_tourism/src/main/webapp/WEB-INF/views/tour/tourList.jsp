@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,6 @@
 	function list(page) {
 		location.href="tourList?pageNo="+page+"&keyword=${keyword}"+"&areaCode=${areaCode}"+"&sigunguCode=${sigunguCode}"+"&contentTypeId=${contentTypeId}";
 	}
-	
 	function getSigunguList(code,initFlag){
 		console.log(code)
 		var param = {'code' : code}
@@ -32,7 +32,7 @@
 	        	for(var  i = 0;  i < data.list.length; i ++){	        		
 	        		$("select[name=sigunguCode]").append("<option value="+data.list[i].code+">"+ data.list[i].name +"</option>");
 	        	}
-	        	
+	        	/*
 	        	if( initFlag == "N") {
 	        		// 시군구 selected	        	
 		    		$("select[name=sigunguCode] > option").each(function(){
@@ -41,6 +41,7 @@
 		    			}	    			
 		    		});
 	        	}
+	        	*/
 	        },
 			error:function(args){
 				alert('error' + args);
@@ -50,6 +51,18 @@
 	
 	function searchTour() {
 		fo.submit();
+	}
+	window.onload = function(){
+	    console.log("onload 실행")
+	    var choice = ${sigunguCode}
+	    console.log(choice)
+	    if (choice != null) {
+	    	$("select[name=sigunguCode] > option").each(function() {
+	    		if ($(this).val() == choice) {
+	    			$(this).attr("selected","selected");
+	    		}
+	    	})
+	    }
 	}
 </script>
 </head>
@@ -106,7 +119,20 @@
 							<option value="39"<c:out value="${areaCode == '39'?'selected':''}"/>>제주도</option>		
 						</select>
 						<select name="sigunguCode" title="시군구선택">
-							<option value="" selected="selected">시군구선택</option>
+							<c:choose>
+							<c:when test="${map.sList.size() != 0 }">
+								<option value="">시군구선택</option>
+								<c:forEach var="sigungu" items="${map.sList }">
+									<option value=${sigungu.code }>${sigungu.name }</option>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<option value="" selected="selected">시군구선택</option>
+							</c:otherwise>
+							
+							</c:choose>
+							
+						
 						</select>	
 					</td>
 				</tr>
@@ -134,8 +160,8 @@
 							<h4>${list.title }</h4>
 							<p>${list.addr1 }</p>
 							<p>${list.tel }</p>
-							작성일자 : ${list.createdtime }<br>
-							수정일자 : ${list.modifiedtime }
+							작성일자 : 	${list.createdtime }<br>
+							수정일자 :  ${list.modifiedtime}
 						</div>
 					</a>
 					<hr>

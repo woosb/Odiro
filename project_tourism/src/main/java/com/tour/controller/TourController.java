@@ -22,7 +22,9 @@ import org.w3c.dom.NodeList;
 
 
 import com.tour.common.Pagination;
+import com.tour.dto.AreaCodeDTO;
 import com.tour.dto.RoomDTO;
+import com.tour.dto.SigunguCodeDTO;
 import com.tour.dto.TourDetailDTO;
 
 @Controller
@@ -47,12 +49,14 @@ public class TourController {
 	public ModelAndView getTourList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "") String contentTypeId,
 									@RequestParam(defaultValue = "") String areaCode, @RequestParam(defaultValue = "") String sigunguCode,
 									@RequestParam(defaultValue = " ") String keyword) throws Exception {
-		String sigunName = "";
 		
 		System.out.println("인코딩 전 keyword : " + keyword);
 		System.out.println("pageNo : "+pageNo);
+		
 		ArrayList<RoomDTO> list = new ArrayList<RoomDTO>();
+		ArrayList<SigunguCodeDTO> sList = new ArrayList<SigunguCodeDTO>();
 		String keywordEnc = URLEncoder.encode(keyword,"UTF-8");
+		
 		System.out.println("contentTypeId : "+contentTypeId);
 		System.out.println("areacode : "+areaCode);
 		System.out.println("sigungucode : "+sigunguCode);
@@ -122,8 +126,45 @@ public class TourController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		//새로운 페이지가 요청 됐을 때 시군구 select 태그의 값을 유지하기 위해 아래의 코드를 작성
+		if(!areaCode.equals("")) {
+			try {
+				String urlHead = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?serviceKey=";
+				String key = "wEmbHGbmbhHTj7kc3qSnIHgHRP2F1D4blM4wZEzU2L7XYH6QNyOgdJrL%2BFFS3XaKFoyRs2BoGL35PbfzA5bZfA%3D%3D";
+				String conditions = "&MobileOS=ETC&MobileApp=AppTest"
+									+"&areaCode="+areaCode
+									+"&numOfRows=50";
+				String url = urlHead + key + conditions;
+				
+				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+				Document doc = dBuilder.parse(url);
+				
+				doc.getDocumentElement().normalize();
+				NodeList nList = doc.getElementsByTagName("item");
+				log.info("파싱할 시군구 리스트 수 : "+nList.getLength());
+				
+				for(int i = 0; i < nList.getLength(); i++) {
+					Node nNode = nList.item(i);
+					if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+						Element eElement = (Element) nNode;
+						SigunguCodeDTO dto = new SigunguCodeDTO();
+						dto.setCode(getTagValue("code",eElement));
+						dto.setName(getTagValue("name",eElement));
+						sList.add(dto);
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println(sList.size());
 		map.put("list",list);
+		map.put("sList",sList);
 		map.put("sigunguCode",sigunguCode);
 		Pagination pagination = new Pagination(total, pageNo);
 		map.put("pagination", pagination);
