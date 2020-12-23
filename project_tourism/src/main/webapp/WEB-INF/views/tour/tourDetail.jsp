@@ -24,6 +24,25 @@
 		${map.info.homepage}<br>
 		${map.info.overview}<br>
 		
+		
+		<input type="button" value="즐겨찾기 추가" onclick="addWishList();">
 	<c:import url="../default/footer.jsp"/>
 </body>
+<script>
+	var contentId = "${contentid}";
+	var contentTypeId = "${contenttypeid}"
+	var list = {contentId : contentId, contentTypeId: contentTypeId}
+	function addWishList(){
+		console.log(list);
+		$.ajax({
+			url:"/memberDetail/addWishList",
+			type:"POST",
+			data: JSON.stringify(list),
+	        contentType: "application/json",
+			success : function(data){
+				alert(data);
+			}
+		});
+	}
+</script>
 </html>

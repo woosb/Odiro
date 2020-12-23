@@ -23,4 +23,9 @@ public class MemberDetailServiceImpl implements MemberDetailService{
 	public int delete(WishListDTO dto) {
 		return dao.deleteWishList(dto);
 	}
+
+	@Override
+	public int addWishList(WishListDTO dto) {
+		return dao.addWishList(dto);
+	}
 }

@@ -22,4 +22,8 @@ public class MemberDetailDAO {
 	public int deleteWishList(WishListDTO dto) {
 		return sqlSession.delete(namespace+".deleteWishList", dto);
 	}
+	
+	public int addWishList(WishListDTO dto) {
+		return sqlSession.insert(namespace+".addWishList", dto);
+	}
 }

@@ -231,6 +231,8 @@ public class TourController {
 		map.put("info", dto);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("map",map);
+		mav.addObject("contentid", contentid);
+		mav.addObject("contenttypeid", contenttypeid);
 		mav.setViewName("tour/tourDetail");
 		
 		return mav;

@@ -17,4 +17,15 @@
 		and 
 			contentTypeId = #{contentTypeId}
 	</delete>
+	
+	<insert id="addWishList">
+		insert into 
+			myWishList 
+		values(
+			list_seq.nextval, 
+			#{e_mail}, 
+			#{contentId}, 
+			#{contentTypeId}
+		)
+	</insert>
 </mapper>
