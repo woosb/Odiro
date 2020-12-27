@@ -35,7 +35,7 @@
 			<li><a href>숙소예약내역</a></li>
 			<li><a href="">나의 리뷰</a></li>
 			<li><a href="/memberDetail/myWishList">찜 목록</a></li>
-			<li><a href>최근 본 숙소</a></li>
+			<li><a href="/memberDetail/recentList">최근 본 숙소</a></li>
 			<li><a href>내 정보 관리</a></li>
 		</ul>
 	</div>

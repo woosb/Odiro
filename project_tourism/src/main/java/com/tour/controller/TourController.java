@@ -1,8 +1,11 @@
-package com.tour.controller;
+  package com.tour.controller;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -27,6 +30,7 @@ import com.tour.dto.AreaCodeDTO;
 import com.tour.dto.RoomDTO;
 import com.tour.dto.SigunguCodeDTO;
 import com.tour.dto.TourDetailDTO;
+import com.tour.dto.WishListDTO;
 
 @Controller
 @RequestMapping(value = "/tour")
@@ -184,11 +188,12 @@ public class TourController {
 	
 	@GetMapping(value="tourdetail")
 	public ModelAndView getRoomInfo(HttpSession session, @RequestParam("contentid") String contentid, @RequestParam("contenttypeid") String contenttypeid) throws Exception {
-//		
-//		Map<String, String> map = new HashMap<String, String>();
-//		map.put("contentId", contentid);
-//		map.put("contentTypeId", contenttypeid);
-//		session.setAttribute("", map);
+		
+		WishListDTO wish = new WishListDTO();
+		wish.setContentId(Integer.parseInt(contentid));
+		wish.setContentTypeId(Integer.parseInt(contenttypeid));
+		wish.setE_mail((String)session.getAttribute("e_mail"));
+		setRecentList(wish, session);
 		
 		TourDetailDTO dto = new TourDetailDTO();
 		try {
@@ -243,5 +248,22 @@ public class TourController {
 		mav.setViewName("tour/tourDetail");
 		
 		return mav;
+	}
+	
+	public void setRecentList(WishListDTO wish, HttpSession session) {
+		
+		List<WishListDTO> list = (ArrayList)session.getAttribute("recent");
+		if(list == null) {
+			list = new ArrayList<WishListDTO>();
+			list.add(wish);
+			session.setAttribute("recent", list);
+		}else {
+			list.add(wish);
+			session.setAttribute("recent", list);
+		}
+		
+		for(WishListDTO dto : list) {
+			System.out.println(dto.toString());
+		}
 	}
 }
