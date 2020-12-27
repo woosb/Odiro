@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -252,9 +253,9 @@ public class TourController {
 	
 	public void setRecentList(WishListDTO wish, HttpSession session) {
 		
-		List<WishListDTO> list = (ArrayList)session.getAttribute("recent");
+		List<WishListDTO> list = (LinkedList<WishListDTO>)session.getAttribute("recent");
 		if(list == null) {
-			list = new ArrayList<WishListDTO>();
+			list = new LinkedList<WishListDTO>();
 			list.add(wish);
 			session.setAttribute("recent", list);
 		}else {
