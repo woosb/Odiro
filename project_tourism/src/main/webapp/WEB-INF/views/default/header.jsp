@@ -50,19 +50,12 @@
 		color: #fff;
 		transition : 0.5s;
 	}
-	
-	@media (max-width: 1200px) {
-		header {
-			margin : 20px;
-		}
-	}
-	
 	@media (max-width: 690px) {
 		.menu-toggle {
 			display: block;
 			width: 40px;
 			height: 40px;
-			margin : 10px;
+			margin : 20px;
 			float: right;
 			cursor: pointer;
 			text-align: center;
@@ -154,3 +147,4 @@
 	</script>
 </body>
 </html>
+

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	.footer {
+		position: relative;
 		max-width: 1200px;
 		margin : 20px auto;
 		padding : 10px;

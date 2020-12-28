@@ -51,12 +51,6 @@
 		transition : 0.5s;
 	}
 	
-	@media (max-width: 1200px) {
-		header {
-			margin : 20px;
-		}
-	}
-	
 	@media (max-width: 780px) {
 		.menu-toggle {
 			display: block;
