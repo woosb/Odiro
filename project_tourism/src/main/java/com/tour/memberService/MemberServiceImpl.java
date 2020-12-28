@@ -87,9 +87,9 @@ public class MemberServiceImpl implements MemberService {
  
     //아이디 중복 확인
     @Override
-    public boolean join_id_check(String user_id) throws Exception {
+    public boolean nickName_check(String nickName) throws Exception {
     
-        boolean result = memberdao.join_id_check(user_id);
+        boolean result = memberdao.nickName_check(nickName);
         
         return result;
     }
@@ -97,9 +97,24 @@ public class MemberServiceImpl implements MemberService {
  
     //자신의 프로필을 볼 수 있게 하는 메소드
     @Override
-    public List<MemberDTO> member_profile(String user_id) throws Exception{
+    public List<MemberDTO> member_profile(String e_mail) throws Exception{
         
-        return memberdao.member_profile(user_id);
+        return memberdao.member_profile(e_mail);
+    }
+    
+    public List<MemberDTO> member() throws Exception
+    {
+    	return memberdao.member();
+    }
+    
+    public void remove(String e_mail)
+    {
+    	memberdao.remove(e_mail);
+    }
+    
+    public void update(MemberDTO dto)
+    {
+    	memberdao.update(dto);
     }
     
  

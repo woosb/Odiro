@@ -9,7 +9,6 @@
  
 </head>
 <body>
- <c:import url="../default/header.jsp"/>
         <center>
         <br>
         <br>
@@ -32,9 +31,21 @@
                     <center>
                         <div>    
     <c:forEach var = "member" items = "${map.list}"><!-- 컨트롤러에서 넘어온 map의 값 --> 
-    
-                            이메일 : ${member.e_mail} <br><br>
-                            
+    					<c:if test = "${check==null}">
+    					<form action="nickName_check" method="post">
+                            이메일 : <input type="email" name="e_mail" value="${member.e_mail}" readonly /> <br><br>
+                            닉네임 : <input type="text" name="nickName" value="${member.nickName}">
+                            <button type = "submit" name = "submit" >중복 확인</button>
+                        </form>
+                        </c:if>
+    					<c:if test = "${check!=null}">
+    					<form action="update" method="post">
+                            이메일 : <input type="email" name="e_mail" value="${member.e_mail}" readonly /> <br><br>
+                            닉네임 : <input type="text" name="nickName" value="${member.nickName}">
+                            <button type = "submit" name = "submit" >닉네임 변경</button>
+                        </form>
+                        </c:if>
+                        
                         </div>                        
                         
                         
@@ -48,8 +59,6 @@
             </center>
  
 </c:if>
- 
- <c:import url="../default/footer.jsp"/>
  
 </body>
 </html>
