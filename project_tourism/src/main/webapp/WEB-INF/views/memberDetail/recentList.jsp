@@ -5,7 +5,12 @@
 <head>
 	<title>Home</title>
 </head>
-<style>
+<style type="text/css">
+	body {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
 </style>
 <body>
 <c:import url="../default/detailHeader.jsp"></c:import>

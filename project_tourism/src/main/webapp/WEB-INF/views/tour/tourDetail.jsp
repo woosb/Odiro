@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>상세 정보</title>
+<style type="text/css">
+	body {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
 </head>
 <body>
 	<c:import url="../default/header.jsp"/>

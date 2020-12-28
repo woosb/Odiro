@@ -5,14 +5,14 @@
 <head>
 	<title>Home</title>
 </head>
-<style>
-	.detailBody {
+<style type="text/css">
+	body {
 		max-width: 1200px;
 		margin : 20px auto;
 		padding : 10px;
 	}
 </style>
-<body class="detailBody">
+<body>
 <c:import url="../default/detailHeader.jsp"></c:import>
 	<div align="center">
 		<h1>${sessionScope.e_mail }</h1>	

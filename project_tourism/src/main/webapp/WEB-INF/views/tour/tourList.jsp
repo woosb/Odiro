@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>관광 정보</title>
 <style type="text/css">
-	.searchBody {
+	body {
 		max-width: 1200px;
 		margin : 20px auto;
 		padding : 10px;
@@ -80,7 +80,7 @@
 </script>
 
 </head>
-<body class="searchBody">
+<body>
 	<c:import url="../default/header.jsp"/>
 	<div style="padding:10px;">
 		<div>
