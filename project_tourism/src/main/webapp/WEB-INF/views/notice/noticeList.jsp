@@ -12,9 +12,15 @@
 		location.href="noticeList?curPage="+page+"&searchOption=${map.searchOption}"+"&keyword=${map.keyword}";
 	}
 </script>
-
+<style type="text/css">
+	.noticeBody {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
 </head>
-<body>
+<body class="noticeBody">
 	<c:import url="../default/header.jsp"/>
 		<div style="text-align: center">
 			<h2>공지사항</h2>

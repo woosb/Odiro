@@ -6,9 +6,16 @@
 <head>
 	<title>Home</title>
 </head>
+ <style type="text/css">
+	.mainDiv {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
 <body>
 <c:import url="default/header.jsp"/>
-<div>
+<div class="mainDiv">
 	<p>메인 페이지 입니다.</p>
 </div>
 <c:import url="default/footer.jsp"/>

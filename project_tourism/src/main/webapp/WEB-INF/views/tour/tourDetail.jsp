@@ -49,7 +49,7 @@
 	}
 </script>
 <!-- appkey에 카카오 javascript key -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4a8c2d955aeb07b54a172c2b1b1490d3"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4a3a0c46296d3b6469323a83dab68949"></script>
 <script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapCenter = new kakao.maps.LatLng( ${map.info.mapy}, ${map.info.mapx} ), // 지도의 중심 좌표

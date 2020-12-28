@@ -7,6 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>관광 정보</title>
+<style type="text/css">
+	.searchBody {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+	.listBody {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
+
 <script src="http://code.jquery.com/jquery-3.5.1.min.js">
 </script>
 <script>
@@ -65,10 +78,11 @@
 	    }
 	}
 </script>
+
 </head>
 <body>
 	<c:import url="../default/header.jsp"/>
-	<div>
+	<div class="searchBody">
 		<div>
 			<h2>지역 관광 정보 검색</h2>
 		</div>
@@ -147,7 +161,7 @@
 		</table>
 		</form>
 	</div>
-	
+	<div class="listBody">
 			<c:choose>
 			<c:when test="${map.list.size() != 0}">
 				<c:forEach var="list" items="${map.list }">
@@ -155,7 +169,7 @@
 					<a href='tourdetail?contentid=${list.contentid }&contenttypeid=${list.contenttypeid }'>
 						<div>
 							<div style="width: 25%; align-content: left;">
-								<img style="height: 400px; width: 400px;"onerror="this.src='/resources/images/noimage.png'" src="${list.firstimage }">
+								<img style="height: 200px; width: 200px;"onerror="this.src='/resources/images/noimage.png'" src="${list.firstimage }">
 							</div>
 							<h4>${list.title }</h4>
 							<p>${list.addr1 }</p>
@@ -205,6 +219,7 @@
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					총  <span style="color: blue;">${map.count }</span>개의 게시물이 있습니다.
 				
+	</div>
 	<c:import url="../default/footer.jsp"/>
 </body>
 </html>

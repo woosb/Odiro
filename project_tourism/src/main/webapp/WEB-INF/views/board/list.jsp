@@ -6,8 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.boardBody {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
 </head>
-<body>
+<body class="boardBoady">
 <c:import url="../default/header.jsp"/>
 <div align="center">
 	<table border="1">
