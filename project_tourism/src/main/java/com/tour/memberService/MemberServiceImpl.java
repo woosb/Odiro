@@ -15,19 +15,15 @@ import com.tour.dto.MemberDTO;
 @Service //서비스 빈 선언
 public class MemberServiceImpl implements MemberService {
  
-    
     @Inject    
     MemberDAO memberdao; //dao를 사용하기 위해 의존성을 주입
     private JavaMailSender mailSender;
  
-    
-    
     @Override    //회원가입 메소드
     public void join(MemberDTO dto) {
         memberdao.join(dto);
  
     }
- 
  
     @Override    //로그인 관련 메소드 (세션에 아이디와 비밀번호를 저장)
     public boolean loginCheck(MemberDTO dto, HttpSession session) {
@@ -94,7 +90,6 @@ public class MemberServiceImpl implements MemberService {
         return result;
     }
  
- 
     //자신의 프로필을 볼 수 있게 하는 메소드
     @Override
     public List<MemberDTO> member_profile(String e_mail) throws Exception{
@@ -116,7 +111,5 @@ public class MemberServiceImpl implements MemberService {
     {
     	memberdao.update(dto);
     }
-    
- 
     
 }

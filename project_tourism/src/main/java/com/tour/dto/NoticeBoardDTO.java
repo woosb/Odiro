@@ -1,7 +1,6 @@
 package com.tour.dto;
 
 import java.util.Date;
-
 /*
  	--! 테이블 생성
 	create table notice_board (
@@ -14,7 +13,6 @@ import java.util.Date;
 	);
 	create sequence notice_board_seq;
  */
-
 
 public class NoticeBoardDTO {
 	private String notice_no;

@@ -62,7 +62,7 @@
 				<%} else if (session.getAttribute("e_mail").equals("admin@naver.com")) {%>
 					<a href="/member/admin">관리자 페이지</a> 
 				<%} else {%>
-					<a href="/member/login">회원정보</a>
+					<a href="/memberDetail/detail">회원정보</a>
 				<%} %>
 			</li>
 			

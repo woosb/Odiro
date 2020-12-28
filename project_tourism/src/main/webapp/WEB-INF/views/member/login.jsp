@@ -15,7 +15,7 @@
 <c:if test = "${sessionScope.e_mail != null}">
  
 (일반)${sessionScope.e_mail}님이 로그인 하셨습니다. <br><br>
-<form action = "member_profile.do" method = "post">
+<form action = "/memberDetail/detail" method = "post">
 <button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
  
  
@@ -28,7 +28,7 @@
 <form action = "authentication.do" method = "post">
 <button type = "submit" name = "submit">회원 인증하기 (인증을 해야 각종 기능들 사용 가능)</button></form><br><br>
  
-<form action = "member_profile.do" method = "post">
+<form action = "/memberDetail/detail" method = "post">
 <button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
  
 </c:if>
@@ -40,7 +40,7 @@
 <form action = "authentication.do" method = "post">
 <button type = "submit" name = "submit">회원 인증하기 (인증을 해야 각종 기능들 사용 가능)</button></form><br><br>
  
-<form action = "member_profile.do" method = "post">
+<form action = "/memberDetail/detail" method = "post">
 <button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
  
 </c:if>
@@ -49,7 +49,7 @@
 <c:if test = "${sessionScope.admin_id != null}">
  
 (관리자)${sessionScope.admin_id}님이 로그인 하셨습니다.<br><br>
-<form action = "member_profile.do" method = "post">
+<form action = "/memberDetail/detail" method = "post">
 <button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
  
 </c:if>

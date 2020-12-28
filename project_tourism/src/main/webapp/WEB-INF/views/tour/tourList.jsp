@@ -50,7 +50,7 @@
 	}
 	
 	function searchTour() {
-		fo.submit()
+		fo.submit();
 	}
 	window.onload = function(){
 	    console.log("onload 실행")

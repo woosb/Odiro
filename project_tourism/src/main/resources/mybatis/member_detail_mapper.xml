@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tour.memberDetail">
+	
+	<select id="getWishList" resultType="com.tour.dto.WishListDTO">
+		select * from myWishList where e_mail = #{e_mail} order by seq desc
+	</select>
+	
+	<delete id="deleteWishList">
+		delete from
+			myWishList 
+		where 
+			e_mail = #{e_mail} 
+		and 
+			contentId = #{contentId} 
+		and 
+			contentTypeId = #{contentTypeId}
+	</delete>
+	
+	<insert id="addWishList">
+		insert into 
+			myWishList 
+		values(
+			list_seq.nextval, 
+			#{e_mail}, 
+			#{contentId}, 
+			#{contentTypeId}
+		)
+	</insert>
+</mapper>

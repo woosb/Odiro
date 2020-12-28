@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: SID
 Build-Jdk: 15.0.1
+=======
+Built-By: wsb
+Build-Jdk: 1.8.0_271
+>>>>>>> e978f682d04f2ecc9361af7241cc34984056e34c
 Created-By: Maven Integration for Eclipse
 

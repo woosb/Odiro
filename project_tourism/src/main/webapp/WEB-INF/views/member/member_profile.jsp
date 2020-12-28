@@ -9,13 +9,16 @@
  
 </head>
 <body>
+<<<<<<< HEAD
         <center>
+=======
+ <c:import url="../default/header.jsp"/>
+>>>>>>> e978f682d04f2ecc9361af7241cc34984056e34c
         <br>
         <br>
         <br>
- 
- 
 <c:if test = "${map.list != null}">
+<<<<<<< HEAD
  
  
 <center>
@@ -60,5 +63,24 @@
  
 </c:if>
  
+=======
+	<span style="color: green; font-weight: bold;">나의 프로필</span> <br> <br>
+	<div align="center">
+		<table border="1" width="300" height="250">
+		<tr>        
+		    <td>
+		        <div>    
+					<c:forEach var = "member" items = "${map.list}"><!-- 컨트롤러에서 넘어온 map의 값 --> 
+					               이메일 : ${member.e_mail} <br><br>    
+					</c:forEach>
+		         </div>                        
+		    </td>
+		</tr>
+		</table> 
+	</div>
+</c:if>
+ 
+<c:import url="../default/footer.jsp"/>
+>>>>>>> e978f682d04f2ecc9361af7241cc34984056e34c
 </body>
 </html>

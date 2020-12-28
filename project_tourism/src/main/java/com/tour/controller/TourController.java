@@ -1,10 +1,15 @@
-package com.tour.controller;
+  package com.tour.controller;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -26,6 +31,7 @@ import com.tour.dto.AreaCodeDTO;
 import com.tour.dto.RoomDTO;
 import com.tour.dto.SigunguCodeDTO;
 import com.tour.dto.TourDetailDTO;
+import com.tour.dto.WishListDTO;
 
 @Controller
 @RequestMapping(value = "/tour")
@@ -182,7 +188,14 @@ public class TourController {
 	
 	
 	@GetMapping(value="tourdetail")
-	public ModelAndView getRoomInfo(@RequestParam("contentid") String contentid, @RequestParam("contenttypeid") String contenttypeid) throws Exception {
+	public ModelAndView getRoomInfo(HttpSession session, @RequestParam("contentid") String contentid, @RequestParam("contenttypeid") String contenttypeid) throws Exception {
+		
+		WishListDTO wish = new WishListDTO();
+		wish.setContentId(Integer.parseInt(contentid));
+		wish.setContentTypeId(Integer.parseInt(contenttypeid));
+		wish.setE_mail((String)session.getAttribute("e_mail"));
+		setRecentList(wish, session);
+		
 		TourDetailDTO dto = new TourDetailDTO();
 		try {
 		
@@ -231,8 +244,27 @@ public class TourController {
 		map.put("info", dto);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("map",map);
+		mav.addObject("contentid", contentid);
+		mav.addObject("contenttypeid", contenttypeid);
 		mav.setViewName("tour/tourDetail");
 		
 		return mav;
+	}
+	
+	public void setRecentList(WishListDTO wish, HttpSession session) {
+		
+		List<WishListDTO> list = (LinkedList<WishListDTO>)session.getAttribute("recent");
+		if(list == null) {
+			list = new LinkedList<WishListDTO>();
+			list.add(wish);
+			session.setAttribute("recent", list);
+		}else {
+			list.add(wish);
+			session.setAttribute("recent", list);
+		}
+		
+		for(WishListDTO dto : list) {
+			System.out.println(dto.toString());
+		}
 	}
 }
