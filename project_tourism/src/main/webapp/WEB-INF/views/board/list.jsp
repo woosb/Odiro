@@ -14,7 +14,7 @@
 	}
 </style>
 </head>
-<body class="boardBoady">
+<body class="boardBody">
 <c:import url="../default/header.jsp"/>
 <div align="center">
 	<table border="1">

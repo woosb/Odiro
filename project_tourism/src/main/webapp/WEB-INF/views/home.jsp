@@ -13,11 +13,9 @@
 		padding : 10px;
 	}
 </style>
-<body>
+<body class="mainDiv">
 <c:import url="default/header.jsp"/>
-<div class="mainDiv">
 	<p>메인 페이지 입니다.</p>
-</div>
 <c:import url="default/footer.jsp"/>
 </body>
 </html>

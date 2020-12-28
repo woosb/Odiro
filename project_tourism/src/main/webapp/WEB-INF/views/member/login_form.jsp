@@ -10,7 +10,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name = "viewport" content = "user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,
 width=device-width" />
- 
+ <style type="text/css">
+	.mainBody {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
 </head>
  <c:import url="../default/header.jsp"/>
 <table border="1" width="300">
@@ -157,7 +163,7 @@ ${e_mail = null}
 </table>
  <c:import url="../default/footer.jsp"/>
  
-<body>
+<body class="mainBody">
 <!-- 로그인 실패나 성공시 메시지를 받아서 출력하는 자바스크립트 구문 -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
