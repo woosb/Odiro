@@ -252,6 +252,7 @@ public class TourController {
 	}
 	
 	public void setRecentList(WishListDTO wish, HttpSession session) {
+		Boolean flag = true;
 		
 		List<WishListDTO> list = (LinkedList<WishListDTO>)session.getAttribute("recent");
 		if(list == null) {
@@ -259,8 +260,18 @@ public class TourController {
 			list.add(wish);
 			session.setAttribute("recent", list);
 		}else {
-			list.add(wish);
-			session.setAttribute("recent", list);
+			for(WishListDTO dto : list) {
+				if(dto.getContentId() == wish.getContentId()) {
+					if(dto.getContentTypeId() == wish.getContentTypeId()) {
+						flag = false;
+						break;
+					}
+				}
+			}
+			if(flag) {
+				list.add(wish);
+				session.setAttribute("recent", list);
+			}
 		}
 		
 		for(WishListDTO dto : list) {
