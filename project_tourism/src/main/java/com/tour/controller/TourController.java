@@ -15,6 +15,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,12 +31,16 @@ import com.tour.common.Pagination;
 import com.tour.dto.AreaCodeDTO;
 import com.tour.dto.RoomDTO;
 import com.tour.dto.SigunguCodeDTO;
+import com.tour.dto.TourContentInfoDTO;
 import com.tour.dto.TourDetailDTO;
 import com.tour.dto.WishListDTO;
+import com.tour.service.TourContentInfoService;
 
 @Controller
 @RequestMapping(value = "/tour")
 public class TourController {
+	@Autowired
+	TourContentInfoService tcis;
 	private static final Logger log = LoggerFactory.getLogger(NoticeBoardController.class);
 	
 	private String getTagValue(String tag, Element eElement) {
@@ -185,8 +190,6 @@ public class TourController {
 		return mav;
 	}
 	
-	
-	
 	@GetMapping(value="tourdetail")
 	public ModelAndView getRoomInfo(HttpSession session, @RequestParam("contentid") String contentid, @RequestParam("contenttypeid") String contenttypeid) throws Exception {
 		
@@ -197,6 +200,7 @@ public class TourController {
 		setRecentList(wish, session);
 		
 		TourDetailDTO dto = new TourDetailDTO();
+		TourContentInfoDTO cDto = new TourContentInfoDTO();
 		try {
 		
 		String urlHead = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?serviceKey=";
@@ -238,10 +242,11 @@ public class TourController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(dto.getHomepage());
-		System.out.println(dto.getTitle());
+		cDto = tcis.getTourContent(contentid, contenttypeid);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("info", dto);
+		map.put("contentInfo", cDto);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("map",map);
 		mav.addObject("contentid", contentid);

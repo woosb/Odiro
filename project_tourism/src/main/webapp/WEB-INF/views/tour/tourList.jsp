@@ -18,6 +18,19 @@
 		margin : 20px auto;
 		padding : 10px;
 	}
+	.btnGreen { 
+		display:inline-block; 
+		width:50px; 
+		height:24px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:12px; 
+		color:#fff; 
+		background: #069370; 
+		}
 </style>
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js">
@@ -154,7 +167,7 @@
 					<th> 검색 </th>
 					<td>
 						<input type="text" name="keyword" value="${keyword }"> 
-						<button type="button" onclick="searchTour()">검색</button>
+						<button class="btnGreen" type="button" onclick="searchTour()">검색</button>
 					</td>
 				</tr>
 			</tbody>
