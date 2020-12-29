@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tour.dto.WishListDTO;
+import com.tour.dto.ContentInfoDTO;
 import com.tour.service.MemberDetailService;
 
 @RestController
@@ -30,10 +30,10 @@ public class MemberDetailRestController {
 	MemberDetailService service;
 	
 	@GetMapping(value="/getWishList", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity< List<WishListDTO> > getDetail(HttpSession session) {
+	public ResponseEntity< List<ContentInfoDTO> > getDetail(HttpSession session) {
 		String e_mail = (String)session.getAttribute("e_mail");
-		List<WishListDTO> wishList = service.getWishList(e_mail);
-		ResponseEntity< List<WishListDTO> > result = null;
+		List<ContentInfoDTO> wishList = service.getWishList(e_mail);
+		ResponseEntity< List<ContentInfoDTO> > result = null;
 		if(wishList!= null) {
 			result = ResponseEntity.status(HttpStatus.OK).body(wishList);
 		}else {
@@ -45,7 +45,7 @@ public class MemberDetailRestController {
 	@DeleteMapping(value="/delete/{contentId}/{contentTypeId}")
 	public int delete(HttpSession session, @PathVariable("contentId") int contentId, @PathVariable("contentTypeId") int contentTypeId) {		
 		String user = (String)session.getAttribute("e_mail");
-		WishListDTO dto = new WishListDTO();
+		ContentInfoDTO dto = new ContentInfoDTO();
 		dto.setContentId(contentId);
 		dto.setContentTypeId(contentTypeId);
 		dto.setE_mail(user);
@@ -53,7 +53,7 @@ public class MemberDetailRestController {
 	}
 	
 	@PostMapping(value="/addWishList")
-	public int addWishList(@RequestBody WishListDTO dto, HttpSession session) {
+	public int addWishList(@RequestBody ContentInfoDTO dto, HttpSession session) {
 		String e_mail = (String)session.getAttribute("e_mail");
 		dto.setE_mail(e_mail);		
 		return service.addWishList(dto);

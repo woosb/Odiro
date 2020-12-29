@@ -2,10 +2,10 @@ package com.tour.service;
 
 import java.util.List;
 
-import com.tour.dto.WishListDTO;
+import com.tour.dto.ContentInfoDTO;
 
 public interface MemberDetailService {
-	public List<WishListDTO> getWishList(String e_mail);
-	public int delete(WishListDTO dto);
-	public int addWishList(WishListDTO dto);
+	public List<ContentInfoDTO> getWishList(String e_mail);
+	public int delete(ContentInfoDTO dto);
+	public int addWishList(ContentInfoDTO dto);
 }

@@ -32,6 +32,9 @@ public class BoardDTO {
 	private int hit;
 	private int recommend;
 	
+	private int contentId;
+	private int contentTypeId;
+	
 	private int ref;
 	private int refOrder;
 	private int step;
@@ -115,11 +118,24 @@ public class BoardDTO {
 	public void setParentNum(int parentNum) {
 		this.parentNum = parentNum;
 	}
+	public int getContentId() {
+		return contentId;
+	}
+	public void setContentId(int contentId) {
+		this.contentId = contentId;
+	}
+	public int getContentTypeId() {
+		return contentTypeId;
+	}
+	public void setContentTypeId(int contentTypeId) {
+		this.contentTypeId = contentTypeId;
+	}
 	@Override
 	public String toString() {
 		return "BoardDTO [id=" + id + ", userId=" + userId + ", title=" + title + ", content=" + content + ", regDate="
-				+ regDate + ", updateDate=" + updateDate + ", hit=" + hit + ", recommend=" + recommend + ", ref=" + ref
-				+ ", refOrder=" + refOrder + ", step=" + step + ", answerNum=" + answerNum + ", parentNum=" + parentNum
-				+ "]";
+				+ regDate + ", updateDate=" + updateDate + ", hit=" + hit + ", recommend=" + recommend + ", contentId="
+				+ contentId + ", contentTypeId=" + contentTypeId + ", ref=" + ref + ", refOrder=" + refOrder + ", step="
+				+ step + ", answerNum=" + answerNum + ", parentNum=" + parentNum + "]";
 	}
+	
 }

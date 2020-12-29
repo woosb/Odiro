@@ -21,4 +21,9 @@ public class MemberDetailController {
 	public void getRecentList() {
 		
 	}
+	
+	@GetMapping(value="/myReview")
+	public void getMyReview() {
+		
+	}
 }

@@ -19,7 +19,6 @@
 <c:import url="../default/footer.jsp"></c:import>
 </body>
 <script type="text/javascript" src="/resources/js/memberDetail.js"></script>
-<script type="text/javascript" src="/resources/js/memberDetail.js"></script>
 <script>
 $(document).ready(function(){
 	var list = [

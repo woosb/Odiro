@@ -15,7 +15,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,15 +30,20 @@ import org.w3c.dom.NodeList;
 
 import com.tour.common.Pagination;
 import com.tour.dto.AreaCodeDTO;
+import com.tour.dto.Criteria;
 import com.tour.dto.RoomDTO;
 import com.tour.dto.SigunguCodeDTO;
 import com.tour.dto.TourDetailDTO;
-import com.tour.dto.WishListDTO;
+import com.tour.dto.ContentInfoDTO;
+import com.tour.service.BoardService;
 
 @Controller
 @RequestMapping(value = "/tour")
 public class TourController {
 	private static final Logger log = LoggerFactory.getLogger(NoticeBoardController.class);
+	
+	@Autowired
+	BoardService service;
 	
 	private String getTagValue(String tag, Element eElement) {
 		NodeList nlList = null;
@@ -187,14 +194,15 @@ public class TourController {
 	
 	
 	
-	@GetMapping(value="tourdetail")
-	public ModelAndView getRoomInfo(HttpSession session, @RequestParam("contentid") String contentid, @RequestParam("contenttypeid") String contenttypeid) throws Exception {
-		
-		WishListDTO wish = new WishListDTO();
+	@GetMapping(value="/tourdetail")
+	public ModelAndView getRoomInfo(Model model, Criteria cri, HttpSession session, @RequestParam("contentid") String contentid, @RequestParam("contenttypeid") String contenttypeid) throws Exception {
+		ContentInfoDTO wish = new ContentInfoDTO();
 		wish.setContentId(Integer.parseInt(contentid));
 		wish.setContentTypeId(Integer.parseInt(contenttypeid));
 		wish.setE_mail((String)session.getAttribute("e_mail"));
 		setRecentList(wish, session);
+		
+		service.getList(model, cri, wish);
 		
 		TourDetailDTO dto = new TourDetailDTO();
 		try {
@@ -251,16 +259,16 @@ public class TourController {
 		return mav;
 	}
 	
-	public void setRecentList(WishListDTO wish, HttpSession session) {
+	public void setRecentList(ContentInfoDTO wish, HttpSession session) {
 		Boolean flag = true;
 		
-		List<WishListDTO> list = (LinkedList<WishListDTO>)session.getAttribute("recent");
+		List<ContentInfoDTO> list = (LinkedList<ContentInfoDTO>)session.getAttribute("recent");
 		if(list == null) {
-			list = new LinkedList<WishListDTO>();
+			list = new LinkedList<ContentInfoDTO>();
 			list.add(wish);
 			session.setAttribute("recent", list);
 		}else {
-			for(WishListDTO dto : list) {
+			for(ContentInfoDTO dto : list) {
 				if(dto.getContentId() == wish.getContentId()) {
 					if(dto.getContentTypeId() == wish.getContentTypeId()) {
 						flag = false;
@@ -274,7 +282,7 @@ public class TourController {
 			}
 		}
 		
-		for(WishListDTO dto : list) {
+		for(ContentInfoDTO dto : list) {
 			System.out.println(dto.toString());
 		}
 	}
