@@ -33,13 +33,16 @@ import com.tour.dto.AreaCodeDTO;
 import com.tour.dto.Criteria;
 import com.tour.dto.RoomDTO;
 import com.tour.dto.SigunguCodeDTO;
+import com.tour.dto.TourContentInfoDTO;
 import com.tour.dto.TourDetailDTO;
 import com.tour.dto.ContentInfoDTO;
 import com.tour.service.BoardService;
-
+import com.tour.service.TourContentInfoService;
 @Controller
 @RequestMapping(value = "/tour")
 public class TourController {
+	@Autowired
+	TourContentInfoService tcis;
 	private static final Logger log = LoggerFactory.getLogger(NoticeBoardController.class);
 	
 	@Autowired
@@ -192,8 +195,7 @@ public class TourController {
 		return mav;
 	}
 	
-	
-	
+
 	@GetMapping(value="/tourdetail")
 	public ModelAndView getRoomInfo(Model model, Criteria cri, HttpSession session, @RequestParam("contentid") String contentid, @RequestParam("contenttypeid") String contenttypeid) throws Exception {
 		ContentInfoDTO wish = new ContentInfoDTO();
@@ -205,6 +207,7 @@ public class TourController {
 		service.getList(model, cri, wish);
 		
 		TourDetailDTO dto = new TourDetailDTO();
+		TourContentInfoDTO cDto = new TourContentInfoDTO();
 		try {
 		
 		String urlHead = "http://api.visitkorea.or.kr/openapi/service/rest/KorService/detailCommon?serviceKey=";
@@ -246,10 +249,11 @@ public class TourController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(dto.getHomepage());
-		System.out.println(dto.getTitle());
+		cDto = tcis.getTourContent(contentid, contenttypeid);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("info", dto);
+		map.put("contentInfo", cDto);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("map",map);
 		mav.addObject("contentid", contentid);

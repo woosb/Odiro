@@ -91,6 +91,11 @@
 </style>
 </head>
 <body>
+	<div class="toplogo">
+			<a href="/">
+				<img src="/resources/images/mainlogo.png" style="width: 120px; height: 110px; border: 0px; vertical-align: middle;">
+			</a>
+	</div>
 	<header>
 		<div class = "menu-toggle"></div>
 			<nav>

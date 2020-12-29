@@ -13,14 +13,14 @@
 	}
 </script>
 <style type="text/css">
-	.noticeBody {
+	body {
 		max-width: 1200px;
 		margin : 20px auto;
 		padding : 10px;
 	}
 </style>
 </head>
-<body class="noticeBody">
+<body>
 	<c:import url="../default/header.jsp"/>
 		<div style="text-align: center">
 			<h2>공지사항</h2>

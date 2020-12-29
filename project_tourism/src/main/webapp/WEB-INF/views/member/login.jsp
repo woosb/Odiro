@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 </head>
  <style type="text/css">
-	.loginBody {
+	body {
 		max-width: 1200px;
 		margin : 20px auto;
 		padding : 10px;

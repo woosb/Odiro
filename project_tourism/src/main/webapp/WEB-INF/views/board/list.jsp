@@ -7,14 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	.boardBody {
+	body {
 		max-width: 1200px;
 		margin : 20px auto;
 		padding : 10px;
 	}
 </style>
 </head>
-<body class="boardBoady">
+<body>
 <c:import url="../default/header.jsp"/>
 <div align="center">
 	<table border="1">

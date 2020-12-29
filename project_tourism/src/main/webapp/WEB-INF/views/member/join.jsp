@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <!-- 회원가입 페이지 -->
 <style type="text/css">
-	.joinBody {
+	body {
 		max-width: 1200px;
 		margin : 20px auto;
 		padding : 10px;
 	}
 </style>
-<body class="joinBody">
+<body>
 <center>
 <table border="1" width="450" height="400">
     

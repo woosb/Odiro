@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>관광 정보</title>
 <style type="text/css">
-	.searchBody {
+	body {
 		max-width: 1200px;
 		margin : 20px auto;
 		padding : 10px;
@@ -18,6 +18,19 @@
 		margin : 20px auto;
 		padding : 10px;
 	}
+	.btnGreen { 
+		display:inline-block; 
+		width:50px; 
+		height:24px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:12px; 
+		color:#fff; 
+		background: #069370; 
+		}
 </style>
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js">
@@ -82,9 +95,9 @@
 </head>
 <body>
 	<c:import url="../default/header.jsp"/>
-	<div class="searchBody">
+	<div style="padding:10px;">
 		<div>
-			<h2>지역 관광 정보 검색</h2>
+			<h2 style="border-bottom: 1px solid #cfcfcf; padding-bottom: 10px;">지역 관광 정보 검색</h2>
 		</div>
 			<form id="fo" action="tourList" method="post">
 			<table class="bbsSearch" style="border:0px;">
@@ -154,38 +167,39 @@
 					<th> 검색 </th>
 					<td>
 						<input type="text" name="keyword" value="${keyword }"> 
-						<button type="button" onclick="searchTour()">검색</button>
+						<button class="btnGreen" type="button" onclick="searchTour()">검색</button>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		</form>
+		<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;총  <span style="color: blue;">${map.count }</span>개의 게시물이 있습니다.
 	</div>
+	
 	<div class="listBody">
+		<ul style="margin: 0px; border-top: 2px solid #9b9b9b;">
 			<c:choose>
 			<c:when test="${map.list.size() != 0}">
 				<c:forEach var="list" items="${map.list }">
-				<hr>
-					<a href='tourdetail?contentid=${list.contentid }&contenttypeid=${list.contenttypeid }'>
-						<div>
-							<div style="width: 25%; align-content: left;">
-								<img style="height: 200px; width: 200px;"onerror="this.src='/resources/images/noimage.png'" src="${list.firstimage }">
-							</div>
-							<h4>${list.title }</h4>
-							<p>${list.addr1 }</p>
-							<p>${list.tel }</p>
-							작성일자 : 	${list.createdtime }<br>
-							수정일자 :  ${list.modifiedtime}
-						</div>
-					</a>
-					<hr>
+					<li style="overflow: hidden; min-height: 120px; border-bottom: 1px solid #cfcfcf;">
+						<div style="width: 30px; float: left; min-height: 130px; margin-right: 10px; text-align: center; vertical-align: middle;"></div>
+							<a href='tourdetail?contentid=${list.contentid }&contenttypeid=${list.contenttypeid }' style="display: block; text-decoration: none;">
+								<img style="height: 110px; width: 85px; float:left; margin: 5px 20px 10px 0; vertical-align: middle; border: 0px;"onerror="this.src='/resources/images/noimage.png'" src="${list.firstimage }">
+									<dl style="display: block; margin: 20px 0 0 10px; padding:0;">
+										<dt style="margin-bottom: 8px; font-size: 14px; color:#333; letter-spacing: -1px; font-weight: bold;">${list.title }</dt>
+										<dd><p>${list.addr1 }</p></dd>
+										<dd><p>${list.tel }</p></dd>
+									</dl>
+							</a>
+						</li>
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
 				검색 결과가 없습니다.
 			</c:otherwise>
 			</c:choose>
-			
+		</ul>	
+		<div style="max-height: 20px; text-align: center; margin:8px 0 0 0;">
 					<!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면 [처음] 링크를 화면에 출력 -->
 					<c:if test="${map.pagination.curPage > 1 }">
 						<a href="javascript:list('1')">[처음]</a>
@@ -216,9 +230,7 @@
 					<c:if test="${map.pagination.curPage <= map.pagination.totPage }">
 						<a href="javascript:list('${map.pagination.totPage }')">[끝]</a>
 					</c:if>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					총  <span style="color: blue;">${map.count }</span>개의 게시물이 있습니다.
-				
+		</div>
 	</div>
 	<c:import url="../default/footer.jsp"/>
 </body>

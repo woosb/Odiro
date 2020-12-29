@@ -6,29 +6,451 @@
 <head>
 <meta charset="UTF-8">
 <title>상세 정보</title>
+<style type="text/css">
+	body {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+	.btnGreen01 { 
+		display:inline-block; 
+		width:150px; 
+		height:30px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:15px; 
+		color:#fff; 
+		background: #069370; 
+	}
+	
+</style>
 </head>
 <body>
 	<c:import url="../default/header.jsp"/>
-		
+		<div style="padding: 10px;">
+		<div>
+			<h2 style="border-bottom: 1px solid #cfcfcf; padding-bottom: 10px;">지역 관광 정보 검색</h2>
+		</div>
+		<div>
+			<h3 style="border-bottom: 2px solid #cfcfcf; padding-bottom: 10px;">${map.info.title }</h3>
+		</div>
 		<div style="width: 25%; align-content: left;">
 			<img style="height: 600px; width: 600px;"onerror="this.src='/resources/images/noimage.png'" src="${map.info.firstimage }">
 		</div>
-		${map.info.title }<br>
+		
 		${map.info.createdtime }<br>
 		${map.info.modifiedtime}<br>
-		${map.info.mapx}<br>
-		${map.info.mapy}<br>
-		${map.info.mlevel}<br>
 		${map.info.addr1}<br>
 		${map.info.tel}<br>
 		${map.info.homepage}<br>
 		${map.info.overview}<br>
+		<hr>
+		상세정보<br>
+		<c:choose>
+			<c:when test="${contenttypeid == 12 }">
+				<c:if test="${map.contentInfo.accomcount !=' '}">
+					수용인원 : ${map.contentInfo.accomcount }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.chkbabycarriage !=' '}">
+					유모차 대여 정보 : ${map.contentInfo.chkbabycarriage }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.chkcreditcard !=' '}">
+					신용카드가능 정보 : ${map.contentInfo.chkcreditcard }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.chkpet !=' '}">
+					애완동물동반가능 정보 : ${map.contentInfo.chkpet }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.expagerange !=' '}">
+					체험가능 연령 : ${map.contentInfo.expagerange }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.expguide !=' '}">
+					체험안내 : ${map.contentInfo.expguide }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.heritage1 != 0}">
+					세계 문화유산으로 지정되었습니다.<br>
+				</c:if>
+				<c:if test="${map.contentInfo.heritage2 != 0}">
+					세계 자연유산으로 지정되었습니다.<br>
+				</c:if>
+				<c:if test="${map.contentInfo.heritage3 != 0}">
+					세계 기록유산으로 지정되었습니다.<br>
+				</c:if>
+				<c:if test="${map.contentInfo.infocenter !=' '}">
+					문의 및 안내 : ${map.contentInfo.infocenter }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.opendate !=' '}">
+					개장일 : ${map.contentInfo.opendate }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.parking !=' '}">
+					주차시설 : ${map.contentInfo.parking }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.restdate !=' '}">
+					쉬는날 : ${map.contentInfo.restdate }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.useseason !=' '}">
+					이용시기 : ${map.contentInfo.useseason }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.usetime !=' '}">
+					이용시간 : ${map.contentInfo.usetime }
+				</c:if>
+			</c:when>
+			<c:when test="${contenttypeid == 14 }">
+				<c:if test="${map.contentInfo.accomcountculture !=' '}">
+					수용인원 : ${map.contentInfo.accomcountculture }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.chkbabycarriageculture !=' '}">
+					유모차대여 정보 : ${map.contentInfo.chkbabycarriageculture }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.chkcreditcardculture !=' '}">
+					신용카드가능 정보 : ${map.contentInfo.chkcreditcardculture }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.chkpetculture !=' '}">
+					애완동물동반가능 여부 : ${map.contentInfo.chkpetculture }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.discountinfo !=' '}">
+					할인정보 : ${map.contentInfo.discountinfo }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.infocenterculture !=' '}">
+					문의 및 안내 : ${map.contentInfo.infocenterculture }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.parkingculture !=' '}">
+					주차시설 : ${map.contentInfo.parkingculture }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.parkingfee !=' '}">
+					주차요금 : ${map.contentInfo.parkingfee }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.restdateculture !=' '}">
+					쉬는날 : ${map.contentInfo.restdateculture }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.usefee !=' '}">
+					이용요금 : ${map.contentInfo.usefee }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.usetimeculture !=' '}">
+					이용시간 : <br>${map.contentInfo.usetimeculture }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.scale !=' '}">
+					규모 : ${map.contentInfo.scale }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.spendtime !=' '}">
+					관람 소요시간 : ${map.contentInfo.spendtime }<br>
+				</c:if>
+			</c:when>
+			<c:when test="${contenttypeid == 15 }">
+				<c:if test="${map.contentInfo.agelimit !=' '}">
+					관람 가능연령 : ${map.contentInfo.agelimit }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.bookingplace !=' '}">
+					예매처 : ${map.contentInfo.bookingplace }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.discountinfofestival !=' '}">
+					할인정보 : ${map.contentInfo.discountinfofestival }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.eventenddate !=' '}">
+					행사 종료일 : ${map.contentInfo.eventenddate }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.eventhomepage !=' '}">
+					행사 홈페이지 : ${map.contentInfo.eventhomepage }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.eventplace !=' '}">
+					행사 장소 : ${map.contentInfo.eventplace }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.eventstartdate !=' '}">
+					행사 시작일 : ${map.contentInfo.eventstartdate }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.festivalgrade !=' '}">
+					축제 등급 : ${map.contentInfo.festivalgrade }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.placeinfo !=' '}">
+					행사장 위치안내 : ${map.contentInfo.placeinfo }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.playtime !=' '}">
+					공연시간 : ${map.contentInfo.playtime }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.program !=' '}">
+					행사 프로그램 : ${map.contentInfo.program }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.spendtimefestival !=' '}">
+					관람 소요시간 : ${map.contentInfo.spendtimefestival }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.sponsor1 !=' '}">
+					주최자 정보 : ${map.contentInfo.sponsor1 }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.sponsor1tel !=' '}">
+					주최자 연락처 : ${map.contentInfo.sponsor1tel }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.sponsor2 !=' '}">
+					주관사 정보 : ${map.contentInfo.sponsor2 }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.sponsor2tel !=' '}">
+					주관사 연락처 : ${map.contentInfo.sponsor2tel }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.subevent !=' '}">
+					부대행사 : ${map.contentInfo.subevent }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.usetimefestival !=' '}">
+					이용요금 : ${map.contentInfo.usetimefestival }<br>
+				</c:if>
+			</c:when>
+			<c:when test="${contenttypeid == 25 }">
+				<c:if test="${map.contentInfo.distance !=' '}">
+					코스 총 거리 : ${map.contentInfo.distance }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.infocentertourcourse !=' '}">
+					문의 및 안내 : ${map.contentInfo.infocentertourcourse }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.schedule !=' '}">
+					코스 일정 : ${map.contentInfo.schedule }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.taketime !=' '}">
+					코스 총 소요시간 : ${map.contentInfo.taketime }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.theme !=' '}">
+					코스 테마 : ${map.contentInfo.theme }<br>
+				</c:if>
+			</c:when>
+			<c:when test="${contenttypeid == 28 }">
+				<c:if test="${map.contentInfo.accomcountleports !=' '}">
+					수용인원 : ${map.contentInfo.accomcountleports }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.chkbabycarriageleports !=' '}">
+					유모차대여 정보 : ${map.contentInfo.chkbabycarriageleports }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.chkcreditcardleports !=' '}">
+					신용카드가능 정보 : ${map.contentInfo.chkcreditcardleports }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.chkpetleports !=' '}">
+					애완동물동반가능 정보 : ${map.contentInfo.chkpetleports }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.expagerangeleports !=' '}">
+					체험 가능연령 : ${map.contentInfo.expagerangeleports }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.infocenterleports !=' '}">
+					문의 및 안내 : ${map.contentInfo.infocenterleports }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.openperiod !=' '}">
+					개장기간 : ${map.contentInfo.openperiod }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.parkingfeeleports !=' '}">
+					주차요금 : ${map.contentInfo.parkingfeeleports }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.parkingleports !=' '}">
+					주차시설 : ${map.contentInfo.parkingleports }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.reservation !=' '}">
+					예약안내 : ${map.contentInfo.reservation }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.restdateleports !=' '}">
+					쉬는날 : ${map.contentInfo.restdateleports }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.scaleleports !=' '}">
+					규모 : ${map.contentInfo.scaleleports }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.usefeeleports !=' '}">
+					입장료 : ${map.contentInfo.usefeeleports }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.usetimeleports !=' '}">
+					이용시간 : <br>${map.contentInfo.usetimeleports }<br>
+				</c:if>
+			</c:when>
+			<c:when test="${contenttypeid == 32 }">
+				<c:if test="${map.contentInfo.accomcountlodging !=' '}">
+					수용 가능인원 : ${map.contentInfo.accomcountlodging }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.benikia !='0'}">
+					베니키아 호텔 시설입니다.<br>
+				</c:if>
+				<c:if test="${map.contentInfo.checkintime !=' '}">
+					입실 시간 : ${map.contentInfo.checkintime }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.checkouttime !=' '}">
+					퇴실 시간 : ${map.contentInfo.checkouttime }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.chkcooking !=' '}">
+					객실내 취사 여부 : ${map.contentInfo.chkcooking }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.foodplace !=' '}">
+					식음료장 : ${map.contentInfo.foodplace }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.goodstay !='0'}">
+					굿스테이 시설입니다.<br>
+				</c:if>
+				<c:if test="${map.contentInfo.hanok !='0'}">
+					한옥 시설입니다.<br>
+				</c:if>
+				<c:if test="${map.contentInfo.infocenterlodging !=' '}">
+					문의 및 안내 : ${map.contentInfo.infocenterlodging }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.parkinglodging !=' '}">
+					주차시설 : ${map.contentInfo.parkinglodging }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.pickup !=' '}">
+					픽업 서비스 : ${map.contentInfo.pickup }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.roomcount !=' '}">
+					객실 수 : ${map.contentInfo.roomcount }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.reservationlodging !=' '}">
+					예약안내 : ${map.contentInfo.reservationlodging }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.reservationurl !=' '}">
+					예약안내 홈페이지 : ${map.contentInfo.reservationurl }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.roomtype !=' '}">
+					객실유형 : ${map.contentInfo.roomtype }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.scalelodging !=' '}">
+					규모 : ${map.contentInfo.scalelodging }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.subfacility !=' '}">
+					부대시설(기타) : ${map.contentInfo.subfacility }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.barbecue !='0'}">
+					바비큐장 이용 가능<br>
+				</c:if>
+				<c:if test="${map.contentInfo.beauty !='0'}">
+					뷰티시설 이용 가능<br>
+				</c:if>
+				<c:if test="${map.contentInfo.beverage !='0'}">
+					식음료장 이용 가능<br>
+				</c:if>
+				<c:if test="${map.contentInfo.bicycle !='0'}">
+					자전거 대여 가능<br>
+				</c:if>
+				<c:if test="${map.contentInfo.campfire !='0'}">
+					캠프파이어 시설 이용 가능<br>
+				</c:if>
+				<c:if test="${map.contentInfo.fitness !='0'}">
+					휘트니스 센터 이용 가능<br>
+				</c:if>
+				<c:if test="${map.contentInfo.karaoke !='0'}">
+					노래방 시설 이용 가능<br>
+				</c:if>
+				<c:if test="${map.contentInfo.publicbath !='0'}">
+					공용 샤워실 이용 가능<br>
+				</c:if>
+				<c:if test="${map.contentInfo.publicpc !='0'}">
+					공용 PC 이용 가능<br>
+				</c:if>
+				<c:if test="${map.contentInfo.sauna !='0'}">
+					사우나실 이용 가능<br>
+				</c:if>
+				<c:if test="${map.contentInfo.seminar !='0'}">
+					세미나실 이용 가능<br>
+				</c:if>
+				<c:if test="${map.contentInfo.sports !='0'}">
+					스포츠 시설 이용 가능<br>
+				</c:if>
+				<c:if test="${map.contentInfo.refundregulation !=' '}">
+					환불규정 : ${map.contentInfo.refundregulation }<br>
+				</c:if>
+			</c:when>
+			<c:when test="${contenttypeid == 38 }">
+				<c:if test="${map.contentInfo.chkbabycarriageshopping !=' '}">
+					유모차대여 정보 : ${map.contentInfo.chkbabycarriageshopping }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.chkcreditcardshopping !=' '}">
+					신용카드 가능 정보 : ${map.contentInfo.chkcreditcardshopping }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.chkpetshopping !=' '}">
+					애완동물동반가능 정보 : ${map.contentInfo.chkpetshopping }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.culturecenter !=' '}">
+					문화센터 바로가기 : ${map.contentInfo.culturecenter }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.fairday !=' '}">
+					장서는 날 : ${map.contentInfo.fairday }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.infocentershopping !=' '}">
+					문의 및 안내 : ${map.contentInfo.infocentershopping }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.opendateshopping !=' '}">
+					개장일 : ${map.contentInfo.opendateshopping }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.opentime !=' '}">
+					영업시간 : ${map.contentInfo.opentime }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.parkingshopping !=' '}">
+					주차시설 : ${map.contentInfo.parkingshopping }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.restdateshopping !=' '}">
+					쉬는날 : ${map.contentInfo.restdateshopping }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.restroom !=' '}">
+					화장실 설명 : ${map.contentInfo.restroom }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.saleitem !=' '}">
+					판매 품목 : ${map.contentInfo.saleitem }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.saleitemcost !=' '}">
+					판매 품목별 가격 : ${map.contentInfo.saleitemcost }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.scaleshopping !=' '}">
+					규모 : ${map.contentInfo.scaleshopping }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.shopguide !=' '}">
+					매장안내 : <br>${map.contentInfo.shopguide }<br>
+				</c:if>
+			</c:when>
+			<c:when test="${contenttypeid == 39 }">
+				<c:if test="${map.contentInfo.chkcreditcardfood !=' '}">
+					신용카드가능 정보 : ${map.contentInfo.chkcreditcardfood }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.discountinfofood !=' '}">
+					할인정보 : ${map.contentInfo.discountinfofood }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.firstmenu !=' '}">
+					대표 메뉴 : ${map.contentInfo.firstmenu }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.infocenterfood !=' '}">
+					문의 및 안내 : ${map.contentInfo.infocenterfood }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.kidsfacility !='0'}">
+					어린이 놀이방 시설 있습니다.<br>
+				</c:if>
+				<c:if test="${map.contentInfo.opendatefood !=' '}">
+					개업일 : ${map.contentInfo.opendatefood }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.opentimefood !=' '}">
+					영업시간 : ${map.contentInfo.opentimefood }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.packing !=' '}">
+					포장가능 : ${map.contentInfo.packing }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.parkingfood !=' '}">
+					주차시설 : ${map.contentInfo.parkingfood }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.reservationfood !=' '}">
+					예약안내 : ${map.contentInfo.reservationfood }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.restdatefood !=' '}">
+					쉬는날 : ${map.contentInfo.restdatefood }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.scalefood !=' '}">
+					규모 : ${map.contentInfo.scalefood }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.seat !=' '}">
+					좌석수 : ${map.contentInfo.seat }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.smoking !=' '}">
+					금연/흡연 여부 : ${map.contentInfo.smoking }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.treatmenu !=' '}">
+					취급 메뉴 : ${map.contentInfo.treatmenu }<br>
+				</c:if>
+				<c:if test="${map.contentInfo.lcnsno !=' '}">
+					인허가번호 : ${map.contentInfo.lcnsno }<br>
+				</c:if>
+			</c:when>
+		</c:choose>
 		
+		<hr>
+		위치정보
 		<div id="map" style="width:500px;height:400px;"></div>
 		<hr>
 		<div id="roadview" style="width:800px;height:400px;"></div>
-		
-		<input type="button" value="즐겨찾기 추가" onclick="addWishList();">
 		<a href="/board/register?contentId=${contentid}&contentTypeId=${contenttypeid}">리뷰 작성하기</a>
 		<hr>
 		
@@ -86,6 +508,10 @@
 			<input type="submit" value="Search">
 		</form>
 	</div>
+		<div id="roadview" style="width:1000px; height:500px;"></div>
+		<hr>
+		<input class="btnGreen01" type="button" value="즐겨찾기 추가" onclick="addWishList();">
+		</div>
 	<c:import url="../default/footer.jsp"/>
 </body>
 <script>

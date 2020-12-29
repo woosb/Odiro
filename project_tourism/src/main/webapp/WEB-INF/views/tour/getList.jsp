@@ -7,6 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style type="text/css">
+	body {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
 <body>
 <c:import url="../default/header.jsp"/>
 <h1>관광지 목록</h1>
