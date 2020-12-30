@@ -111,9 +111,9 @@
 					</li>
 					<li>
 						<%if (session.getAttribute("e_mail") == null) {%>
-							<a href="/board/list">게시판</a> 
+							<a href="/board/list">리뷰 게시판</a> 
 						<%} else {%>
-							<a href="/board/list">게시판</a>
+							<a href="/board/list">리뷰 게시판</a>
 						<%} %>
 					</li>
 					<li>

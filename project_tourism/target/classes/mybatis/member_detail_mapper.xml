@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tour.memberDetail">
 	
-	<select id="getWishList" resultType="com.tour.dto.WishListDTO">
+	<select id="getWishList" resultType="com.tour.dto.ContentInfoDTO">
 		select * from myWishList where e_mail = #{e_mail} order by seq desc
 	</select>
 	

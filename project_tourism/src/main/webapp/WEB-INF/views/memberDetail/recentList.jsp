@@ -24,19 +24,19 @@
 <c:import url="../default/footer.jsp"></c:import>
 </body>
 <script type="text/javascript" src="/resources/js/memberDetail.js"></script>
-<script type="text/javascript" src="/resources/js/memberDetail.js"></script>
 <script>
 $(document).ready(function(){
 	var list = [
-		<c:forEach items="${recent}" var="i">
-			{
-				e_mail : "${i.e_mail}",
-				contentId : "${i.contentId}",
-				contentTypeId : "${i.contentTypeId}"},
-		</c:forEach>
+			<c:forEach items="${recent}" var="i" >
+				{
+					e_mail : "${i.e_mail}",
+					contentId : "${i.contentId}",
+					contentTypeId : "${i.contentTypeId}"},
+			</c:forEach>
 		];
 	
-	console.log(list[0]);
+	console.log(list);
+	console.log("${recent}");
 	wishList = $("#wishList");
 	var str = "";	
 	for(var i = 0; i < list.length; i++){
@@ -51,12 +51,5 @@ $(document).ready(function(){
 		});
 	}
 });
-
-function initRecentList(){
-	<%
-		session.removeAttribute("recent");
-	%>
-	self.location="/memberDetail/recentList";
-}
 </script>
 </html>

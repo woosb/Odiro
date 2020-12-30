@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tour.dao.MemberDetailDAO;
-import com.tour.dto.WishListDTO;
+import com.tour.dto.ContentInfoDTO;
 
 @Service
 public class MemberDetailServiceImpl implements MemberDetailService{
@@ -14,18 +14,18 @@ public class MemberDetailServiceImpl implements MemberDetailService{
 	MemberDetailDAO dao;
 	
 	@Override
-	public List<WishListDTO> getWishList(String e_mail) {
-		List<WishListDTO> list = dao.getWishList(e_mail);
+	public List<ContentInfoDTO> getWishList(String e_mail) {
+		List<ContentInfoDTO> list = dao.getWishList(e_mail);
 		return list;
 	}
 
 	@Override
-	public int delete(WishListDTO dto) {
+	public int delete(ContentInfoDTO dto) {
 		return dao.deleteWishList(dto);
 	}
 
 	@Override
-	public int addWishList(WishListDTO dto) {
+	public int addWishList(ContentInfoDTO dto) {
 		return dao.addWishList(dto);
 	}
 }

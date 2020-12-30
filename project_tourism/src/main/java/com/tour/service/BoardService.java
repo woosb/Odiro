@@ -7,10 +7,11 @@ import org.springframework.ui.Model;
 
 import com.tour.dto.BoardDTO;
 import com.tour.dto.Criteria;
+import com.tour.dto.ContentInfoDTO;
 
 public interface BoardService {
 	public int register(BoardDTO dto);
-	public void getList(Model model, Criteria cri);
+	public void getList(Model model, Criteria cri, ContentInfoDTO wish);
 	public void getDetail(Model model, int id);
 	public int delete(int id);
 	public int modify(BoardDTO dto);

@@ -1,5 +1,6 @@
 package com.tour.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tour.dto.BoardDTO;
 import com.tour.dto.Criteria;
+import com.tour.dto.ContentInfoDTO;
 
 @Repository
 public class BoardDAO {
@@ -24,7 +26,7 @@ public class BoardDAO {
 		return sqlSession.selectOne(namespace+".getMaxRef");
 	}
 	
-	public List<BoardDTO> getList(Criteria cri){
+	public List<BoardDTO> getList(Criteria cri, ContentInfoDTO wish){
 		return sqlSession.selectList(namespace+".getList", cri);
 	}
 	
@@ -66,5 +68,5 @@ public class BoardDAO {
 	
 	public int getTotal() {
 		return sqlSession.selectOne(namespace+".getTotal");
-	}
+	} 
 }

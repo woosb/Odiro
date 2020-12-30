@@ -58,7 +58,6 @@
 		<a href="/board/list?pageNum=${pageMaker.endPage+1 }"><c:out value="next"/></a>
 	</c:if>
 	<br><br>
-	<a href="/board/register" >글 작성</a>
 	<form id='searchForm' action="/board/list" method='get' >
 		<select name='type'>
 			<option value="" <c:out value="${pageMaker.cri.type == null? 'selected ' : ''}"/>>--</option>
