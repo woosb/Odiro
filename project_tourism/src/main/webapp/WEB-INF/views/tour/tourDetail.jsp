@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,19 +37,28 @@
 		</div>
 		<div>
 			<h3 style="border-bottom: 2px solid #cfcfcf; padding-bottom: 10px;">${map.info.title }</h3>
+			&nbsp;
 		</div>
 		<div style="width: 25%; align-content: left;">
 			<img style="height: 600px; width: 600px;"onerror="this.src='/resources/images/noimage.png'" src="${map.info.firstimage }">
 		</div>
+		<br>
+		<fmt:setLocale value="ko"/>
+		<fmt:parseDate value='${map.info.createdtime}' var='createdtime' pattern='yyyyMMddHHmmss'/>
+		<fmt:parseDate value='${map.info.modifiedtime}' var='modifiedtime' pattern='yyyyMMddHHmmss'/>
+		<b>작성일</b> : <fmt:formatDate value="${createdtime}" pattern="yyyy년MM월dd일 HH:mm:ss"/><br>
+		<b>수정일</b> : <fmt:formatDate value="${modifiedtime}" pattern="yyyy년MM월dd일 HH:mm:ss"/><br>
 		
-		${map.info.createdtime }<br>
-		${map.info.modifiedtime}<br>
-		${map.info.addr1}<br>
+		
 		${map.info.tel}<br>
 		${map.info.homepage}<br>
+		<hr>
+		<h3>개요</h3>
+		<hr>
 		${map.info.overview}<br>
 		<hr>
-		상세정보<br>
+		<h3>상세정보</h3>
+		<hr>
 		<c:choose>
 			<c:when test="${contenttypeid == 12 }">
 				<c:if test="${map.contentInfo.accomcount !=' '}">
@@ -69,13 +79,13 @@
 				<c:if test="${map.contentInfo.expguide !=' '}">
 					체험안내 : ${map.contentInfo.expguide }<br>
 				</c:if>
-				<c:if test="${map.contentInfo.heritage1 != 0}">
+				<c:if test="${map.contentInfo.heritage1 != '0'}">
 					세계 문화유산으로 지정되었습니다.<br>
 				</c:if>
-				<c:if test="${map.contentInfo.heritage2 != 0}">
+				<c:if test="${map.contentInfo.heritage2 != '0'}">
 					세계 자연유산으로 지정되었습니다.<br>
 				</c:if>
-				<c:if test="${map.contentInfo.heritage3 != 0}">
+				<c:if test="${map.contentInfo.heritage3 != '0'}">
 					세계 기록유산으로 지정되었습니다.<br>
 				</c:if>
 				<c:if test="${map.contentInfo.infocenter !=' '}">
@@ -447,13 +457,19 @@
 		</c:choose>
 		
 		<hr>
-		위치정보
+		<h3>위치정보 : ${map.info.addr1}</h3>
+		<hr>
 		<div id="map" style="width:500px;height:400px;"></div>
 		<hr>
-		<div id="roadview" style="width:800px;height:400px;"></div>
-		<a href="/board/register?contentId=${contentid}&contentTypeId=${contenttypeid}">리뷰 작성하기</a>
+		<h3>로드뷰 보기</h3>
 		<hr>
-		
+		<div id="roadview" style="width:1180px;height:400px;"></div>
+		<hr>
+		<div style = "text-align: center;">
+			<input class="btnGreen01" type="button" value="리뷰 작성하기" onclick="writeReview();">
+			&nbsp;&nbsp;&nbsp;&nbsp;<input class="btnGreen01" type="button" value="즐겨찾기 추가" onclick="addWishList();">
+		</div>
+		<hr>
 		<div align="center">
 		<table border="1">
 			<tr>
@@ -510,7 +526,6 @@
 	</div>
 		<div id="roadview" style="width:1000px; height:500px;"></div>
 		<hr>
-		<input class="btnGreen01" type="button" value="즐겨찾기 추가" onclick="addWishList();">
 		</div>
 	<c:import url="../default/footer.jsp"/>
 </body>
@@ -530,9 +545,12 @@
 			}
 		});
 	}
+	function writeReview() {
+		location.href = "/board/register?contentId=${contentid}&contentTypeId=${contenttypeid}"
+	}
 </script>
 <!-- appkey에 카카오 javascript key -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4a8c2d955aeb07b54a172c2b1b1490d3"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4a3a0c46296d3b6469323a83dab68949"></script>
 <script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapCenter = new kakao.maps.LatLng( ${map.info.mapy}, ${map.info.mapx} ), // 지도의 중심 좌표
