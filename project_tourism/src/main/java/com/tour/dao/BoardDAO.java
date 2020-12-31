@@ -67,4 +67,8 @@ public class BoardDAO {
 	public int getTotal() {
 		return sqlSession.selectOne(namespace+".getTotal");
 	}
+
+	public List<BoardDTO> getList2() {
+		return sqlSession.selectList(namespace+".get_List");
+	}
 }

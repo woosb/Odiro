@@ -350,7 +350,6 @@ public class memberController {
 
                 return mv;
             }
-<<<<<<< HEAD
 
         @RequestMapping("/member/admin")
         public ModelAndView admin(HttpSession session, MemberDTO dto) throws Exception{
@@ -415,7 +414,6 @@ public class memberController {
             
             
         	MemberService.nickName_check(nickName);
-            
         //닉네임이 기존 db에 저장되어 있지 않을 경우 실행되는 부분
         if(MemberService.nickName_check(nickName)) {
             
@@ -456,7 +454,4 @@ public class memberController {
         
             return mv;
         }
-
-=======
->>>>>>> e978f682d04f2ecc9361af7241cc34984056e34c
 }

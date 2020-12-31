@@ -28,6 +28,10 @@ public class NoticeBoardDAO {
 		map.put("end", end);
 		return sqlSession.selectList(namespace+".getList",map);
 	}
+	public List<NoticeBoardDTO> getList2()
+	{
+		return sqlSession.selectList(namespace+".getList2");
+	}
 	public int countBoardList(String searchOption, String keyword) {
 		//검색 옵션, 키워드 맵에 저장
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -52,5 +56,8 @@ public class NoticeBoardDAO {
 	}
 	public void deleteBoard(String no) {
 		sqlSession.delete(namespace+".deleteBoard",no);
+	}
+	public List<NoticeBoardDTO> getNotice() {
+		return sqlSession.selectList(namespace+".get_Notice");
 	}
 }

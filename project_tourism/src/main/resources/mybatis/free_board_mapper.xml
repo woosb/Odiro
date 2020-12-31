@@ -154,4 +154,14 @@
 	<select id="getTotal" resultType="Integer">
 		select count(*) from free_board where step = 0
 	</select>
+	<select id="get_List" resultType="com.tour.dto.BoardDTO">
+		SELECT *
+		FROM 
+		 (
+		  SELECT *
+		  FROM free_board
+		  ORDER BY regDate DESC
+		 )
+		WHERE ROWNUM BETWEEN 1 AND 5
+	</select>
 </mapper>

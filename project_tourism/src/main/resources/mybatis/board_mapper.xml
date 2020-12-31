@@ -69,4 +69,14 @@
 		<sql id="pagingFooter">
 				) A ) where rn between #{start} and #{end}
 		</sql>
+		<select id="get_Notice" resultType="com.tour.dto.NoticeBoardDTO">
+		SELECT *
+		FROM 
+		 (
+		  SELECT *
+		  FROM notice_board
+		  ORDER BY notice_reg_date DESC
+		 )
+		WHERE ROWNUM BETWEEN 1 AND 5
+	</select>
 	</mapper>
