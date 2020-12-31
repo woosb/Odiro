@@ -6,9 +6,15 @@
 <head>
 <meta charset="UTF-8">
 </head>
- 
+ <style type="text/css">
+	body {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
  <c:import url="../default/header.jsp"/>
-<body>
+<body class="loginBody">
 <br>
 <!-- 세션에 id값이 저장되어 있는 경우 로그아웃 버튼과 로그인한 아이디가 출력되도록 코드를 작성함 -->
  

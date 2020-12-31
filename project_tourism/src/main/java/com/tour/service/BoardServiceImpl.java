@@ -17,6 +17,7 @@ import com.tour.dao.BoardDAO;
 import com.tour.dto.BoardDTO;
 import com.tour.dto.Criteria;
 import com.tour.dto.PageDTO;
+import com.tour.dto.ContentInfoDTO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -31,8 +32,6 @@ public class BoardServiceImpl implements BoardService{
 	}
 	@Override
 	public int register(BoardDTO dto) {
-		dto.setUserId("asd");
-		
 		Integer ref = dao.getMaxRef();
 		ref =  (ref == null) ? 1 : ref+1;
 		dto.setRef(ref);
@@ -42,11 +41,12 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void getList(Model model, Criteria cri) {
+	public void getList(Model model, Criteria cri, ContentInfoDTO wish) {
 		log.info(cri.toString());
+		log.info(wish.toString());
 		int total = dao.getTotal();
 		PageDTO pageMaker = new PageDTO(cri, total);
-		List<BoardDTO> list = dao.getList(cri);
+		List<BoardDTO> list = dao.getList(cri, wish);
 		model.addAttribute("pageMaker",pageMaker);
 		model.addAttribute("list", list);
 	}

@@ -24,7 +24,6 @@ var getDetail = (function(){
 		console.log("getList.....");
 		$.getJSON(url, function(data){
 			if(callback){
-				console.log(data);
 				callback(data);
 			}
 		});

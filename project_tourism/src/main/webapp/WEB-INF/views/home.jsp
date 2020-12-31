@@ -6,8 +6,16 @@
 <head>
 	<title>Home</title>
 </head>
-<body>
+ <style type="text/css">
+	.mainDiv {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
+<body class="mainDiv">
 <c:import url="default/header.jsp"/>
+<<<<<<< HEAD
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 
@@ -87,6 +95,9 @@ new Swiper('.swiper1', {
 });
 
 </script>
+=======
+	<p>메인 페이지 입니다.</p>
+>>>>>>> dd186ee59f2eb96e89761826581ccc83a6d887a9
 <c:import url="default/footer.jsp"/>
 </body>
 </html>

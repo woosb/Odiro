@@ -2,6 +2,7 @@ package com.tour.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tour.dto.BoardDTO;
 import com.tour.dto.Criteria;
+import com.tour.dto.ContentInfoDTO;
 import com.tour.service.BoardService;
 
 @Controller
@@ -29,15 +31,31 @@ public class BoardController {
 	
 	@GetMapping(value="/list")
 	public void list(Model model, Criteria cri) {
-		service.getList(model, cri);
+		ContentInfoDTO wish = new ContentInfoDTO();
+		wish.setContentId(2372021);
+		wish.setContentTypeId(25);
+		
+		service.getList(model, cri, wish);
 	}
 	
 	@GetMapping(value="/register")
-	public void register() {}
+	public void register(Model model, String contentId, String contentTypeId) {
+		
+		log.info(contentId);
+		log.info(contentTypeId);
+		model.addAttribute("contentId", contentId);
+		model.addAttribute("contentTypeId", contentTypeId);
+	}
 	
 	@PostMapping(value="/register")
 	@ResponseBody
-	public int register(BoardDTO dto) {
+	public int register(BoardDTO dto, HttpSession session) {
+		String userId = (String)session.getAttribute("e_mail");
+		if(userId == null) {
+			dto.setUserId("Anonymous");
+		}else {
+			dto.setUserId(userId);
+		}
 		int result = service.register(dto);
 		log.info(dto.toString());
 		return result;

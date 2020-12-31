@@ -5,6 +5,13 @@
 <html>
 <meta charset="UTF-8">
 <!-- 회원가입 페이지 -->
+<style type="text/css">
+	body {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
 <body>
 <center>
 <table border="1" width="450" height="400">

@@ -1,6 +1,6 @@
 package com.tour.dto;
 
-public class WishListDTO {
+public class ContentInfoDTO {
 	private int seq;
 	private String e_mail;
 	private int contentId;

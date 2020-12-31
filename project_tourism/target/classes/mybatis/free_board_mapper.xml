@@ -8,6 +8,8 @@
 			userId, 
 			title, 
 			content,
+			contentId,
+			contentTypeId,
 			ref, 
 			regDate
 		)
@@ -16,6 +18,8 @@
 			#{userId},
 			#{title},
 			#{content},
+			#{contentId},
+			#{contentTypeId},
 			#{ref},
 			sysdate
 		)
@@ -48,7 +52,8 @@
 				from 
 					free_board 
 				where 
-					step = 0 and
+					step = 0 
+						and
 				
 		]]>
 

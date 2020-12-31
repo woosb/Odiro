@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	body {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
 </head>
 <body>
 <c:import url="../default/header.jsp"/>
@@ -51,7 +58,6 @@
 		<a href="/board/list?pageNum=${pageMaker.endPage+1 }"><c:out value="next"/></a>
 	</c:if>
 	<br><br>
-	<a href="/board/register" >글 작성</a>
 	<form id='searchForm' action="/board/list" method='get' >
 		<select name='type'>
 			<option value="" <c:out value="${pageMaker.cri.type == null? 'selected ' : ''}"/>>--</option>

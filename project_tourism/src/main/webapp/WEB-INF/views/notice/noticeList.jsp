@@ -12,7 +12,13 @@
 		location.href="noticeList?curPage="+page+"&searchOption=${map.searchOption}"+"&keyword=${map.keyword}";
 	}
 </script>
-
+<style type="text/css">
+	body {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
 </head>
 <body>
 	<c:import url="../default/header.jsp"/>

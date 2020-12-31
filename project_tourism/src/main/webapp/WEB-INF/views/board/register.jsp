@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	body {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+</style>
 </head>
 <body>
 	<c:import url="../default/header.jsp"/>
@@ -15,8 +22,9 @@
 			<input type="text" name="title" id="title" placeholder="제목"><br><br>
 			<textarea name="input" id="input" placeholder="내용"></textarea><br>	
 			<input type="hidden" id="content" name="content">		
-<!-- 			<input type="file" name="uploadFile" id="uploadFile" placeholder="파일첨부" multiple><br> -->
-			<input type="button" value="작성하기" onclick="register()">
+			<input type="hidden" id="contentId" name="contentId">
+			<input type="hidden" id="contentTypeId" name="contentTypeId">
+ 			<input type="button" value="작성하기" onclick="register()">
 		</form>
 	</div>
 	<c:import url="../default/footer.jsp"/>
@@ -25,29 +33,18 @@
 <script>CKEDITOR.replace('input',{filebrowserUploadUrl:'/fileUpload'});</script>
 <script>
 function register(){
+	var contentId = "${contentId }";
+	var contentTypeId = "${contentTypeId }";
+	document.getElementById("contentId").value = contentId;
+	document.getElementById("contentTypeId").value = contentTypeId;
+	
+	if(contentId == "" || contentTypeId == ""){
+		contentId = 0;
+		contentTypeId = 0;
+	}
+	
 	var content = CKEDITOR.instances.input.getData();
-	document.getElementById("content").value=content;
-	
-// 	var formData = new FormData();
-// 	var inputFile = $("input[name='uploadFile']");
-// 	var files = inputFile[0].files;
-// 	console.log(files);
-	
-// 	for(var i = 0; i < files.length; i++){
-// 		formData.append("uploadFile", files[i]);
-// 	}
-	
-// 	$.ajax({
-// 		url : "/board/fileUpload",
-// 		type : "POST",
-// 		processData: false,
-// 		contentType: false,
-// 		data : formData,
-// 		success : function(data)	{
-// 			alert("Uploaded");
-// 		}
-// 	});
-	
+	document.getElementById("content").value = content;
 	var result = 0;
 	$.ajax({
 		url : "/board/register",
