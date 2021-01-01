@@ -29,6 +29,9 @@ public class BoardDAO {
 	public List<BoardDTO> getList(Criteria cri){
 		return sqlSession.selectList(namespace+".getList", cri);
 	}
+	public List<BoardDTO> getMyList(Criteria cri){
+		return sqlSession.selectList(namespace+".getMyList", cri);
+	}
 	
 	public BoardDTO getDetail(int id) {
 		return sqlSession.selectOne(namespace+".getDetail", id);

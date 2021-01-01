@@ -73,6 +73,52 @@
 			where rnum > #{amount}*(#{pageNum}-1)
 		]]>
 	</select>
+	<select id="getMyList" resultType="com.tour.dto.BoardDTO">
+		<![CDATA[
+			select 
+				*
+			from (
+				select /*+ INDEX_DESC(free_board pk_board) */
+					rownum as rnum, 
+					id, 
+					userId, 
+					title, 
+					content, 
+					regDate, 
+					updateDate, 
+					hit, 
+					recommend, 
+					ref,
+					refOrder,
+					step,
+					answerNum,
+					parentNum
+				from 
+					free_board 
+				where 
+					step = 0
+				AND
+					userId = #{e_mail}
+				AND
+					
+		]]>
+		<trim>
+			<if test="contentId != null and contentId != ''">
+				contentId = #{contentId} and
+			</if>
+			<if test="contentTypeId != null and contentTypeId != ''">
+				contentTypeId = #{contentTypeId} and
+			</if>
+		</trim>
+
+		<include refid="criteria"></include> 
+
+		<![CDATA[
+				rownum <=#{amount}*#{pageNum})
+				 
+			where rnum > #{amount}*(#{pageNum}-1)
+		]]>
+	</select>
 	
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">

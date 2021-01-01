@@ -48,6 +48,20 @@ public class BoardServiceImpl implements BoardService{
 		model.addAttribute("pageMaker",pageMaker);
 		model.addAttribute("list", list);
 	}
+	
+	@Override
+	public void getMyList(Model model, Criteria cri, ContentInfoDTO wish) {
+		cri.setContentId(wish.getContentId());
+		cri.setContentTypeId(wish.getContentTypeId());
+		cri.setE_mail(wish.getE_mail());
+		log.info(cri.toString());
+		log.info(wish.toString());
+		int total = dao.getTotal();
+		PageDTO pageMaker = new PageDTO(cri, total);
+		List<BoardDTO> list = dao.getMyList(cri);
+		model.addAttribute("pageMaker",pageMaker);
+		model.addAttribute("list", list);
+	}
 
 	@Override
 	public void getDetail(Model model, int id) {

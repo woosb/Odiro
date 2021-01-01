@@ -31,8 +31,7 @@ public class BoardController {
 	
 	@GetMapping(value="/list")
 	public void list(Model model, Criteria cri) {
-		ContentInfoDTO wish = new ContentInfoDTO();
-		service.getList(model, cri, wish);
+		service.getList(model, cri, new ContentInfoDTO());
 	}
 	
 	@GetMapping(value="/register")
