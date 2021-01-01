@@ -38,11 +38,13 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void getList(Model model, Criteria cri, ContentInfoDTO wish) {
+		cri.setContentId(wish.getContentId());
+		cri.setContentTypeId(wish.getContentTypeId());
 		log.info(cri.toString());
 		log.info(wish.toString());
 		int total = dao.getTotal();
 		PageDTO pageMaker = new PageDTO(cri, total);
-		List<BoardDTO> list = dao.getList(cri, wish);
+		List<BoardDTO> list = dao.getList(cri);
 		model.addAttribute("pageMaker",pageMaker);
 		model.addAttribute("list", list);
 	}

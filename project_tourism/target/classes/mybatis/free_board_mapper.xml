@@ -53,9 +53,17 @@
 					free_board 
 				where 
 					step = 0 
-						and
-				
+				AND
+					
 		]]>
+		<trim>
+			<if test="contentId != null and contentId != ''">
+				contentId = #{contentId} and
+			</if>
+			<if test="contentTypeId != null and contentTypeId != ''">
+				contentTypeId = #{contentTypeId} and
+			</if>
+		</trim>
 
 		<include refid="criteria"></include> 
 

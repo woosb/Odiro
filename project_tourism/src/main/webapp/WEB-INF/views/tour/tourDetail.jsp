@@ -69,13 +69,13 @@
 				<c:if test="${map.contentInfo.expguide !=' '}">
 					체험안내 : ${map.contentInfo.expguide }<br>
 				</c:if>
-				<c:if test="${map.contentInfo.heritage1 != 0}">
+				<c:if test="${map.contentInfo.heritage1 != '0'}">
 					세계 문화유산으로 지정되었습니다.<br>
 				</c:if>
-				<c:if test="${map.contentInfo.heritage2 != 0}">
+				<c:if test="${map.contentInfo.heritage2 != '0'}">
 					세계 자연유산으로 지정되었습니다.<br>
 				</c:if>
-				<c:if test="${map.contentInfo.heritage3 != 0}">
+				<c:if test="${map.contentInfo.heritage3 != '0'}">
 					세계 기록유산으로 지정되었습니다.<br>
 				</c:if>
 				<c:if test="${map.contentInfo.infocenter !=' '}">
