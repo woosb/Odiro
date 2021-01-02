@@ -12,19 +12,38 @@
 		margin : 20px auto;
 		padding : 10px;
 	}
+	.btnGreen01 { 
+		display:inline-block; 
+		width:150px; 
+		height:30px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:15px; 
+		color:#fff; 
+		background: #069370; 
+	}
+	.title {
+		width: 99%; 
+		height: 20px;
+	}
 </style>
 </head>
 <body>
 	<c:import url="../default/header.jsp"/>
 	<div align="center" style="padding:50px;">
-	<h1>게시물 작성</h1>
+	<h1>리뷰 작성하기</h1>
+	<hr>
 		<form id="registerForm">
-			<input type="text" name="title" id="title" placeholder="제목"><br><br>
+			<input type="text" name="title" class="title" placeholder="제목">
+			<hr>
 			<textarea name="input" id="input" placeholder="내용"></textarea><br>	
 			<input type="hidden" id="content" name="content">		
 			<input type="hidden" id="contentId" name="contentId">
 			<input type="hidden" id="contentTypeId" name="contentTypeId">
- 			<input type="button" value="작성하기" onclick="register()">
+ 			<input type="button" value="작성하기" onclick="register()" class="btnGreen01">
 		</form>
 	</div>
 	<c:import url="../default/footer.jsp"/>

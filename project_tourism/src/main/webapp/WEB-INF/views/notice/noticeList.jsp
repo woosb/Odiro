@@ -71,7 +71,7 @@
 						<c:forEach var="brd" items="${map.list}">
 							<tr>
 								<td style="text-align: center;">${brd.notice_no }</td>
-								<td style="padding: 25px;">
+								<td style="padding: 5px 0 5px 25px;">
 								<a href="getDetail?no=${brd.notice_no }" style="text-decoration: none;">
 								${brd.notice_title }
 								</a>

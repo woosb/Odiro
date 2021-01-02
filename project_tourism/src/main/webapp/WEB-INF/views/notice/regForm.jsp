@@ -35,8 +35,8 @@
 <body>
 	<c:import url="../default/header.jsp"/>
 	<div>
-		<div>
-			<h3>공지사항 등록</h3>
+		<div align="center">
+			<h1>공지사항 등록</h1>
 			<hr>
 		</div>
 		<form action="regBoard" method="post">

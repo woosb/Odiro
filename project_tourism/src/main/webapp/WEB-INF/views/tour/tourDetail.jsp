@@ -26,7 +26,15 @@
 		color:#fff; 
 		background: #069370; 
 	}
-	
+	table {
+    	width: 100%;
+    	border-top: solid #444444;
+    	border-collapse: collapse;
+  	}
+  	th, td {
+    	border-bottom: 1px solid #444444;
+    	padding: 10px;
+  	}
 </style>
 </head>
 <body>
@@ -471,7 +479,20 @@
 		</div>
 		<hr>
 		<div align="center">
-		<table border="1">
+		<h3>이곳에 대한 리뷰가 궁금하세요?</h3>
+		</div>
+		<hr>
+		
+		<div align="center">
+		<table>
+			<colgroup>
+				<col style="width:6%;">
+				<col style="width:auto;">
+				<col style="width:8%;">
+				<col style="width:10%;">
+				<col style="width:8%;">
+				<col style="width:5%;">
+			</colgroup>
 			<tr>
 				<th>번호</th>	
 				<th>제목</th>	
@@ -479,26 +500,25 @@
 				<th>작성일</th>	
 				<th>조회수</th>	
 				<th>추천</th>	
-				<th>ref</th>	
-				<th>step</th>	
-				<th>refOrder</th>	
-				<th>answerNum</th>	
-				<th>parentNum</th>	
 			</tr>
 			<c:forEach var="list" items="${list }">
 				<tr>
-					<td><c:out value="${list.id }"/></td>
-					<td><a href="/board/detail?id=${list.id }&ref=${list.ref }"><c:out value="${list.title }"/></a></td>
-					<td><c:out value="${list.userId }"/></td>
-					<td><c:out value="${list.regDate }"/></td>
-					<td><c:out value="${list.hit }"/></td>
-					<td><c:out value="${list.recommend }"/></td>
-					<td><c:out value="${list.ref }"/></td>
-					<td><c:out value="${list.step }"/></td>
-					<td><c:out value="${list.refOrder }"/></td>
-					<td><c:out value="${list.answerNum }"/></td>
-					<td><c:out value="${list.parentNum }"/></td>
-				</tr>
+				<td style="text-align: center;"><c:out value="${list.id }"/></td>
+				<td style="padding:25px;"><a href="/board/detail?id=${list.id }&ref=${list.ref }"><c:out value="${list.title }"/></a>
+				<c:choose>
+					<c:when test="${list.answerNum != 0}">
+						<span style="color: #c73841">[${list.answerNum}]</span>
+					</c:when>
+				</c:choose>
+				</td>
+				<td style="text-align: center;"><c:out value="${list.userId }"/></td>
+				<td style="text-align: center;">
+				<fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd HH:mm:ss"/>
+				</td>
+				
+				<td style="text-align: center;"><c:out value="${list.hit }"/></td>
+				<td style="text-align: center;"><c:out value="${list.recommend }"/></td>
+			</tr>
 			</c:forEach>
 		</table>
 		<br>
