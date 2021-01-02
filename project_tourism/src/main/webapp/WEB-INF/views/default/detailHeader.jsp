@@ -106,7 +106,7 @@
 					<li><a href="/memberDetail/myScheduler">일정관리</a></li>
 					<li><a href="/memberDetail/myReview">나의 리뷰</a></li>
 					<li><a href="/memberDetail/myWishList">찜 목록</a></li>
-					<li><a href="/memberDetail/recentList">최근 본 숙소</a></li>
+					<li><a href="/memberDetail/recentList">최근 본 관광지</a></li>
 					<li><a href="/memberDetail/myInfo">내 정보 관리</a></li>
 				</ul>
 			</nav>
