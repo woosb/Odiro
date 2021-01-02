@@ -41,6 +41,9 @@
 <body>
 <c:import url="../default/header.jsp"/>
 <div align="center">
+	<div style="text-align: center">
+			<h2>리뷰 게시판</h2>
+		</div>
 	<table>
 		<colgroup>
 				<col style="width:6%;">
