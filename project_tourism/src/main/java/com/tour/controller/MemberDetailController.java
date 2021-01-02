@@ -41,4 +41,14 @@ public class MemberDetailController {
 		dto.setE_mail(e_mail);
 		service.getMyList(model, cri, dto);
 	}
+	
+	@GetMapping(value="/myInfo")
+	public void myInfo() {
+		
+	}
+	
+	@GetMapping(value="/myScheduler")
+	public void myScheduler() {
+		
+	}
 }
