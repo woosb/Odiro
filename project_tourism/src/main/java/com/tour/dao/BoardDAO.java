@@ -26,8 +26,11 @@ public class BoardDAO {
 		return sqlSession.selectOne(namespace+".getMaxRef");
 	}
 	
-	public List<BoardDTO> getList(Criteria cri, ContentInfoDTO wish){
+	public List<BoardDTO> getList(Criteria cri){
 		return sqlSession.selectList(namespace+".getList", cri);
+	}
+	public List<BoardDTO> getMyList(Criteria cri){
+		return sqlSession.selectList(namespace+".getMyList", cri);
 	}
 	
 	public BoardDTO getDetail(int id) {

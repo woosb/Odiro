@@ -10,6 +10,9 @@ import java.util.Date;
 	    regDate Date,
 	    updateDate Date,
 	    
+	    contentId  number,
+    	contentTypeId number,
+    
 	    hit number default 0,
 	    recommend number default 0,
 	    

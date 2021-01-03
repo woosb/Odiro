@@ -12,6 +12,23 @@
 		margin : 20px auto;
 		padding : 10px;
 	}
+	.btnGreen01 { 
+		display:inline-block; 
+		width:150px; 
+		height:30px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:15px; 
+		color:#fff; 
+		background: #069370; 
+	}
+	.title {
+		width: 99%; 
+		height: 20px;
+	}
 </style>
 <script src="/resources/js/ckeditor/ckeditor.js"></script>
 </head>
@@ -25,7 +42,7 @@
 		<form action="modifyOk" method="post">
 		<div>
 			<input type="text" name="notice_no" value="${contentView.notice_no }" hidden="hidden">
-			<input type="text" name="notice_title" placeholder="제목을 입력하세요" value="${contentView.notice_title }">
+			<input type="text" name="notice_title" placeholder="제목을 입력하세요" value="${contentView.notice_title }" class="title">
 			<hr>
 		</div>
 		<div>
@@ -33,8 +50,8 @@
 			<script>CKEDITOR.replace('editor4',{filebrowserUploadUrl:'imageUpload'});</script>
 			<hr>
 		</div>
-		<div>
-			<input type="submit" value="수정하기">
+		<div style='text-align: center;'>
+			<input type="submit" value="수정하기" class="btnGreen01">
 		</div>
 		</form>
 	</div>

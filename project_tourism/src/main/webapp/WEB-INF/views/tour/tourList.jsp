@@ -30,7 +30,7 @@
 		font-size:12px; 
 		color:#fff; 
 		background: #069370; 
-		}
+	}
 </style>
 
 <script src="http://code.jquery.com/jquery-3.5.1.min.js">

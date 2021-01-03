@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,15 @@
 		color:#fff; 
 		background: #069370; 
 	}
-	
+	table {
+    	width: 100%;
+    	border-top: solid #444444;
+    	border-collapse: collapse;
+  	}
+  	th, td {
+    	border-bottom: 1px solid #444444;
+    	padding: 10px;
+  	}
 </style>
 </head>
 <body>
@@ -36,19 +45,28 @@
 		</div>
 		<div>
 			<h3 style="border-bottom: 2px solid #cfcfcf; padding-bottom: 10px;">${map.info.title }</h3>
+			&nbsp;
 		</div>
 		<div style="width: 25%; align-content: left;">
 			<img style="height: 600px; width: 600px;"onerror="this.src='/resources/images/noimage.png'" src="${map.info.firstimage }">
 		</div>
+		<br>
+		<fmt:setLocale value="ko"/>
+		<fmt:parseDate value='${map.info.createdtime}' var='createdtime' pattern='yyyyMMddHHmmss'/>
+		<fmt:parseDate value='${map.info.modifiedtime}' var='modifiedtime' pattern='yyyyMMddHHmmss'/>
+		<b>작성일</b> : <fmt:formatDate value="${createdtime}" pattern="yyyy년MM월dd일 HH:mm:ss"/><br>
+		<b>수정일</b> : <fmt:formatDate value="${modifiedtime}" pattern="yyyy년MM월dd일 HH:mm:ss"/><br>
 		
-		${map.info.createdtime }<br>
-		${map.info.modifiedtime}<br>
-		${map.info.addr1}<br>
+		
 		${map.info.tel}<br>
 		${map.info.homepage}<br>
+		<hr>
+		<h3>개요</h3>
+		<hr>
 		${map.info.overview}<br>
 		<hr>
-		상세정보<br>
+		<h3>상세정보</h3>
+		<hr>
 		<c:choose>
 			<c:when test="${contenttypeid == 12 }">
 				<c:if test="${map.contentInfo.accomcount !=' '}">
@@ -69,13 +87,13 @@
 				<c:if test="${map.contentInfo.expguide !=' '}">
 					체험안내 : ${map.contentInfo.expguide }<br>
 				</c:if>
-				<c:if test="${map.contentInfo.heritage1 != 0}">
+				<c:if test="${map.contentInfo.heritage1 != '0'}">
 					세계 문화유산으로 지정되었습니다.<br>
 				</c:if>
-				<c:if test="${map.contentInfo.heritage2 != 0}">
+				<c:if test="${map.contentInfo.heritage2 != '0'}">
 					세계 자연유산으로 지정되었습니다.<br>
 				</c:if>
-				<c:if test="${map.contentInfo.heritage3 != 0}">
+				<c:if test="${map.contentInfo.heritage3 != '0'}">
 					세계 기록유산으로 지정되었습니다.<br>
 				</c:if>
 				<c:if test="${map.contentInfo.infocenter !=' '}">
@@ -447,15 +465,34 @@
 		</c:choose>
 		
 		<hr>
-		위치정보
+		<h3>위치정보 : ${map.info.addr1}</h3>
+		<hr>
 		<div id="map" style="width:500px;height:400px;"></div>
 		<hr>
-		<div id="roadview" style="width:800px;height:400px;"></div>
-		<a href="/board/register?contentId=${contentid}&contentTypeId=${contenttypeid}">리뷰 작성하기</a>
+		<h3>로드뷰 보기</h3>
+		<hr>
+		<div id="roadview" style="width:1180px;height:400px;"></div>
+		<hr>
+		<div style = "text-align: center;">
+			<input class="btnGreen01" type="button" value="리뷰 작성하기" onclick="writeReview();">
+			&nbsp;&nbsp;&nbsp;&nbsp;<input class="btnGreen01" type="button" value="즐겨찾기 추가" onclick="addWishList();">
+		</div>
+		<hr>
+		<div align="center">
+		<h3>이곳에 대한 리뷰가 궁금하세요?</h3>
+		</div>
 		<hr>
 		
 		<div align="center">
-		<table border="1">
+		<table>
+			<colgroup>
+				<col style="width:6%;">
+				<col style="width:auto;">
+				<col style="width:8%;">
+				<col style="width:10%;">
+				<col style="width:8%;">
+				<col style="width:5%;">
+			</colgroup>
 			<tr>
 				<th>번호</th>	
 				<th>제목</th>	
@@ -463,26 +500,25 @@
 				<th>작성일</th>	
 				<th>조회수</th>	
 				<th>추천</th>	
-				<th>ref</th>	
-				<th>step</th>	
-				<th>refOrder</th>	
-				<th>answerNum</th>	
-				<th>parentNum</th>	
 			</tr>
 			<c:forEach var="list" items="${list }">
 				<tr>
-					<td><c:out value="${list.id }"/></td>
-					<td><a href="/board/detail?id=${list.id }&ref=${list.ref }"><c:out value="${list.title }"/></a></td>
-					<td><c:out value="${list.userId }"/></td>
-					<td><c:out value="${list.regDate }"/></td>
-					<td><c:out value="${list.hit }"/></td>
-					<td><c:out value="${list.recommend }"/></td>
-					<td><c:out value="${list.ref }"/></td>
-					<td><c:out value="${list.step }"/></td>
-					<td><c:out value="${list.refOrder }"/></td>
-					<td><c:out value="${list.answerNum }"/></td>
-					<td><c:out value="${list.parentNum }"/></td>
-				</tr>
+				<td style="text-align: center;"><c:out value="${list.id }"/></td>
+				<td style="padding:25px;"><a href="/board/detail?id=${list.id }&ref=${list.ref }"><c:out value="${list.title }"/></a>
+				<c:choose>
+					<c:when test="${list.answerNum != 0}">
+						<span style="color: #c73841">[${list.answerNum}]</span>
+					</c:when>
+				</c:choose>
+				</td>
+				<td style="text-align: center;"><c:out value="${list.userId }"/></td>
+				<td style="text-align: center;">
+				<fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd HH:mm:ss"/>
+				</td>
+				
+				<td style="text-align: center;"><c:out value="${list.hit }"/></td>
+				<td style="text-align: center;"><c:out value="${list.recommend }"/></td>
+			</tr>
 			</c:forEach>
 		</table>
 		<br>
@@ -510,7 +546,6 @@
 	</div>
 		<div id="roadview" style="width:1000px; height:500px;"></div>
 		<hr>
-		<input class="btnGreen01" type="button" value="즐겨찾기 추가" onclick="addWishList();">
 		</div>
 	<c:import url="../default/footer.jsp"/>
 </body>
@@ -530,9 +565,12 @@
 			}
 		});
 	}
+	function writeReview() {
+		location.href = "/board/register?contentId=${contentid}&contentTypeId=${contenttypeid}"
+	}
 </script>
 <!-- appkey에 카카오 javascript key -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4a8c2d955aeb07b54a172c2b1b1490d3"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4a3a0c46296d3b6469323a83dab68949"></script>
 <script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapCenter = new kakao.maps.LatLng( ${map.info.mapy}, ${map.info.mapx} ), // 지도의 중심 좌표

@@ -11,12 +11,38 @@
 	function list(page) {
 		location.href="noticeList?curPage="+page+"&searchOption=${map.searchOption}"+"&keyword=${map.keyword}";
 	}
+	function regFo() {
+		location.href="regForm";
+	}
 </script>
 <style type="text/css">
 	body {
 		max-width: 1200px;
 		margin : 20px auto;
 		padding : 10px;
+	}
+	table {
+    	width: 100%;
+    	border-top: solid #444444;
+    	border-collapse: collapse;
+  	}
+  	th, td {
+    	border-bottom: 1px solid #444444;
+    	padding: 10px;
+  	}
+	
+	.btnGreen01 { 
+		display:inline-block; 
+		width:60px; 
+		height:25px; 
+		padding:2px 0;
+		border-radius: 0.5pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:13px; 
+		color:#fff; 
+		background: #069370; 
 	}
 </style>
 </head>
@@ -25,7 +51,7 @@
 		<div style="text-align: center">
 			<h2>공지사항</h2>
 		</div>
-		<table border="1">
+		<table>
 			<colgroup>
 				<col style="width:5%;">
 				<col style="width:auto;">
@@ -34,7 +60,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>NO</th>
+					<th style="height: 30px;">NO</th>
 					<th>글제목</th>
 					<th>조회수</th>
 					<th>작성일</th>
@@ -44,13 +70,13 @@
 					<c:when test="${map.list.size() != 0}">
 						<c:forEach var="brd" items="${map.list}">
 							<tr>
-								<td>${brd.notice_no }</td>
-								<td>
-								<a href="getDetail?no=${brd.notice_no }">
+								<td style="text-align: center;">${brd.notice_no }</td>
+								<td style="padding: 5px 0 5px 25px;">
+								<a href="getDetail?no=${brd.notice_no }" style="text-decoration: none;">
 								${brd.notice_title }
 								</a>
 								</td>
-								<td>${brd.notice_hit }</td>
+								<td style="text-align: center;">${brd.notice_hit }</td>
 								<td><fmt:formatDate value="${brd.notice_reg_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 							</tr>
 						</c:forEach>
@@ -73,7 +99,7 @@
 						<option value="notice_content"<c:out value="${map.searchOption == 'notice_content'?'selected':''}"/>>내용</option>
 					</select>
 					<input name="keyword" value="${map.keyword }">
-					<input type="submit" value="조회">
+					<input type="submit" value="조회" class="btnGreen01">
 				</form>
 				</td>
 			</tr>
@@ -113,7 +139,7 @@
 					총  <span style="color: blue;">${map.count }</span>개의 게시물이 있습니다.
 				</td>
 				<td style="text-align: center;">
-					<a href ="regForm">글작성</a>
+					<input type="button" value="글작성" onclick="regFo()" class="btnGreen01"/>
 				</td>
 			</tr>
 			
