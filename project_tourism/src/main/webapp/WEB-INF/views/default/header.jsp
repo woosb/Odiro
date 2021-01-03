@@ -90,7 +90,6 @@
 </style>
 </head>
 <body>
-<<<<<<< HEAD
 	<p style="font-size: 50px; color: orange; font-weight: bold; font-family: fantasy; text-align: center;">CARE LAB</p> 
 		<div class="head" style="text-align: right; font-size: 22px; background-color:#4d4d4d; height: 35px;">
 		<ul>
@@ -140,12 +139,10 @@
 				<%} %></a>
 			</li>
 		</ul>
-=======
 	<div class="toplogo">
 			<a href="/">
 				<img src="/resources/images/mainlogo.png" style="width: 120px; height: 110px; border: 0px; vertical-align: middle;">
 			</a>
->>>>>>> dd186ee59f2eb96e89761826581ccc83a6d887a9
 	</div>
 	<header>
 		<div class = "menu-toggle"></div>

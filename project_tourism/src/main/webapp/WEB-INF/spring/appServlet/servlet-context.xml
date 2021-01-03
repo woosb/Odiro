@@ -24,6 +24,7 @@
 	<beans:bean id="BoardService" class="com.tour.service.BoardServiceImpl"/>
 	<beans:bean id="NoticeBoardService" class="com.tour.service.NoticeBoardServiceImpl"/>
 	<beans:bean id="MemberDetailService" class="com.tour.service.MemberDetailServiceImpl"/>
+	<beans:bean id="TourContentInfoService" class="com.tour.service.TourContentInfoServiceImpl"/>
 	<beans:bean id="MemberDAO" class="com.tour.dao.MemberDAO"/>
 	<beans:bean id="BoardDAO" class="com.tour.dao.BoardDAO"/>
 	<beans:bean id="NoticeDAO" class="com.tour.dao.NoticeBoardDAO"/>

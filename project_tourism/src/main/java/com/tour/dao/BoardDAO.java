@@ -68,13 +68,11 @@ public class BoardDAO {
 	
 	public int getTotal() {
 		return sqlSession.selectOne(namespace+".getTotal");
-<<<<<<< HEAD
+
 	}
 
 	public List<BoardDTO> getList2() {
 		return sqlSession.selectList(namespace+".get_List");
 	}
-=======
-	} 
->>>>>>> dd186ee59f2eb96e89761826581ccc83a6d887a9
+
 }

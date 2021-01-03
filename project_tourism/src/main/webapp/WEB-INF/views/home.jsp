@@ -15,7 +15,6 @@
 </style>
 <body class="mainDiv">
 <c:import url="default/header.jsp"/>
-<<<<<<< HEAD
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 
@@ -45,18 +44,19 @@ div {
         float: left;
         box-sizing: border-box;
         border: 3px solid #000;
-        height : 320px;
+        height : 500px;
     }
     div.right {
         width: 50%;
         float: right;
         box-sizing: border-box;
         border: 3px solid #000;
-        height : 320px;
+        height : 500px;
     }
 </style>
 
 <!-- 클래스명은 변경하면 안 됨 -->
+<div align="center">
 <div class="swiper-container swiper1">
 	<div class="swiper-wrapper">
 		<div class="swiper-slide"><img src="http://www.visitkorea.or.kr/intro/images/pic01.jpg"></div>
@@ -79,7 +79,8 @@ div {
 			<a href="/board/detail?id=${list.id }&ref=${list.ref }"><c:out value="${list.title }"/></a><br><hr><br>
 		</c:forEach>
 	</div>
-
+</div>
+<c:import url="default/footer.jsp"/>
 <script>
 
 new Swiper('.swiper1', {
@@ -95,9 +96,5 @@ new Swiper('.swiper1', {
 });
 
 </script>
-=======
-	<p>메인 페이지 입니다.</p>
->>>>>>> dd186ee59f2eb96e89761826581ccc83a6d887a9
-<c:import url="default/footer.jsp"/>
 </body>
 </html>
