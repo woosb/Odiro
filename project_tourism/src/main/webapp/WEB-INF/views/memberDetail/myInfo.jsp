@@ -7,7 +7,9 @@
 </head>
 <body>
 <c:import url="../default/detailHeader.jsp"></c:import>
-	<h1>내 정보</h1>
+	<div align="center">
+		<h1>내 정보</h1>
+	</div>
 	
 <c:import url="../default/footer.jsp"></c:import>
 </body>
