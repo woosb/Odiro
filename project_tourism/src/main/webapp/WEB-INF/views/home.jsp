@@ -36,9 +36,6 @@
 .swiper-slide img {
 	box-shadow:0 0 5px #555;
 }
-	div {
-		text-align:center;
-    }
     div.left {
         width: 50%;
         float: left;
