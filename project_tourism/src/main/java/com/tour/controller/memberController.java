@@ -253,51 +253,6 @@ public class memberController {
  
         return mv;
     }
-  //id 중복확인을 하는 메소드
-    @RequestMapping("/member/join_id_check.do{e_mail}")
-    public ModelAndView id_check(String user_id, HttpServletResponse response_equals, @PathVariable String e_mail) throws Exception    {
-        
-        
-    	MemberService.join_id_check(user_id);
-        
-    //id가 기존 db에 저장되어 있지 않을 경우 실행되는 부분
-    if(MemberService.join_id_check(user_id)) {
-        
-        response_equals.setContentType("text/html; charset=UTF-8");
-        PrintWriter out_equals = response_equals.getWriter();
-        out_equals.println("<script>alert('사용하실 수 있는 아이디 입니다.');</script>");
-        out_equals.flush();
-        
-        ModelAndView mv = new ModelAndView();
-        
-        mv.setViewName("/member/join");
-        
-        mv.addObject("e_mail", e_mail);
-        
-        mv.addObject("user_id",user_id);
-        
-        return mv;
-        
-    //id가 기존 db에 저장되어 있을 경우 id가 중복된 것으므로 이쪽 구문이 실행된다.
-    
-    } else {
-
-        response_equals.setContentType("text/html; charset=UTF-8");
-
-        PrintWriter out_equals = response_equals.getWriter();
-
-        out_equals.println("<script>alert('사용할 수 없는 아이디 입니다. 다른 아이디를 입력해주세요.'); history.go(-1);</script>");
-        
-        out_equals.flush();
-        
-    }
-    
-    ModelAndView mv = new ModelAndView();
-
-    mv.setViewName("/member/join");
-    
-        return mv;
-    }
     
   //회원아이디로 해당 회원의 정보를 검색하는 메소드
 
@@ -395,4 +350,108 @@ public class memberController {
 
                 return mv;
             }
+
+        @RequestMapping("/member/admin")
+        public ModelAndView admin(HttpSession session, MemberDTO dto) throws Exception{
+            //데이터베이스에서 검색한 값들을 DTO타입에 LIST에 저장한다.
+            java.util.List<MemberDTO> list = MemberService.member();
+            System.out.println(list);
+            Map<String,Object> map = new HashMap<>();
+            
+            //map에 리스트를 저장해서 출력할 view로 이동시킨다.
+                 
+            ModelAndView mv = new ModelAndView();
+            
+            //if문에서 list null처리를 할때에는 isEmpty()를 사용해서 null체크후 처리를 해주어야 한다.
+            //list안에 값이 들어있을때 실행되는 구문
+            if(!list.isEmpty()) {
+                
+                map.put("list", list);
+                
+                mv.addObject("map",map);
+                
+                mv.setViewName("member/admin");
+                
+            }
+            
+            return mv;
+        }
+        @RequestMapping(value="/member/delete", method = RequestMethod.POST)
+        public ModelAndView remove(String e_mail) throws Exception
+        {
+        	System.out.println(e_mail);
+        	MemberService.remove(e_mail);
+        	java.util.List<MemberDTO> list = MemberService.member();
+            System.out.println(list);
+            Map<String,Object> map = new HashMap<>();
+        	 ModelAndView mv = new ModelAndView();
+        	 if(!list.isEmpty()) {
+                 
+                 map.put("list", list);
+                 
+                 mv.addObject("map",map);
+                 
+                 mv.setViewName("member/admin");
+                 
+             }
+        	return mv;
+        }
+        @RequestMapping(value="/member/update", method = RequestMethod.POST)
+        public ModelAndView update(String nickName, String e_mail,MemberDTO dto)
+        {
+        	dto.setE_mail(e_mail);
+        	dto.setNickName(nickName);
+        	System.out.println(nickName);
+        	MemberService.update(dto);
+        	 ModelAndView mv = new ModelAndView();
+        	 mv.setViewName("/member/member_profile");
+ 
+        	return mv;
+        }
+      //닉네임 중복확인을 하는 메소드
+        @RequestMapping("/member/nickName_check")
+        public ModelAndView nickName_check(String nickName, HttpServletResponse response_equals, String e_mail) throws Exception    {
+            
+            
+        	MemberService.nickName_check(nickName);
+        //닉네임이 기존 db에 저장되어 있지 않을 경우 실행되는 부분
+        if(MemberService.nickName_check(nickName)) {
+            
+            response_equals.setContentType("text/html; charset=UTF-8");
+            PrintWriter out_equals = response_equals.getWriter();
+            out_equals.println("<script>alert('사용하실 수 있는 닉네임 입니다.');</script>");
+            out_equals.flush();
+            
+            ModelAndView mv = new ModelAndView();
+            
+            mv.setViewName("/member/member_profile");
+            
+            mv.addObject("nickName",nickName);
+            
+            mv.addObject("e_mail",e_mail);
+            
+            mv.addObject("check",nickName);
+            
+            return mv;
+            
+        //닉네임이 기존 db에 저장되어 있을 경우 닉네임이 중복된 것으므로 이쪽 구문이 실행된다.
+        
+        } else {
+
+            response_equals.setContentType("text/html; charset=UTF-8");
+
+            PrintWriter out_equals = response_equals.getWriter();
+
+            out_equals.println("<script>alert('사용할 수 없는 닉네임 입니다. 다른 닉네임을 입력해주세요.'); history.go(-1);</script>");
+            
+            out_equals.flush();
+            
+        }
+        
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("/member/member_profile");
+        
+            return mv;
+        }
 }

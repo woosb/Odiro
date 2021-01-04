@@ -18,5 +18,7 @@ public interface BoardService {
 	public int reply(BoardDTO dto);
 	public void hitCookie(HttpServletRequest request, HttpServletResponse response, int id);
 	public void recommendCookie(HttpServletRequest request, HttpServletResponse response, int id);
+	public void getList2(Model model);
+
 	public void getMyList(Model model, Criteria cri, ContentInfoDTO wish);
 }

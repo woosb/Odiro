@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.tour.dao.NoticeBoardDAO;
+import com.tour.dto.BoardDTO;
 import com.tour.dto.NoticeBoardDTO;
 
 @Service
@@ -17,6 +18,10 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
 	NoticeBoardDAO dao;
 	public List<NoticeBoardDTO> getList(int start, int end, String searchOption, String keyword) throws Exception {
 		return dao.getList(start, end, searchOption, keyword);
+	}
+	public List<NoticeBoardDTO> getList2()
+	{
+		return dao.getList2();
 	}
 	public int countBoardList(String searchOption, String keyword) {
 		return dao.countBoardList(searchOption, keyword);
@@ -36,5 +41,9 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
 	}
 	public void deleteBoard(String no) {
 		dao.deleteBoard(no);
+	}
+	public List<NoticeBoardDTO> getNotice()
+	{
+		return dao.getNotice();
 	}
 }

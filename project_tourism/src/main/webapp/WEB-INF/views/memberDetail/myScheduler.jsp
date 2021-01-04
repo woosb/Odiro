@@ -102,9 +102,6 @@
 			str += '<br>';
 		}
 		str += '<div class="cal">'+(i+1)+'</div>';
-		if( (index+i)%7 == 0 ){
-			str += '<br>';
-		}
 	}
 	
 	console.log(str);	

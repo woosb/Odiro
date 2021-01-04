@@ -30,11 +30,15 @@ public interface MemberService {
     public boolean email_check(String e_mail) throws Exception;   //이메일 중복확인을 하는 메소드
     
     
-    public boolean join_id_check(String user_id) throws Exception;    //회원가입시 아이디를 체크하는 메소드
+    public boolean nickName_check(String nickName) throws Exception;    //회원가입시 아이디를 체크하는 메소드
     
     
-    public List<MemberDTO> member_profile(String user_id) throws Exception;    //회원의 프로필을 볼 수 있는 메소드
+    public List<MemberDTO> member_profile(String e_mail) throws Exception;    //회원의 프로필을 볼 수 있는 메소드
     
+    public List<MemberDTO> member() throws Exception; //관리자 페이지 멤버 리스트 불러오는 메소드
     
+    public void remove(String e_mail);
+    
+    public void update(MemberDTO dto);
  
 }

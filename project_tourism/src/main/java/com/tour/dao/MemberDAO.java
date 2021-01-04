@@ -82,20 +82,36 @@ public class MemberDAO {
  
  
 
-    public boolean join_id_check(String user_id) throws Exception {
-        String user_id1
-        =sqlSession.selectOne("memberMapper.join_id_check", user_id);
+    public boolean nickName_check(String nickName) throws Exception {
+        String nickName1
+        =sqlSession.selectOne("memberMapper.nickName_check", nickName);
     
         //조건식 ? true일때의 값 : false일때의 값
-        return (user_id1==null) ? true : false;
+        return (nickName1==null) ? true : false;
     }
  
     
     //회원의 프로필 정보를 리턴한다.
 
-    public List<MemberDTO> member_profile(String user_id) throws Exception {
+    public List<MemberDTO> member_profile(String e_mail) throws Exception {
         
-        return sqlSession.selectList("memberMapper.member_profile", user_id);
+        return sqlSession.selectList("memberMapper.member_profile", e_mail);
     }
+    //관리자 페이지
+    public List<MemberDTO> member() throws Exception {
+        
+        return sqlSession.selectList("memberMapper.member");
+    }
+    //회원 정보 삭제
+	public void remove(String e_mail)
+	{
+		sqlSession.delete("memberMapper.remove",e_mail);
+	}
+	//닉네임 변경
+	public void update(MemberDTO dto)
+	{
+		sqlSession.update("memberMapper.nickName_change",dto);
+	}
+	
     
 }

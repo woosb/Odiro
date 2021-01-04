@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class MemberDTO {
     
-    private String user_id;    //아이디
     private String user_pass;    //비밀번호
     private String e_mail;    //이메일
-    
-    public String getUser_id() {
-        return user_id;
-    }
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
+    private String nickName; //닉네임
+   
+    public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
     public String getUser_pass() {
         return user_pass;
     }
@@ -30,7 +30,7 @@ public class MemberDTO {
     
     @Override
     public String toString() {
-        return "MemberDTO [user_id=" + user_id + ", user_pass=" + user_pass + ", e_mail=" + e_mail + "]";
+        return "MemberDTO [user_pass=" + user_pass + ", e_mail=" + e_mail + ", nickName=" + nickName + "]";
     }
     
  
