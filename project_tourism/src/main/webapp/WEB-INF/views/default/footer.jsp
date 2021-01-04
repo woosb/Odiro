@@ -9,6 +9,7 @@
 	.footer {
 		position: relative;
 		max-width: 1200px;
+		max-height: 200px;
 		margin : 20px auto;
 		padding : 10px;
 		background: #4d4d4d;

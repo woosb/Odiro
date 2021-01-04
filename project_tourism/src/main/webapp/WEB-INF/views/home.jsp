@@ -36,7 +36,7 @@
 .swiper-slide img {
 	box-shadow:0 0 5px #555;
 }
-div {
+	div {
 		text-align:center;
     }
     div.left {
@@ -53,6 +53,9 @@ div {
         border: 3px solid #000;
         height : 500px;
     }
+    div.bottom {
+    	min-height: 500px;
+    }
 </style>
 
 <!-- 클래스명은 변경하면 안 됨 -->
@@ -67,6 +70,7 @@ div {
 	<!-- 페이징 -->
 	<div class="swiper-pagination"></div>
 </div>
+	<div class="bottom">
 	<div class="left">
 	공지사항<br><hr><br>
 		<c:forEach var="brd" items="${map.list}">
@@ -79,8 +83,8 @@ div {
 			<a href="/board/detail?id=${list.id }&ref=${list.ref }"><c:out value="${list.title }"/></a><br><hr><br>
 		</c:forEach>
 	</div>
+	</div>
 </div>
-<c:import url="default/footer.jsp"/>
 <script>
 
 new Swiper('.swiper1', {
@@ -96,5 +100,6 @@ new Swiper('.swiper1', {
 });
 
 </script>
+<c:import url="default/footer.jsp"/>
 </body>
 </html>

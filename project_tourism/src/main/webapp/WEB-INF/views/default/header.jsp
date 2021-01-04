@@ -90,55 +90,6 @@
 </style>
 </head>
 <body>
-	<p style="font-size: 50px; color: orange; font-weight: bold; font-family: fantasy; text-align: center;">CARE LAB</p> 
-		<div class="head" style="text-align: right; font-size: 22px; background-color:#4d4d4d; height: 35px;">
-		<ul>
-			<li>
-				<a href="/" >HOME</a>
-			</li>
-			
-			<li>
-				<%if (session.getAttribute("e_mail") == null) {%>
-					<a href="/notice/noticeList">공지사항</a> 
-				<%} else {%>
-					<a href="/notice/noticeList">공지사항</a>
-				<%} %>
-			</li>
-			
-			<li>
-				<%if (session.getAttribute("e_mail") == null) {%>
-					<a href="/board/list">게시판</a> 
-				<%} else {%>
-					<a href="/board/list">게시판</a>
-				<%} %>
-			</li>
-			
-			<li>
-				<%if (session.getAttribute("e_mail") == null) {%>
-					<a href="/tour/tourList">관광정보 검색</a> 
-				<%} else {%>
-					<a href="/tour/tourList">관광정보 검색</a>
-				<%} %>
-			</li>
-			
-			<li>
-				<%if (session.getAttribute("e_mail") == null) {%>
-					<a href="/member/login">회원정보</a> 
-				<%} else if (session.getAttribute("e_mail").equals("admin@naver.com")) {%>
-					<a href="/member/admin">관리자 페이지</a> 
-				<%} else {%>
-					<a href="/memberDetail/detail">회원정보</a>
-				<%} %>
-			</li>
-			
-			<li>
-				<%if (session.getAttribute("e_mail") == null) {%> 
-					<a href="/member/login_form">로그인</a> 
-				<%} else { %>
-					<a href="/member/logout">로그아웃
-				<%} %></a>
-			</li>
-		</ul>
 	<div class="toplogo">
 			<a href="/">
 				<img src="/resources/images/mainlogo.png" style="width: 120px; height: 110px; border: 0px; vertical-align: middle;">
