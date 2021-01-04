@@ -70,7 +70,7 @@ function getWishList(){
 				str += "<dl style='display: block; margin: 20px 0 0 10px; padding:0;'>"
 				str += '<dt style="margin-bottom: 8px; font-size: 14px; color:#333; letter-spacing: -1px; font-weight: bold;">'+wishItem.title+'</dt>'
 				str += "<dd><p>"+wishItem.addr1+"</p></dd>";
-				str += "<dd><p>"+wishItem.tel+"</p></dd></dl></a></div></li>";
+				str += "<dd><p>"+wishItem.tel+"</p></dd></dl></a></div><div style='float:left; width: 14%; height:145px; display: flex; justify-content: center; align-items: center;'><div><input type='button' value='삭제' class='btnGreen' onclick='del("+wishItem.contentid+","+wishItem.contenttypeid+")'></div></div></li>";
 				str += "<br>";
 				wishList.html(str);
 			});
