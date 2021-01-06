@@ -21,7 +21,7 @@
 <style type="text/css">
 
 .swiper-container {
-    width:1024px;
+    width:1190px;
     height:420px;
     border:5px solid silver;
     border-radius:7px;
@@ -34,24 +34,33 @@
     justify-content:center; /* 좌우 기준 중앙정렬 */
 }
 .swiper-slide img {
+	width: 1180px;
+	height: 390px;
+	margin-bottom: 20px;
 	box-shadow:0 0 5px #555;
 }
+	div.category{
+		background-color: #069370;
+		border-bottom-color: 1px #000;
+		color: white;
+		padding-top: 8px;
+	}
     div.left {
         width: 50%;
         float: left;
         box-sizing: border-box;
         border: 3px solid #000;
-        height : 500px;
+        height : 246px;
     }
     div.right {
         width: 50%;
         float: right;
         box-sizing: border-box;
         border: 3px solid #000;
-        height : 500px;
+        height : 246px;
     }
     div.bottom {
-    	min-height: 500px;
+    	min-height: 248px;
     }
 </style>
 
@@ -67,17 +76,24 @@
 	<!-- 페이징 -->
 	<div class="swiper-pagination"></div>
 </div>
+<hr>
 	<div class="bottom">
 	<div class="left">
-	공지사항<br><hr><br>
+	<div class="category"><span style="font-size: 23px; font-weight: 500;">최근 공지사항</span><hr></div>
 		<c:forEach var="brd" items="${map.list}">
-			<a href="getDetail?no=${brd.notice_no }">${brd.notice_title }</a></a><br><hr><br>
+			<a href="getDetail?no=${brd.notice_no }" style="text-decoration: none;">${brd.notice_title }</a><br><hr>
 		</c:forEach>
 	</div>
 	<div class="right">
-	게시판<br><hr><br>
+	<div class="category"><span style="font-size: 23px; font-weight: 500;">추천수 TOP 리뷰</span><hr></div>
 		<c:forEach var="list" items="${list }">
-			<a href="/board/detail?id=${list.id }&ref=${list.ref }"><c:out value="${list.title }"/></a><br><hr><br>
+			<a href="/board/detail?id=${list.id }&ref=${list.ref }" style="text-decoration: none;"><c:out value="${list.title }"/>
+			<c:choose>
+					<c:when test="${list.answerNum != 0}">
+						<span style="color: #c73841">[${list.answerNum}]</span>
+					</c:when>
+			</c:choose>
+			</a><br><hr>
 		</c:forEach>
 	</div>
 	</div>
