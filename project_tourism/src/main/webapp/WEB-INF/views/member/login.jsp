@@ -21,7 +21,7 @@
 <c:if test = "${sessionScope.e_mail != null}">
  
 (일반)${sessionScope.nick}님이 로그인 하셨습니다. <br><br>
-<form action = "/memberDetail/detail" method = "post">
+<form action = "/memberDetail/detail" method = "get">
 <button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
  
  

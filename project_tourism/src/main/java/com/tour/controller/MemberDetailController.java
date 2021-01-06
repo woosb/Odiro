@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.tour.dto.ContentInfoDTO;
 import com.tour.dto.Criteria;
@@ -49,13 +50,16 @@ public class MemberDetailController {
 		
 	}
 	@RequestMapping(value="/update", method=RequestMethod.POST )
-	public void update(String user_nick,HttpSession session) {
+	public ModelAndView update(String user_nick,HttpSession session) {
 		String e_mail = (String)session.getAttribute("e_mail");
 		MemberDTO dto = new MemberDTO();
 		dto.setE_mail(e_mail);
 		dto.setNickName(user_nick);
 		service.update(dto);
 		session.setAttribute("nick", user_nick);
+		ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
+        mv.setViewName("/memberDetail/detail");     //뷰의이름
+		return mv;
 	}
 	
 	@GetMapping(value="/myScheduler")
