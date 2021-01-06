@@ -14,9 +14,6 @@
     }
 </style>
 <body onload="build();">
-
- 
- 
 <c:import url="../default/detailHeader.jsp"></c:import>
 <div align="center">
 	<h1>내 일정</h1>
@@ -36,20 +33,36 @@
             <td align="center"><font color=#7ED5E4>토</font></td>
         </tr>
     </table>
-	
-	<form>
-		<input type="date" id="start">
-		<input type="date" id="end">
-		<input type="text" id="text">
+	<br><br>
+	<form id="addSchedul">
+		<input type="date" name="startTime" id="start">
+		<input type="date" name="endTime" id="end">
+		<input type="text" name="contents" id="text">
 	</form>
 	<input type="button" onclick="getContent();" value="추가하기">
+	<a href="/memberDetail/myScheduler">저장하기</a>
+	<table id="content" style="width:100%">
+		<tr>
+			<td>start</td>
+			<td>end</td>
+			<td>text</td>
+		</tr>
+		<c:forEach var="list" items="${list }">
+			<tr>
+				<td><c:out value="${list.startTime }"/></td>
+				<td><c:out value="${list.endTime }"/></td>
+				<td><c:out value="${list.contents }"/></td>
+				<td><c:out value="${list.schedulId }"/></td>
+				<td><input type="button" value="CLICK ME" onclick="remove(this.parentElement.parentElement, '${list.schedulId }');"/></td>
+			</tr>
+		</c:forEach>
+	</table>
 	
-	<div id="content">
-	</div>
+	
 </div>
 <c:import url="../default/footer.jsp"></c:import>
 </body>
-<script language="javascript">
+<script>
     var today = new Date(); // 오늘 날짜
     var date = new Date();
  
@@ -129,17 +142,71 @@
 </script>
 <script>
 	function getContent(){
-		console.log("컨텐츠 추가");
 		var startTime = document.getElementById("start").value;
 		var endTime = document.getElementById("end").value;
+		var text = document.getElementById("text").value;
+		
 		var content = document.getElementById("content");
+		var newTR = document.createElement("tr");
+		var startTD = document.createElement("td");
+		var endTD = document.createElement("td");
+		var textTD = document.createElement("td");
+		var start = document.createTextNode(startTime);
+		var end = document.createTextNode(endTime);
+		var text = document.createTextNode(text);
 		
-		var newDIV = document.createElement("div");
-		var txt = document.createTextNode("test");
-		newDIV.appendChild(txt);
+		startTD.appendChild(start);
+		endTD.appendChild(end);
+		textTD.appendChild(text);
 		
-		content.appendChild(newDIV);
-		console.log(newDIV);	
+		newTR.appendChild(startTD);
+		newTR.appendChild(endTD);
+		newTR.appendChild(textTD);
+		content.appendChild(newTR);
+		
+		var btn = document.createElement("BUTTON");  
+		btn.innerHTML = "CLICK ME"; 
+		btn.addEventListener('click', function(event) {
+			this.parentElement.remove();
+		});
+		
+		newTR.appendChild(btn);
+
+		$.ajax({
+			url : "/memberDetail/addSchedul",
+			type : "POST",
+			cache : false,
+			async : false,
+			dataType : "JSON",
+			data : $("#addSchedul").serialize(),
+			success : function(data)	{
+				if(data == 0){
+					alert("일정 등록에 실패하였습니다.");
+				}
+			},
+			error : function(data){
+				alert("서버에러!");
+			} 
+		});
+		
+		$('#text').val('');
+	}
+	
+	function remove(tr, id){
+		tr.remove();
+		console.log(id);
+		$.ajax({
+			url:'/memberDetail/deleteSchedul/'+id,
+			type : "Delete",
+			cache : false,
+			async : false,
+			success : function(data)	{
+				
+			},
+			error : function(data){
+				alert("서버에러!");
+			} 
+		});
 	}
 </script>
 </html>

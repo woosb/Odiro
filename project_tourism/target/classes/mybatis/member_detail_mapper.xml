@@ -28,4 +28,33 @@
 			#{contentTypeId}
 		)
 	</insert>
+	
+	<insert id="addSchedul">
+		insert into 
+			mySchedul
+		values(
+			myschedul_seq.nextval,
+			#{e_mail},
+			#{startTime},
+			#{endTime},
+			#{contents}
+		)
+	</insert>
+	
+	<select id="getMySchedul" resultType="com.tour.dto.MySchedulerDTO">
+		select * 
+		from
+			myschedul 
+		where 
+			e_mail= #{e_mail} 
+		order by 
+			startTime asc
+	</select>
+	
+	<delete id="removeMyScchedul">
+		delete from 
+			myschedul
+		where 
+			schedulId = #{id}
+	</delete>
 </mapper>

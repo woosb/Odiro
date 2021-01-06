@@ -2,11 +2,15 @@ package com.tour.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.tour.dao.MemberDetailDAO;
 import com.tour.dto.ContentInfoDTO;
+import com.tour.dto.MySchedulerDTO;
 
 @Service
 public class MemberDetailServiceImpl implements MemberDetailService{
@@ -27,5 +31,23 @@ public class MemberDetailServiceImpl implements MemberDetailService{
 	@Override
 	public int addWishList(ContentInfoDTO dto) {
 		return dao.addWishList(dto);
+	}
+
+	@Override
+	public int addSchedul(MySchedulerDTO dto) {
+		return dao.addSchedul(dto);
+	}
+
+	@Override
+	public int getMySchedul(Model model, HttpSession session) {
+		List<MySchedulerDTO> list = dao.getMySchedul((String)session.getAttribute("e_mail"));
+		model.addAttribute("list",list);
+		return 0;
+	}
+
+	@Override
+	public int removeSchedul(int id) {
+		dao.removeMySchedul(id);
+		return 0;
 	}
 }

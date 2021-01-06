@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tour.dto.ContentInfoDTO;
+import com.tour.dto.MySchedulerDTO;
 import com.tour.service.MemberDetailService;
 
 @RestController
@@ -52,10 +53,22 @@ public class MemberDetailRestController {
 		return service.delete(dto);
 	}
 	
-	@PostMapping(value="/addWishList")
+	@PostMapping(value="/memberDetail")
 	public int addWishList(@RequestBody ContentInfoDTO dto, HttpSession session) {
 		String e_mail = (String)session.getAttribute("e_mail");
 		dto.setE_mail(e_mail);		
 		return service.addWishList(dto);
+	}
+	
+	@PostMapping(value="/addSchedul", produces = MediaType.APPLICATION_JSON_VALUE)
+	public int addSchedul(MySchedulerDTO dto, HttpSession session) {
+		dto.setE_mail((String)session.getAttribute("e_mail"));
+		System.out.println(dto.toString());
+		return service.addSchedul(dto);
+	}
+	@DeleteMapping(value="/deleteSchedul/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public int deleteSchedul(@PathVariable int id, HttpSession session) {
+		service.removeSchedul(id);
+		return 0;
 	}
 }
