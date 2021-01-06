@@ -34,9 +34,9 @@ public class MemberDAO {
     }
  
     
-    //아이디 찾기 관련 메소드
-    public String find_idCheck(MemberDTO dto) {
-        String id = sqlSession.selectOne("memberMapper.find_id_check", dto);
+    //닉네임 찾기 관련 메소드
+    public String find_nickcname_check(MemberDTO dto) {
+        String id = sqlSession.selectOne("memberMapper.find_nickcname_check", dto);
         return id;
         
     }
@@ -82,12 +82,12 @@ public class MemberDAO {
  
  
 
-    public boolean nickName_check(String nickName) throws Exception {
+    public int nickName_check(String nickName) throws Exception {
         String nickName1
         =sqlSession.selectOne("memberMapper.nickName_check", nickName);
     
         //조건식 ? true일때의 값 : false일때의 값
-        return (nickName1==null) ? true : false;
+        return (nickName1==null) ? 0 : 1;
     }
  
     

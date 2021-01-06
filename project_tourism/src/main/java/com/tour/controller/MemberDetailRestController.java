@@ -31,8 +31,8 @@ public class MemberDetailRestController {
 	
 	@GetMapping(value="/getWishList", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity< List<ContentInfoDTO> > getDetail(HttpSession session) {
-		String e_mail = (String)session.getAttribute("e_mail");
-		List<ContentInfoDTO> wishList = service.getWishList(e_mail);
+		String nick = (String)session.getAttribute("nick");
+		List<ContentInfoDTO> wishList = service.getWishList(nick);
 		ResponseEntity< List<ContentInfoDTO> > result = null;
 		if(wishList!= null) {
 			result = ResponseEntity.status(HttpStatus.OK).body(wishList);
@@ -44,7 +44,7 @@ public class MemberDetailRestController {
 	
 	@DeleteMapping(value="/delete/{contentId}/{contentTypeId}")
 	public int delete(HttpSession session, @PathVariable("contentId") int contentId, @PathVariable("contentTypeId") int contentTypeId) {		
-		String user = (String)session.getAttribute("e_mail");
+		String user = (String)session.getAttribute("nick");
 		ContentInfoDTO dto = new ContentInfoDTO();
 		dto.setContentId(contentId);
 		dto.setContentTypeId(contentTypeId);
@@ -54,8 +54,8 @@ public class MemberDetailRestController {
 	
 	@PostMapping(value="/addWishList")
 	public int addWishList(@RequestBody ContentInfoDTO dto, HttpSession session) {
-		String e_mail = (String)session.getAttribute("e_mail");
-		dto.setE_mail(e_mail);		
+		String nick = (String)session.getAttribute("nick");
+		dto.setE_mail(nick);		
 		return service.addWishList(dto);
 	}
 }

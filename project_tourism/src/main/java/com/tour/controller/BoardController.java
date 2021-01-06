@@ -46,7 +46,7 @@ public class BoardController {
 	@PostMapping(value="/register")
 	@ResponseBody
 	public int register(BoardDTO dto, HttpSession session) {
-		String userId = (String)session.getAttribute("e_mail");
+		String userId = (String)session.getAttribute("nick");
 		if(userId == null) {
 			dto.setUserId("Anonymous");
 		}else {

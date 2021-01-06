@@ -29,11 +29,14 @@ public class MemberServiceImpl implements MemberService {
     public boolean loginCheck(MemberDTO dto, HttpSession session) {
         
         boolean result = memberdao.loginCheck(dto);
+        
         if(result) {    //로그인 성공
             session.setAttribute("e_mail", dto.getE_mail());
             session.setAttribute("member_pass", dto.getUser_pass());
+            session.setAttribute("nick", memberdao.find_nickcname_check(dto));
             System.out.println(session.getAttribute("e_mail"));
             System.out.println(session.getAttribute("member_pass"));
+            System.out.println(session.getAttribute("nick"));
         }
         
         return result;
@@ -42,7 +45,7 @@ public class MemberServiceImpl implements MemberService {
     //아이디 찾기
     @Override
     public String find_idCheck(MemberDTO dto) {
-        String id = memberdao.find_idCheck(dto);
+        String id = memberdao.find_nickcname_check(dto);
         
         return id;
     }
@@ -81,13 +84,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
  
-    //아이디 중복 확인
+    //닉네임 중복 확인
     @Override
-    public boolean nickName_check(String nickName) throws Exception {
-    
-        boolean result = memberdao.nickName_check(nickName);
+    public int nickName_check(String nickName) throws Exception {
         
-        return result;
+        return memberdao.nickName_check(nickName);
     }
  
     //자신의 프로필을 볼 수 있게 하는 메소드

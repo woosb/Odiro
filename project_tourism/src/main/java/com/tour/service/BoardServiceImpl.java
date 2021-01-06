@@ -16,6 +16,7 @@ import com.tour.controller.BoardController;
 import com.tour.dao.BoardDAO;
 import com.tour.dto.BoardDTO;
 import com.tour.dto.Criteria;
+import com.tour.dto.MemberDTO;
 import com.tour.dto.PageDTO;
 import com.tour.dto.ContentInfoDTO;
 
@@ -152,5 +153,9 @@ public class BoardServiceImpl implements BoardService{
 			response.addCookie(recoCookie);
 			dao.upRecommend(id);
 		}
+	}
+	public void update(MemberDTO dto) {
+		dao.update(dto);
+		
 	}
 }

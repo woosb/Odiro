@@ -17,9 +17,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -73,10 +78,11 @@ public class memberController {
     	}
     	//회원가입
     	@RequestMapping("/member/join_check.do{e_mail}")
-        public ModelAndView join(MemberDTO dto,@PathVariable String e_mail,String user_pass) throws Exception 
+        public ModelAndView join(MemberDTO dto,@PathVariable String e_mail,String user_pass,String user_nick) throws Exception 
         {
     		dto.setUser_pass(user_pass);
     		dto.setE_mail(e_mail);
+    		dto.setNickName(user_nick);
     		MemberService.join(dto);
     		ModelAndView mv = new ModelAndView();
             
@@ -408,50 +414,11 @@ public class memberController {
  
         	return mv;
         }
-      //닉네임 중복확인을 하는 메소드
-        @RequestMapping("/member/nickName_check")
-        public ModelAndView nickName_check(String nickName, HttpServletResponse response_equals, String e_mail) throws Exception    {
-            
-            
-        	MemberService.nickName_check(nickName);
-        //닉네임이 기존 db에 저장되어 있지 않을 경우 실행되는 부분
-        if(MemberService.nickName_check(nickName)) {
-            
-            response_equals.setContentType("text/html; charset=UTF-8");
-            PrintWriter out_equals = response_equals.getWriter();
-            out_equals.println("<script>alert('사용하실 수 있는 닉네임 입니다.');</script>");
-            out_equals.flush();
-            
-            ModelAndView mv = new ModelAndView();
-            
-            mv.setViewName("/member/member_profile");
-            
-            mv.addObject("nickName",nickName);
-            
-            mv.addObject("e_mail",e_mail);
-            
-            mv.addObject("check",nickName);
-            
-            return mv;
-            
-        //닉네임이 기존 db에 저장되어 있을 경우 닉네임이 중복된 것으므로 이쪽 구문이 실행된다.
-        
-        } else {
+     // 닉네임 중복 체크 컨트롤러
+    	@RequestMapping(value = "/member/nickCheck", method = RequestMethod.GET)
+    	@ResponseBody
+    	public int nickCheck(@RequestParam("userNick") String user_nick) throws Exception {
 
-            response_equals.setContentType("text/html; charset=UTF-8");
-
-            PrintWriter out_equals = response_equals.getWriter();
-
-            out_equals.println("<script>alert('사용할 수 없는 닉네임 입니다. 다른 닉네임을 입력해주세요.'); history.go(-1);</script>");
-            
-            out_equals.flush();
-            
-        }
-        
-        ModelAndView mv = new ModelAndView();
-
-        mv.setViewName("/member/member_profile");
-        
-            return mv;
-        }
+    		return MemberService.nickName_check(user_nick);
+    	}
 }
