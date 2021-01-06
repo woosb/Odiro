@@ -4,6 +4,5 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="dto" type="com.tour.dto.MemberDTO"/>
 	</typeAliases>
 </configuration>
