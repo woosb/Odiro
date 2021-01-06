@@ -66,14 +66,24 @@ public class memberController {
 	    }
 	    //로그인 포스트
     	@RequestMapping(value = "/member/login_form", method = RequestMethod.POST)
-    	public ModelAndView login(MemberDTO dto, HttpServletRequest req,String e_mail,String user_pass)throws Exception
+    	public ModelAndView login(MemberDTO dto, HttpServletRequest req,String e_mail,String user_pass, HttpServletResponse response)throws Exception
     	{
     		HttpSession session = req.getSession();
     		dto.setE_mail(e_mail);
     		dto.setUser_pass(user_pass);
-    		MemberService.loginCheck(dto, session);
-    		 ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
-             mv.setViewName("/member/login");     //뷰의이름
+    		boolean flag=MemberService.loginCheck(dto, session);
+    		 response.setContentType("text/html; charset=UTF-8");
+             PrintWriter out = response.getWriter();
+             ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
+    		if(flag)
+    		{
+    			mv.setViewName("/member/login");     //뷰의이름
+    		}else
+    		{
+    			out.println("<script>alert('로그인에 실패하였습니다 로그인창으로 돌아갑니다');</script>");
+    			out.println("<script>history.back();</script>");
+    			out.flush();
+    		}
     		return mv;
     	}
     	//회원가입

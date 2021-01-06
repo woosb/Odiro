@@ -28,7 +28,6 @@ width=device-width" />
 <span style="color:green; font-weight : bold;">회원 로그인</span>
 </center>
  
- 
 <!-- 로그인창 -->
 <form action ="/member/login_form" method = "post">
 <center>
