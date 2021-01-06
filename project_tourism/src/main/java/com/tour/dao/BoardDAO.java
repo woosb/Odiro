@@ -81,7 +81,7 @@ public class BoardDAO {
 
 	public void update(MemberDTO dto) {
 		sqlSession.update("memberMapper.nickName_change",dto);
-		
+		sqlSession.update(namespace+".board_nickName_change",dto);
 	}
 
 }

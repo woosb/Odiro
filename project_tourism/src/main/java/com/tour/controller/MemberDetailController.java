@@ -52,9 +52,11 @@ public class MemberDetailController {
 	@RequestMapping(value="/update", method=RequestMethod.POST )
 	public ModelAndView update(String user_nick,HttpSession session) {
 		String e_mail = (String)session.getAttribute("e_mail");
+		String nick = (String)session.getAttribute("nick");
 		MemberDTO dto = new MemberDTO();
 		dto.setE_mail(e_mail);
 		dto.setNickName(user_nick);
+		dto.setNickName2(nick);
 		service.update(dto);
 		session.setAttribute("nick", user_nick);
 		ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
