@@ -7,7 +7,9 @@
 </head>
 <body>
 <c:import url="../default/detailHeader.jsp"></c:import>
-	<h1>내 정보</h1>
+	<div align="center">
+		<h1>내 정보</h1>
+	</div>
 	<form action="update" method="post">
 		<div class="form-group">
 		닉네임 : <input type="text" class="form-control" id="user_nick" name="user_nick" placeholder="ID" required>
