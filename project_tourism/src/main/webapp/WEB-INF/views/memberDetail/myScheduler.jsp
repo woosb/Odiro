@@ -52,7 +52,6 @@
 				<td><c:out value="${list.startTime }"/></td>
 				<td><c:out value="${list.endTime }"/></td>
 				<td><c:out value="${list.contents }"/></td>
-				<td><c:out value="${list.schedulId }"/></td>
 				<td><input type="button" value="CLICK ME" onclick="remove(this.parentElement.parentElement, '${list.schedulId }');"/></td>
 			</tr>
 		</c:forEach>
