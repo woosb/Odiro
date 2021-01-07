@@ -121,10 +121,15 @@
 		</c:forEach>
 	</table>
 	<br>
-	<button onclick="self.location='/board/delete?ref='+${detail.ref}" class="btnGreen01">삭제</button>
-	<button onclick="self.location='/board/modify?id='+${detail.id}" class="btnGreen01">수정</button>
-	<button onclick="self.location='/board/list'" class="btnGreen02">뒤로가기</button>
-	<button onclick="self.location='/board/recommend?id=${detail.id}'" class="btnGreen02">추천하기</button>
+		<% 
+			System.out.println(session.getAttribute("e_mail"));
+			System.out.println(request.getAttribute("userId"));
+			if (session.getAttribute("e_mail").equals(request.getAttribute("userId"))) {%>
+				<button onclick="self.location='/board/delete?ref='+${detail.ref}" class="btnGreen01">삭제</button>
+				<button onclick="self.location='/board/modify?id='+${detail.id}" class="btnGreen01">수정</button>
+		<%} %>
+		<button onclick="self.location='/board/list'" class="btnGreen02">뒤로가기</button>
+		<button onclick="self.location='/board/recommend?id=${detail.id}'" class="btnGreen02">추천하기</button>
 	<form action="/board/reply" method="post">
 		<br>댓글달기 : <input type="text" name="content" style="width: 350px;">
 		<input type="hidden" value="${detail.id }" name="id">
