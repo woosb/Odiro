@@ -15,7 +15,8 @@
 <body>
 <c:import url="../default/detailHeader.jsp"></c:import>
 	<div align="center">
-		<h1>${sessionScope.e_mail }</h1>	
+		<h1>이메일 : ${sessionScope.e_mail }</h1>
+		<h1>닉네임 : ${sessionScope.nick }</h1>		
 	</div>
 <c:import url="../default/footer.jsp"></c:import>
 </body>

@@ -223,4 +223,8 @@
 		 )
 		WHERE ROWNUM BETWEEN 1 AND 5
 	</select>
+	<!-- 닉네임 변경 관련 mapper -->
+    <update id = "board_nickName_change" parameterType="com.tour.dto.MemberDTO">
+    update free_board set userId=#{nickName} where userId=#{nickName2}
+    </update>
 </mapper>

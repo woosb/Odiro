@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.tour.dto.BoardDTO;
 import com.tour.dto.Criteria;
+import com.tour.dto.MemberDTO;
 import com.tour.dto.ContentInfoDTO;
 
 @Repository
@@ -76,6 +77,11 @@ public class BoardDAO {
 
 	public List<BoardDTO> getList2() {
 		return sqlSession.selectList(namespace+".get_List");
+	}
+
+	public void update(MemberDTO dto) {
+		sqlSession.update("memberMapper.nickName_change",dto);
+		sqlSession.update(namespace+".board_nickName_change",dto);
 	}
 
 }

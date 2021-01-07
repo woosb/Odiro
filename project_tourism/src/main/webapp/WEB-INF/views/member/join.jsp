@@ -12,6 +12,46 @@
 		padding : 10px;
 	}
 </style>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+<script>
+// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
+	$("#user_nick").blur(function() {
+		var user_nick = $('#user_nick').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/member/nickCheck?userNick='+ user_nick,
+			type : 'get',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : "+ data);							
+				
+				if (data == 1) {
+						// 1 : 아이디가 중복되는 문구
+						$("#user_nick").text("사용중인 닉네임입니다 :p");
+						$("#user_nick").css("color", "red");
+						$("#reg_submit").attr("disabled", true);
+					} else {
+						
+						if(idJ.test(user_nick)){
+							// 0 : 아이디 길이 / 문자열 검사
+							$("#user_nick").text("");
+							$("#reg_submit").attr("disabled", false);
+				
+						} else if(user_nick == ""){
+							
+							$('#user_nick').text('닉네임을 입력해주세요 :)');
+							$('#user_nick').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);				
+							
+						} 
+						
+					}
+				}, error : function() {
+						console.log("실패");
+				}
+			});
+		});
+</script>
 <body>
 <center>
 <table border="1" width="450" height="400">
@@ -26,6 +66,11 @@
                             인증받은 이메일 : ${e_mail}
                                                     
                         </div>
+                        <br>
+                        <div class="form-group">
+							닉네임 : <input type="text" class="form-control" id="user_nick" name="user_nick" placeholder="ID" required>
+					<div class="check_font" id="nick_check"></div>
+					</div>
                         <br>
                         <div>
                             비밀번호 : <input type="password" name="user_pass"

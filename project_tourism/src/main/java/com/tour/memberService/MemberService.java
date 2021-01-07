@@ -30,7 +30,7 @@ public interface MemberService {
     public boolean email_check(String e_mail) throws Exception;   //이메일 중복확인을 하는 메소드
     
     
-    public boolean nickName_check(String nickName) throws Exception;    //회원가입시 아이디를 체크하는 메소드
+    public int nickName_check(String nickName) throws Exception;    //회원가입시 닉네임을 체크하는 메소드
     
     
     public List<MemberDTO> member_profile(String e_mail) throws Exception;    //회원의 프로필을 볼 수 있는 메소드
