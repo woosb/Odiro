@@ -121,13 +121,8 @@
 		</c:forEach>
 	</table>
 	<br>
-		<% 
-			System.out.println(session.getAttribute("e_mail"));
-			System.out.println(request.getAttribute("userId"));
-			if (session.getAttribute("e_mail").equals(request.getAttribute("userId"))) {%>
-				<button onclick="self.location='/board/delete?ref='+${detail.ref}" class="btnGreen01">삭제</button>
-				<button onclick="self.location='/board/modify?id='+${detail.id}" class="btnGreen01">수정</button>
-		<%} %>
+		<button onclick="self.location='/board/delete?ref='+${detail.ref}" class="btnGreen01">삭제</button>
+		<button onclick="self.location='/board/modify?id='+${detail.id}" class="btnGreen01">수정</button>
 		<button onclick="self.location='/board/list'" class="btnGreen02">뒤로가기</button>
 		<button onclick="self.location='/board/recommend?id=${detail.id}'" class="btnGreen02">추천하기</button>
 	<form action="/board/reply" method="post">
