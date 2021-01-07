@@ -48,7 +48,7 @@
 		</div>	
 	</div>
 	<div style="display: flex; justify-content: center; align-items: center;">
-		<input type="button" value="초기화 하기" onclick="initRecentList();" class="btnGreen1">
+<!-- 		<input type="button" value="초기화 하기" onclick="initRecentList();" class="btnGreen1"> -->
 	</div>
 <c:import url="../default/footer.jsp"></c:import>
 </body>

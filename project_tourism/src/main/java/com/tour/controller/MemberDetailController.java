@@ -14,6 +14,7 @@ import com.tour.dto.ContentInfoDTO;
 import com.tour.dto.Criteria;
 import com.tour.dto.MemberDTO;
 import com.tour.service.BoardService;
+import com.tour.service.MemberDetailService;
 
 @Controller
 @RequestMapping(value="/memberDetail")
@@ -21,6 +22,9 @@ public class MemberDetailController {
 	
 	@Autowired
 	BoardService service;
+	
+	@Autowired
+	MemberDetailService memberDetailService;
 	
 	@GetMapping(value="/detail")
 	public void getDetail() {
@@ -65,7 +69,7 @@ public class MemberDetailController {
 	}
 	
 	@GetMapping(value="/myScheduler")
-	public void myScheduler() {
-		
+	public void myScheduler(Model model, HttpSession session) {
+		memberDetailService.getMySchedul(model, session);
 	}
 }
