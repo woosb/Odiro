@@ -29,8 +29,12 @@ public class BoardServiceImpl implements BoardService{
 	
 	public void getList2(Model model) {
 		List<BoardDTO> list = dao.getList2();
+		for(BoardDTO dto : list	) {
+			System.out.println(dto);
+		}
 		model.addAttribute("list", list);
 	}
+	
 	@Override
 	public int register(BoardDTO dto) {
 		Integer ref = dao.getMaxRef();
