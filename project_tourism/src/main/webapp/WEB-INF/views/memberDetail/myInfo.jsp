@@ -7,41 +7,49 @@
 </head>
 <<<<<<< HEAD
 <script>
-// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
-	$("#user_nick").blur(function() {
-		var user_nick = $('#user_nick').val();
+//이메일 입력값 검증
+$('#user_nick').on('keyup', function(){
+	console.log($(this).val());
+	
+	//공백확인
+	if($('#user_nick').val() === ""){
+		$('#nick_check').html('<i style="color: red" class="far fa-times-circle"></i>');
+		chk1 = false;
+	
+	//이메일 유효성 검증
+	} else if(!getMailCheck.test($('#user_nick').val())){
+		
+		$('#nick_check).html('<i style="color: red" class="far fa-times-circle"></i>');
+		chk1 = false;
+		
+	//이메일 중복확인 비동기 처리
+	} else {
+		const email = $('#user_nick').val();
 		$.ajax({
-			url : '${pageContext.request.contextPath}/member/nickCheck?userNick='+ user_nick,
-			type : 'get',
-			success : function(data) {
-				console.log("1 = 중복o / 0 = 중복x : "+ data);							
-				
-				if (data == 1) {
-						// 1 : 아이디가 중복되는 문구
-						$("#nick_check").text("사용중인 닉네임입니다 :p");
-						$("#nick_check").css("color", "red");
-						$("#reg_submit").attr("disabled", true);
-					} else {
-						
-						if(idJ.test(user_nick)){
-							// 0 : 아이디 길이 / 문자열 검사
-							$("#nick_check").text("");
-							$("#reg_submit").attr("disabled", false);
-				`
-						} else if(user_nick == ""){
-							
-							$('#nick_check').text('닉네임을 입력해주세요 :)');
-							$('#nick_check').css('color', 'red');
-							$("#reg_submit").attr("disabled", true);				
-							
-						} 
-						
-					}
-				}, error : function() {
-						console.log("실패");
-				}
-			});
+			type: "POST",
+			url: "/member/nickCheck",
+			headers: {
+                "Content-Type": "application/json",
+                "X-HTTP-Method-Override": "POST"
+            },
+            data: email,
+            datatype: "json",
+            success: function(data){
+            	console.log(data);
+            	if(data.confirm === "OK"){
+            		$('#nick_check').html('<i style="color: #262626;" class="far fa-check-circle"></i>');
+            		chk1 = true;
+            	} else {
+            		$('#nick_check').html('<i style="color: red" class="far fa-times-circle"></i>');
+            		chk1 = false;
+            	}
+            },
+            error: function(error){
+            	console.log("error : " + error);
+            }
 		});
+	}
+});
 </script>
  <style type="text/css">
 	body {
@@ -69,7 +77,6 @@
 		<h1>닉네임 변경</h1>
 	
 	<form action="update" method="post">
-		<div class="form-group">
 		닉네임 : <input type="text" class="form-control" id="user_nick" name="user_nick" placeholder="ID" required>
 		<div class="check_font" id="nick_check"></div>
 		<br>

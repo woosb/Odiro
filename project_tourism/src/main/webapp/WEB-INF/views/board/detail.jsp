@@ -121,7 +121,7 @@
 		</c:forEach>
 	</table>
 	<br>
-	<c:if test="${sessionScope.nick==detail.userId }">
+	<c:if test="${sessionScope.nick==detail.userId || sessionScope.nick=='관리자'}">
 	<button onclick="self.location='/board/delete?ref='+${detail.ref}" class="btnGreen01">삭제</button>
 	<button onclick="self.location='/board/modify?id='+${detail.id}" class="btnGreen01">수정</button>
 	</c:if>
