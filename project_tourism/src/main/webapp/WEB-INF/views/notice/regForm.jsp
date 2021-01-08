@@ -47,7 +47,10 @@
 		<div>
 			<textarea name="notice_content"placeholder="내용 입력" id="editor4">
 		</textarea>
-			<script>CKEDITOR.replace('editor4',{filebrowserUploadUrl:'imageUpload'});</script>
+			<script>CKEDITOR.replace('editor4',{
+				filebrowserUploadUrl:'imageUpload',
+				height:'500px'	
+			});</script>
 			<hr>
 		</div>
 		<div style="text-align: center;">
