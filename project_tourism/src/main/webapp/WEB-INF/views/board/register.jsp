@@ -39,7 +39,10 @@
 		<form id="registerForm">
 			<input type="text" name="title" class="title" placeholder="제목">
 			<hr>
-			<textarea name="input" id="input" placeholder="내용"></textarea><br>	
+			<textarea name="input" id="input" placeholder="내용">
+			방문지 : 
+			<a href="http://localhost:10100/tour/tourdetail?contentid=<%=request.getParameter("contentId") %>&contenttypeid=<%=request.getParameter("contentTypeId") %>"><%=request.getParameter("title") %></a>
+			</textarea><br>	
 			<input type="hidden" id="content" name="content">		
 			<input type="hidden" id="contentId" name="contentId">
 			<input type="hidden" id="contentTypeId" name="contentTypeId">
@@ -49,7 +52,10 @@
 	<c:import url="../default/footer.jsp"/>
 </body>
 <script src="/resources/js/ckeditor/ckeditor.js"></script>
-<script>CKEDITOR.replace('input',{filebrowserUploadUrl:'/fileUpload'});</script>
+<script>CKEDITOR.replace('input',{
+		filebrowserUploadUrl:'/fileUpload',
+		height : '500px'
+		});</script>
 <script>
 function register(){
 	var contentId = "${contentId }";

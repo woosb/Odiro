@@ -566,7 +566,7 @@
 		});
 	}
 	function writeReview() {
-		location.href = "/board/register?contentId=${contentid}&contentTypeId=${contenttypeid}"
+		location.href = "/board/register?contentId=${contentid}&contentTypeId=${contenttypeid}&title=${map.info.title }"
 	}
 </script>
 <!-- appkey에 카카오 javascript key -->

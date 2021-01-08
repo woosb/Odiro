@@ -107,12 +107,12 @@
 				<td colspan="3">
 					<!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면 [처음] 링크를 화면에 출력 -->
 					<c:if test="${map.pagination.curPage > 1 }">
-						<a href="javascript:list('1')">[처음]</a>
+						<a href="javascript:list('1')" style="text-decoration: none;">[처음]</a>
 					</c:if>
 					
 					<!-- 이전페이지 블록으로 이동 : 현재 페이지 블록이 1보다 크면 [이전] 링크를 화면에 출력-->
 					<c:if test="${map.pagination.curBlock > 1 }">
-						<a href="javascript:list('${map.pagination.prevPage }')">[이전]</a>
+						<a href="javascript:list('${map.pagination.prevPage }')" style="text-decoration: none;">[이전]</a>
 					</c:if>
 					<!-- 하나의 블럭 시작페이지부터 끝페이지까지 반복문 실행 -->
 					<c:forEach var="num" begin="${map.pagination.blockBegin }" end="${map.pagination.blockEnd }">
@@ -122,24 +122,28 @@
 								<span style="color:red;">${num }</span>&nbsp;
 							</c:when>
 							<c:otherwise>
-								<a href="javascript:list('${num }')">${num }</a>&nbsp;
+								<a href="javascript:list('${num }')" style="text-decoration: none;">${num }</a>&nbsp;
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<!-- 다음페이지 블록으로 이동 : 현재 페이지 블록이 전체 페이지 블록보다 작거나 같으면 [다음] 링크를 화면에 출력 -->
 					<c:if test="${map.pagination.curBlock <= map.pagination.totBlock}">
-						<a href="javascript:list('${map.pagination.nextPage }')">[다음]</a>
+						<a href="javascript:list('${map.pagination.nextPage }')" style="text-decoration: none;">[다음]</a>
 					</c:if>
 					
 					<!-- 끝 페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝] 링크를 화면에 출력 -->
 					<c:if test="${map.pagination.curPage <= map.pagination.totPage }">
-						<a href="javascript:list('${map.pagination.totPage }')">[끝]</a>
+						<a href="javascript:list('${map.pagination.totPage }')" style="text-decoration: none;">[끝]</a>
 					</c:if>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					총  <span style="color: blue;">${map.count }</span>개의 게시물이 있습니다.
 				</td>
 				<td style="text-align: center;">
-					<input type="button" value="글작성" onclick="regFo()" class="btnGreen01"/>
+					<% if (session.getAttribute("e_mail") == null) {%>
+						
+					<%} else if (session.getAttribute("e_mail").equals("admin@naver.com")) {%>
+						<input type="button" value="글작성" onclick="regFo()" class="btnGreen01"/>
+					<%} %>
 				</td>
 			</tr>
 			

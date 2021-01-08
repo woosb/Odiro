@@ -53,7 +53,7 @@ public class MemberDetailRestController {
 		return service.delete(dto);
 	}
 	
-	@PostMapping(value="/memberDetail")
+	@PostMapping(value="/addWishList")
 	public int addWishList(@RequestBody ContentInfoDTO dto, HttpSession session) {
 		String nick = (String)session.getAttribute("nick");
 		dto.setE_mail(nick);		

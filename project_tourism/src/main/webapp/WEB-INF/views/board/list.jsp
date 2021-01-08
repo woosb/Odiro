@@ -64,7 +64,7 @@
 		<c:forEach var="list" items="${list }">
 			<tr>
 				<td style="text-align: center;"><c:out value="${list.id }"/></td>
-				<td style="padding:25px;"><a href="/board/detail?id=${list.id }&ref=${list.ref }"><c:out value="${list.title }"/></a>
+				<td style="padding:25px;"><a href="/board/detail?id=${list.id }&ref=${list.ref }" style="text-decoration: none;"><c:out value="${list.title }"/></a>
 				<c:choose>
 					<c:when test="${list.answerNum != 0}">
 						<span style="color: #c73841">[${list.answerNum}]</span>

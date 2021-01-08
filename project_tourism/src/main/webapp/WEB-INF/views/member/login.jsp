@@ -12,17 +12,29 @@
 		margin : 20px auto;
 		padding : 10px;
 	}
+	.btnGreen01 { 
+		display:inline-block; 
+		width:130px; 
+		height:25px; 
+		padding:2px 0;
+		border-radius: 0.5pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:13px; 
+		color:#fff; 
+		background: #069370; 
+	}
 </style>
  <c:import url="../default/header.jsp"/>
 <body class="loginBody">
 <br>
 <!-- 세션에 id값이 저장되어 있는 경우 로그아웃 버튼과 로그인한 아이디가 출력되도록 코드를 작성함 -->
- 
 <c:if test = "${sessionScope.e_mail != null}">
  
 (일반)${sessionScope.nick}님이 로그인 하셨습니다. <br><br>
 <form action = "/memberDetail/detail" method = "get">
-<button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
+<button type = "submit" name = "submit" class="btnGreen01">나의 프로필 확인</button></form><br><br>
  
  
 </c:if>
@@ -35,7 +47,7 @@
 <button type = "submit" name = "submit">회원 인증하기 (인증을 해야 각종 기능들 사용 가능)</button></form><br><br>
  
 <form action = "/memberDetail/detail" method = "post">
-<button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
+<button type = "submit" name = "submit" class="btnGreen01">나의 프로필 확인</button></form><br><br>
  
 </c:if>
  
@@ -47,7 +59,7 @@
 <button type = "submit" name = "submit">회원 인증하기 (인증을 해야 각종 기능들 사용 가능)</button></form><br><br>
  
 <form action = "/memberDetail/detail" method = "post">
-<button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
+<button type = "submit" name = "submit" class="btnGreen01">나의 프로필 확인</button></form><br><br>
  
 </c:if>
  
@@ -56,7 +68,7 @@
  
 (관리자)${sessionScope.admin_id}님이 로그인 하셨습니다.<br><br>
 <form action = "/memberDetail/detail" method = "post">
-<button type = "submit" name = "submit">나의 프로필 확인</button></form><br><br>
+<button type = "submit" name = "submit" class="btnGreen01">나의 프로필 확인</button></form><br><br>
  
 </c:if>
  

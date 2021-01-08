@@ -36,7 +36,7 @@
 							// 0 : 아이디 길이 / 문자열 검사
 							$("#user_nick").text("");
 							$("#reg_submit").attr("disabled", false);
-				
+				`
 						} else if(user_nick == ""){
 							
 							$('#user_nick').text('닉네임을 입력해주세요 :)');
