@@ -5,6 +5,43 @@
 <head>
 	<title>Home</title>
 </head>
+<script>
+// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
+	$("#user_nick").blur(function() {
+		var user_nick = $('#user_nick').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/member/nickCheck?userNick='+ user_nick,
+			type : 'get',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : "+ data);							
+				
+				if (data == 1) {
+						// 1 : 아이디가 중복되는 문구
+						$("#nick_check").text("사용중인 닉네임입니다 :p");
+						$("#nick_check").css("color", "red");
+						$("#reg_submit").attr("disabled", true);
+					} else {
+						
+						if(idJ.test(user_nick)){
+							// 0 : 아이디 길이 / 문자열 검사
+							$("#nick_check").text("");
+							$("#reg_submit").attr("disabled", false);
+				`
+						} else if(user_nick == ""){
+							
+							$('#nick_check').text('닉네임을 입력해주세요 :)');
+							$('#nick_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);				
+							
+						} 
+						
+					}
+				}, error : function() {
+						console.log("실패");
+				}
+			});
+		});
+</script>
 <body>
 <c:import url="../default/detailHeader.jsp"></c:import>
 	<div align="center">
