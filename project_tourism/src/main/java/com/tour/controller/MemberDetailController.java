@@ -23,9 +23,6 @@ public class MemberDetailController {
 	@Autowired
 	BoardService service;
 	
-	@Autowired
-	MemberDetailService memberDetailService;
-	
 	@GetMapping(value="/detail")
 	public void getDetail() {
 		
@@ -69,7 +66,6 @@ public class MemberDetailController {
 	}
 	
 	@GetMapping(value="/myScheduler")
-	public void myScheduler(Model model, HttpSession session) {
-		memberDetailService.getMySchedul(model, session);
+	public void myScheduler() {
 	}
 }

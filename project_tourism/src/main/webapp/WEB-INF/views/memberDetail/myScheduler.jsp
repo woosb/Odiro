@@ -40,21 +40,12 @@
 		<input type="text" name="contents" id="text">
 	</form>
 	<input type="button" onclick="getContent();" value="추가하기">
-	<a href="/memberDetail/myScheduler">저장하기</a>
 	<table id="content" style="width:100%">
 		<tr>
 			<td>start</td>
 			<td>end</td>
 			<td>text</td>
 		</tr>
-		<c:forEach var="list" items="${list }">
-			<tr>
-				<td><c:out value="${list.startTime }"/></td>
-				<td><c:out value="${list.endTime }"/></td>
-				<td><c:out value="${list.contents }"/></td>
-				<td><input type="button" value="CLICK ME" onclick="remove(this.parentElement.parentElement, '${list.schedulId }');"/></td>
-			</tr>
-		</c:forEach>
 	</table>
 	
 	
@@ -62,6 +53,28 @@
 <c:import url="../default/footer.jsp"></c:import>
 </body>
 <script>
+	function getList(){
+		var schedulData = "";
+		$.ajax({
+			type:"GET",
+			url:"/memberDetail/getSchedul",
+			dataType:"json"
+		})
+		.done(function(result){
+				for(var i = 0; i < result.length; i++){
+					schedulData += "<tr>";
+					schedulData += "<td>"+result[i].startTime+"</td>";
+					schedulData += "<td>"+result[i].endTime+"</td>";
+					schedulData += "<td>"+result[i].contents+"</td>";
+					schedulData += "<td><input type='button' value='CLICK ME' onclick='remove(this.parentElement.parentElement, "+result[i].schedulId+");'/></td>";
+					schedulData += "</tr>";
+				}
+				var content = document.getElementById("content").innerHTML = schedulData;
+		})
+		.fail(function(){
+		});
+	}
+	
     var today = new Date(); // 오늘 날짜
     var date = new Date();
  
@@ -136,7 +149,7 @@
                 cell.bgColor = "#BCF1B1"; //오늘날짜배경색
             }
         }
- 
+        getList();
     }
 </script>
 <script>
@@ -189,6 +202,7 @@
 		});
 		
 		$('#text').val('');
+        getList();
 	}
 	
 	function remove(tr, id){
@@ -206,6 +220,7 @@
 				alert("서버에러!");
 			} 
 		});
+        getList();
 	}
 </script>
 </html>

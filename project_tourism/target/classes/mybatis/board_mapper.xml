@@ -79,6 +79,4 @@
 		 )
 		WHERE ROWNUM BETWEEN 1 AND 5
 	</select>
-	
-    
 	</mapper>

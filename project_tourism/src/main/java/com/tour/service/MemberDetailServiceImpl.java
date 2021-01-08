@@ -39,10 +39,9 @@ public class MemberDetailServiceImpl implements MemberDetailService{
 	}
 
 	@Override
-	public int getMySchedul(Model model, HttpSession session) {
+	public List<MySchedulerDTO> getMySchedul(HttpSession session) {
 		List<MySchedulerDTO> list = dao.getMySchedul((String)session.getAttribute("e_mail"));
-		model.addAttribute("list",list);
-		return 0;
+		return list;
 	}
 
 	@Override

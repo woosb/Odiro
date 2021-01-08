@@ -96,8 +96,6 @@ public class BoardServiceImpl implements BoardService{
 		int parentNum = dto.getId();
 		int step = dto.getStep();
 		int refOrder = dto.getRefOrder();
-		String userId = "asd";
-		dto.setUserId(userId);
 		
 		dao.addRefOrder(dto);
 
