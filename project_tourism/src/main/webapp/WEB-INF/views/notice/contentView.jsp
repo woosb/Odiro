@@ -118,10 +118,12 @@
 		<tr>
 			<td colspan="4" style="text-align: right;"> <!-- 관리자로 접근했을때 이 곳 활성화되도록 추후 수정 -->
 				<input type="button" value="목록보기" onclick="getList()" class="btnGreen02"/>
-				
-				<input type="button" value="수정" onclick="modi()" class="btnGreen01"/>
-				<input type="button" value="삭제" onclick="del()" class="btnGreen01"/>
-				
+				<% if (session.getAttribute("e_mail") == null) {%>
+					
+				<%} else if (session.getAttribute("e_mail").equals("admin@naver.com")){%>
+					<input type="button" value="수정" onclick="modi()" class="btnGreen01"/>
+					<input type="button" value="삭제" onclick="del()" class="btnGreen01"/>
+				<%} %>
 			</td>
 		</tr>
 	</table>

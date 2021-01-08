@@ -81,7 +81,7 @@
 	<div class="left">
 	<div class="category"><span style="font-size: 23px; font-weight: 500;">최근 공지사항</span><hr></div>
 		<c:forEach var="brd" items="${map.list}">
-			<a href="getDetail?no=${brd.notice_no }" style="text-decoration: none;">${brd.notice_title }</a><br><hr>
+			<a href="/notice/getDetail?no=${brd.notice_no }" style="text-decoration: none;">${brd.notice_title }</a><br><hr>
 		</c:forEach>
 	</div>
 	<div class="right">

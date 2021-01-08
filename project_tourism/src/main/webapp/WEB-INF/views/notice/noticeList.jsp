@@ -139,7 +139,9 @@
 					총  <span style="color: blue;">${map.count }</span>개의 게시물이 있습니다.
 				</td>
 				<td style="text-align: center;">
-					<input type="button" value="글작성" onclick="regFo()" class="btnGreen01"/>
+					<% if (session.getAttribute("e_mail").equals("admin@naver.com")) {%>
+						<input type="button" value="글작성" onclick="regFo()" class="btnGreen01"/>
+					<%}%>
 				</td>
 			</tr>
 			

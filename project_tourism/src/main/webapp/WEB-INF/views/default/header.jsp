@@ -126,6 +126,8 @@
 					<li>
 						<%if (session.getAttribute("e_mail") == null) {%>
 							<a href="/member/login">회원정보</a> 
+						<%}else if (session.getAttribute("e_mail").equals("admin@naver.com")) {%>
+							<a href="/member/admin">회원관리</a>
 						<%} else {%>
 							<a href="/memberDetail/detail">회원정보</a>
 						<%} %>

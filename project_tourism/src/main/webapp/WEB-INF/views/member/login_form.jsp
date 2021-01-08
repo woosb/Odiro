@@ -16,10 +16,63 @@ width=device-width" />
 		margin : 20px auto;
 		padding : 10px;
 	}
+	.btnGreen01 { 
+		display:inline-block; 
+		width:60px; 
+		height:30px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:15px; 
+		color:#fff; 
+		background: #069370; 
+	}
+	.btnGreen02 { 
+		display:inline-block; 
+		width:80px; 
+		height:30px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:15px; 
+		color:#fff; 
+		background: #069370; 
+	}
+	.btnGreen03 { 
+		display:inline-block; 
+		width:110px; 
+		height:30px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:15px; 
+		color:#fff; 
+		background: #069370; 
+	}
+	.btnGreen04 { 
+		display:inline-block; 
+		width:120px; 
+		height:30px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:15px; 
+		color:#fff; 
+		background: #069370; 
+	}
 </style>
 </head>
  <c:import url="../default/header.jsp"/>
-<table border="1" width="300">
+ 
+<table border="1" width="300" style="border-collapse: collapse; margin: auto;">
  
 <tr>
 <td>
@@ -34,7 +87,7 @@ width=device-width" />
 <br>
 아이디 : <input type = "text" name="e_mail" placeholder="  이메일을 입력하세요 "><br><br>
 비밀번호 : <input type = "password" name="user_pass" placeholder="  비밀번호를 입력하세요 "><br><br>
-<button type = "submit" name = "submit" >로그인</button>
+<button type = "submit" name = "submit" class="btnGreen01" >로그인</button>
  
 <br>
 <br>
@@ -137,14 +190,14 @@ Kakao.Auth.createLoginButton({
 <form action ="/member/email.do">
 <center>
 ${e_mail = null}
-<button>회원가입</button>
+<button class="btnGreen02">회원가입</button>
 </center>
 </form> 
 <br>
 <!-- 아이디 찾기 -->
 <form action ="find.user_id.do">
 <center>
-<button>아이디 찾기</button>
+<button class="btnGreen03">아이디 찾기</button>
 </center>
 </form>
  
@@ -152,7 +205,7 @@ ${e_mail = null}
 <!-- 비밀번호 찾기 -->
 <form action ="find.member_pass.do">
 <center>
-<button>비밀번호찾기</button>
+<button class="btnGreen04">비밀번호찾기</button>
 </center>
 </form>
 <br>
