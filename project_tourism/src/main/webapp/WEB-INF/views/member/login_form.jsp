@@ -87,8 +87,8 @@ width=device-width" />
 <br>
 아이디 : <input type = "text" name="e_mail" placeholder="  이메일을 입력하세요 "><br><br>
 비밀번호 : <input type = "password" name="user_pass" placeholder="  비밀번호를 입력하세요 "><br><br>
-<button type = "submit" name = "submit" class="btnGreen01" >로그인</button>
- 
+<button type = "submit" name = "submit" class="btnGreen01" >로그인</button><br><br>
+ <a href="/member/idfind">아이디 찾기</a>&nbsp&nbsp<a href="/member/passwordFind">비밀번호 찾기</a>
 <br>
 <br>
 <div class = "row">
