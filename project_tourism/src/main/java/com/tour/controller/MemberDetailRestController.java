@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,12 +64,17 @@ public class MemberDetailRestController {
 	@PostMapping(value="/addSchedul", produces = MediaType.APPLICATION_JSON_VALUE)
 	public int addSchedul(MySchedulerDTO dto, HttpSession session) {
 		dto.setE_mail((String)session.getAttribute("e_mail"));
-		System.out.println(dto.toString());
 		return service.addSchedul(dto);
 	}
 	@DeleteMapping(value="/deleteSchedul/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public int deleteSchedul(@PathVariable int id, HttpSession session) {
 		service.removeSchedul(id);
 		return 0;
+	}
+	
+	@GetMapping(value="/getSchedul")
+	public List<MySchedulerDTO> myScheduler(HttpSession session) {
+		List<MySchedulerDTO> list = service.getMySchedul(session);
+		return list;
 	}
 }

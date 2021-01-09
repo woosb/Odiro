@@ -219,6 +219,7 @@
 		 (
 		  SELECT *
 		  FROM free_board
+		  WHERE step = 0
 		  ORDER BY regDate DESC
 		 )
 		WHERE ROWNUM BETWEEN 1 AND 5

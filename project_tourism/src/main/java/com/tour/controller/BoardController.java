@@ -91,7 +91,8 @@ public class BoardController {
 	}
 	
 	@PostMapping(value="/reply")
-	public String reply(BoardDTO dto) {
+	public String reply(HttpSession session, BoardDTO dto) {
+		dto.setUserId((String)session.getAttribute("nick"));
 		service.reply(dto);
 		return "redirect:/board/detail?id="+dto.getId();
 	}

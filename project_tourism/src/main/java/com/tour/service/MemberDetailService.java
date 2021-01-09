@@ -14,6 +14,6 @@ public interface MemberDetailService {
 	public int delete(ContentInfoDTO dto);
 	public int addWishList(ContentInfoDTO dto);
 	public int addSchedul(MySchedulerDTO dto);
-	public int getMySchedul(Model model, HttpSession session);
+	public List<MySchedulerDTO> getMySchedul(HttpSession session);
 	public int removeSchedul(int id);
 }

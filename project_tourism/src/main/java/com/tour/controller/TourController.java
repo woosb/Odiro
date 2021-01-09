@@ -203,7 +203,6 @@ public class TourController {
 		wish.setContentTypeId(Integer.parseInt(contenttypeid));
 		wish.setE_mail((String)session.getAttribute("e_mail"));
 		setRecentList(wish, session);
-		
 		service.getList(model, cri, wish);
 		
 		TourDetailDTO dto = new TourDetailDTO();
