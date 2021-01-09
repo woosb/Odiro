@@ -88,7 +88,7 @@ width=device-width" />
 아이디 : <input type = "text" name="e_mail" placeholder="  이메일을 입력하세요 "><br><br>
 비밀번호 : <input type = "password" name="user_pass" placeholder="  비밀번호를 입력하세요 "><br><br>
 <button type = "submit" name = "submit" class="btnGreen01" >로그인</button><br><br>
- <a href="/member/idfind">아이디 찾기</a>&nbsp&nbsp<a href="/member/passwordFind">비밀번호 찾기</a>
+ <a href="/member/idfind" style="text-decoration: none;">아이디 찾기</a>&nbsp&nbsp<a href="/member/passwordFind" style="text-decoration: none;">비밀번호 찾기</a>
 <br>
 <br>
 <div class = "row">
@@ -192,27 +192,13 @@ Kakao.Auth.createLoginButton({
 ${e_mail = null}
 <button class="btnGreen02">회원가입</button>
 </center>
-</form> 
-<br>
-<!-- 아이디 찾기 -->
-<form action ="find.user_id.do">
-<center>
-<button class="btnGreen03">아이디 찾기</button>
-</center>
 </form>
- 
-<br>
-<!-- 비밀번호 찾기 -->
-<form action ="find.member_pass.do">
-<center>
-<button class="btnGreen04">비밀번호찾기</button>
-</center>
-</form>
-<br>
- 
 </td>
 </tr>
+<tr>
+</tr>
 </table>
+<br>
  <c:import url="../default/footer.jsp"/>
  
 <body>
