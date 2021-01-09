@@ -44,6 +44,15 @@ public class memberController {
     LoggerFactory.getLogger(memberController.class);
     private static final String String = null;
     private String e_mail=null;
+    
+    	@RequestMapping(value="/member/login.do", method=RequestMethod.POST)
+    	public String naver_login(String e_mail,String nick,HttpServletRequest req)
+    	{
+    		HttpSession session = req.getSession();
+    		session.setAttribute("e_mail", e_mail);
+    		session.setAttribute("nick", nick);
+    		return "/memberDetail/detail";
+    	}
     	@RequestMapping(value="/member/idfind", method=RequestMethod.POST)
     	public ModelAndView idFind(String nick, HttpServletResponse response_equals) throws IOException
     	{
@@ -72,6 +81,12 @@ public class memberController {
      	    
      	 
      	        return mv;
+    	}
+    	@RequestMapping(value="/member/naverLogin", method=RequestMethod.GET)
+    	public String naver() throws IOException
+    	{
+    		
+    		return "/member/naverLogin";
     	}
     	@RequestMapping(value="/member/idfind", method=RequestMethod.GET)
     	public String id_Find()

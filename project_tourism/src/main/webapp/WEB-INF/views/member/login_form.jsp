@@ -120,7 +120,7 @@ width=device-width" />
         {
             //클라이언트 id와 콜백 url (결과페이지)
             clientId: "eiAQbH1r7I4HCKucdQLe",
-            callbackUrl: "http://localhost:8081/member/login",
+            callbackUrl: "http://localhost:8081/member/naverLogin",
             isPopup: false, /* 팝업을 통한 연동처리 여부 */
             loginButton: {color: "green", type: 3, height: 40} /* 로그인 버튼의 타입을 지정 */
         }

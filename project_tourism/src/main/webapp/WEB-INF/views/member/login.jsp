@@ -43,14 +43,10 @@
 <c:if test = "${sessionScope.navername != null}">
  
 (네이버)${sessionScope.navername}님이 로그인 하셨습니다.<br><br>
-<form action = "authentication.do" method = "post">
-<button type = "submit" name = "submit">회원 인증하기 (인증을 해야 각종 기능들 사용 가능)</button></form><br><br>
- 
 <form action = "/memberDetail/detail" method = "post">
 <button type = "submit" name = "submit" class="btnGreen01">나의 프로필 확인</button></form><br><br>
  
 </c:if>
- 
  
 <c:if test = "${sessionScope.kakaonickname != null}">
  
