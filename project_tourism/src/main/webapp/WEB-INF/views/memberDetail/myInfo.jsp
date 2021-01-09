@@ -76,9 +76,9 @@ $('#user_nick').on('keyup', function(){
 	<div align="center">
 		<h1>닉네임 변경</h1>
 	
-	<form action="update" method="post">
+		<form action="update" method="post">
 		닉네임 : <input type="text" class="form-control" id="user_nick" name="user_nick" placeholder="ID" required>
-		</div>
+		
 		<div class="check_font" id="nick_check"></div>
 		<br>
 		<button type="submit" class="btnGreen01">닉네임 변경</button>

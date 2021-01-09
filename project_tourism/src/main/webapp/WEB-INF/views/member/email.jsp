@@ -12,6 +12,32 @@
 		margin : 20px auto;
 		padding : 10px;
 	}
+	.btnGreen01 { 
+		display:inline-block; 
+		width:80px; 
+		height:30px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:15px; 
+		color:#fff; 
+		background: #069370; 
+	}
+	.btnGreen02 { 
+		display:inline-block; 
+		width:320px; 
+		height:30px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:15px; 
+		color:#fff; 
+		background: #069370; 
+	}
 </style>
 </head>
 <body>
@@ -31,7 +57,7 @@
                         <form action="email_check.do" method="post">
                             이메일 : <input type="email" name="e_mail" placeholder="  이메일주소를 입력하세요. "><br><br> 
                                 
-                                <button type="submit" name="submit">중복확인</button></form>
+                                <button type="submit" name="submit" class="btnGreen01">중복확인</button></form>
                         </div>                                                    
         </c:if>
         <c:if test = "${e_mail != null}">
@@ -41,7 +67,7 @@
                     <center>
                         <br>이메일 : ${e_mail}
                         <br> <br>
-                        <button type="submit" name="submit">이메일 인증받기 (이메일 보내기)</button>
+                        <button type="submit" name="submit" class="btnGreen02">이메일 인증받기 (이메일 보내기)</button>
  
                         </div>
                         </c:if>

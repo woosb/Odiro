@@ -125,11 +125,11 @@
 					</li>
 					<li>
 						<%if (session.getAttribute("e_mail") == null) {%>
-							<a href="/member/login">회원정보</a> 
+							<a href="/member/login">마이 페이지</a> 
 						<%}else if (session.getAttribute("e_mail").equals("admin@naver.com")) {%>
 							<a href="/member/admin">회원관리</a>
 						<%} else {%>
-							<a href="/memberDetail/detail">회원정보</a>
+							<a href="/memberDetail/detail">마이 페이지</a>
 						<%} %>
 					</li>
 					<li>
