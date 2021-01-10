@@ -30,6 +30,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select nickname from member
         where e_mail=#{e_mail}
     </select>
+    <select id = "getnick" parameterType=
+    "String"
+    resultType="String">
+        select nickname from member
+        where e_mail=#{e_mail}
+    </select>
     
     <!-- 비밀번호 찾기 관련 mapper -->
     <select id = "find_pass_check" parameterType=

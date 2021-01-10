@@ -127,6 +127,11 @@ public class MemberDAO {
         //조건식 ? true일때의 값 : false일때의 값
         return (nick2==null) ? true : false;
 	}
+
+	public String getnick(String e_mail) {
+		
+		return sqlSession.selectOne("memberMapper.getnick", e_mail);
+	}
 	
     
 }

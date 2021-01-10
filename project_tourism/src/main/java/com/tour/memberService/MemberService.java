@@ -50,5 +50,8 @@ public interface MemberService {
 
 	public String get_email(String nick);
 
+
+	public String getnick(String e_mail);
+
  
 }

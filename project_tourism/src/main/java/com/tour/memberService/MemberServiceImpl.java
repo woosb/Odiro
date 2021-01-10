@@ -126,5 +126,9 @@ public class MemberServiceImpl implements MemberService {
 	{
 		return memberdao.get_email(nick);
 	}
+	public String getnick(String e_mail)
+	{
+		return memberdao.getnick(e_mail);
+	}
     
 }

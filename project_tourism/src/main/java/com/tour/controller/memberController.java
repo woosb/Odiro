@@ -62,7 +62,7 @@ public class memberController {
      	        
     		}else
     		{
-     	        
+    			session.setAttribute("nick", MemberService.getnick(e_mail));
      	        mv.setViewName("/memberDetail/detail");
    
     		}
@@ -321,6 +321,7 @@ public class memberController {
     	@RequestMapping("/member/join_check.do{e_mail}")
         public ModelAndView join(MemberDTO dto,@PathVariable String e_mail,String user_pass,String user_nick) throws Exception 
         {
+    		
     		dto.setUser_pass(user_pass);
     		dto.setE_mail(e_mail);
     		dto.setNickName(user_nick);
