@@ -12,6 +12,19 @@
 		margin : 20px auto;
 		padding : 10px;
 	}
+	.btnGreen01 { 
+		display:inline-block; 
+		width:120px; 
+		height:25px; 
+		padding:2px 0;
+		border-radius: 0.5pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:13px; 
+		color:#fff; 
+		background: #069370; 
+	}
 </style>
 <body>
 <center>
@@ -37,7 +50,7 @@
                         <!-- 가져온후에 다시 컨트롤러로 넘긴후에 db에 저장하는 식으로 진행 -->
                         
                         <br> <br>
-                        <button type="submit" name="submit">비밀번호 변경</button>
+                        <button type="submit" name="submit" class="btnGreen01">비밀번호 변경</button>
                     </center>
                         </div>
                     </td>

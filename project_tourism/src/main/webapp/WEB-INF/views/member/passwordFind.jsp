@@ -13,6 +13,32 @@
 		margin : 20px auto;
 		padding : 10px;
 	}
+	.btnGreen01 { 
+		display:inline-block; 
+		width:100px; 
+		height:25px; 
+		padding:2px 0;
+		border-radius: 0.5pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:13px; 
+		color:#fff; 
+		background: #069370; 
+	}
+	.btnGreen02 { 
+		display:inline-block; 
+		width:250px; 
+		height:25px; 
+		padding:2px 0;
+		border-radius: 0.5pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:13px; 
+		color:#fff; 
+		background: #069370; 
+	}
 </style>
 <body>
 <c:if test = "${e_mail == null}">
@@ -31,7 +57,7 @@
                         <form action="emailCheck" method="post">
                             이메일 : <input type="email" name="e_mail" placeholder="  이메일주소를 입력하세요. "><br><br> 
                                 
-                                <button type="submit" name="submit">아이디확인</button></form>
+                                <button type="submit" name="submit" class="btnGreen01">아이디확인</button></form>
                         </div>                                                    
         </c:if>
         <c:if test = "${e_mail != null}">
@@ -41,7 +67,7 @@
                     <center>
                         <br>이메일 : ${e_mail}
                         <br> <br>
-                        <button type="submit" name="submit">이메일 인증받기 (이메일 보내기)</button>
+                        <button type="submit" name="submit" class="btnGreen02">이메일 인증받기 (이메일 보내기)</button>
  
                         </div>
                         </c:if>

@@ -13,6 +13,19 @@
 		margin : 20px auto;
 		padding : 10px;
 	}
+	.btnGreen01 { 
+		display:inline-block; 
+		width:100px; 
+		height:25px; 
+		padding:2px 0;
+		border-radius: 0.5pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:13px; 
+		color:#fff; 
+		background: #069370; 
+	}
 </style>
 <body>
 <c:if test = "${e_mail == null}">
@@ -31,7 +44,7 @@
                         <form action="idfind" method="post">
                             닉네임 : <input type="nick" name="nick" placeholder="  닉네임을 입력하세요. "><br><br> 
                                 
-                                <button type="submit" name="submit">아이디확인</button></form>
+                                <button type="submit" name="submit" class="btnGreen01">아이디확인</button></form>
                         </div>                                                    
         </c:if>
         <c:if test = "${e_mail != null}">

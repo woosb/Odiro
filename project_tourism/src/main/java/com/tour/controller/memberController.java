@@ -137,7 +137,7 @@ public class memberController {
              Random r = new Random();
              int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
              
-             String setfrom = "knife686@gmail.com";
+             String setfrom = "hanryang0307@gmail.com";
              String title = "비밀번호 찾기 인증 번호 입니다."; // 제목
              String content =
              
@@ -324,7 +324,7 @@ public class memberController {
  
             Random r = new Random();
             int dice = r.nextInt(4589362) + 49311; //이메일로 받는 인증코드 부분 (난수)
-            String setfrom = "knife686@gmail.com";
+            String setfrom = "hanryang0307@gmail.com";
             String title = "회원가입 인증 이메일 입니다."; // 제목
             String content =
             
@@ -363,6 +363,7 @@ public class memberController {
                 mailSender.send(message);
             } catch (Exception e) {
                 System.out.println("실행 실패");
+                e.printStackTrace();
             }
             
             ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.

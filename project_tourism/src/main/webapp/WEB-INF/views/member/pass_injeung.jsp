@@ -6,6 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.btnGreen01 { 
+		display:inline-block; 
+		width:120px; 
+		height:25px; 
+		padding:2px 0;
+		border-radius: 0.5pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:13px; 
+		color:#fff; 
+		background: #069370; 
+	}
+</style>
 </head>
 <body>
 <table border="1" width="300" height="300" align= "center">
@@ -25,7 +40,7 @@
                         </div>                                        
  
                         <br> <br>
-                        <button type="submit" name="submit">인증번호 전송</button>
+                        <button type="submit" name="submit" class="btnGreen01">인증번호 전송</button>
  
                         </div>
                     </td>
