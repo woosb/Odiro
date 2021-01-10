@@ -6,6 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	body {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+	.btnGreen01 { 
+		display:inline-block; 
+		width:150px; 
+		height:25px; 
+		padding:2px 0;
+		border-radius: 0.5pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:13px; 
+		color:#fff; 
+		background: #069370; 
+	}
+</style>
 </head>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -28,9 +48,8 @@ function naverSignInCallback() {
 <c:import url="../default/header.jsp"/>
 <center>
 <br>
-아이디 : <input type = "text" name="e_mail" id="e_mail" readonly /><br><br>
-닉네임 : <input type = "text" name="nick" id="nick" readonly /><br><br>
-<button type = "submit" name = "submit" class="btnGreen01" >나의 프로필 확인</button><br><br>
+네이버 아이디 : <input type = "text" name="e_mail" id="e_mail" readonly /><br><br>
+<button type = "submit" name = "submit" class="btnGreen01" >Odiro 시작하기</button><br><br>
 <c:import url="../default/footer.jsp"/>
 </body>
 </html>

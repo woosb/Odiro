@@ -6,6 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	body {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
+	.btnGreen01 { 
+		display:inline-block; 
+		width:150px; 
+		height:25px; 
+		padding:2px 0;
+		border-radius: 0.5pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:13px; 
+		color:#fff; 
+		background: #069370; 
+	}
+</style>
 </head>
 <body>
 <c:import url="../default/detailHeader.jsp"></c:import>

@@ -41,7 +41,7 @@
 			<hr>
 			<textarea name="input" id="input" placeholder="내용">
 			방문지 : 
-			<a href="http://localhost:10100/tour/tourdetail?contentid=<%=request.getParameter("contentId") %>&contenttypeid=<%=request.getParameter("contentTypeId") %>"><%=request.getParameter("title") %></a>
+			<a href="http://localhost:8081/tour/tourdetail?contentid=<%=request.getParameter("contentId") %>&contenttypeid=<%=request.getParameter("contentTypeId") %>"><%=request.getParameter("title") %></a>
 			</textarea><br>	
 			<input type="hidden" id="content" name="content">		
 			<input type="hidden" id="contentId" name="contentId">
