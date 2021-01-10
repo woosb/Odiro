@@ -88,7 +88,7 @@
 					</c:if>
 					 <c:if test="${nick!=null }">
 					 	<div>
-					 	닉네임 : <input type="text" class="form-control" id="user_nick" name="user_nick" placeholder="ID" value="${nick}" readonly/>
+					 	닉네임 : <input type="text" class="form-control" id="user_nick" name="user_nick" placeholder="ID를 입력하세요"/>
 					 	</div>
 					 </c:if>
                         <br>
