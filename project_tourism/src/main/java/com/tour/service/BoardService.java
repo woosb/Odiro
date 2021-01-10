@@ -22,4 +22,7 @@ public interface BoardService {
 	public void getList2(Model model);
 	public void getMyList(Model model, Criteria cri, ContentInfoDTO wish);
 	public void update(MemberDTO dto);
+	public void pw_update(MemberDTO dto) throws Exception;
+	public void delete(String e_mail);
+	public boolean pw_check(MemberDTO dto);
 }

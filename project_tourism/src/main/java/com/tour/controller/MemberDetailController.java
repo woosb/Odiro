@@ -1,5 +1,9 @@
 package com.tour.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +68,55 @@ public class MemberDetailController {
         mv.setViewName("/memberDetail/detail");     //뷰의이름
 		return mv;
 	}
-	
+	@RequestMapping(value="/pw_update", method=RequestMethod.POST )
+	public ModelAndView pw_update(String user_pass,HttpSession session) throws Exception {
+		String e_mail = (String)session.getAttribute("e_mail");
+		MemberDTO dto = new MemberDTO();
+		dto.setE_mail(e_mail);
+		dto.setUser_pass(user_pass);
+		service.pw_update(dto);
+		session.invalidate();
+		ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
+        mv.setViewName("/member/login_form");     //뷰의이름
+		return mv;
+	}
+	@RequestMapping(value="/delete", method=RequestMethod.GET )
+	public ModelAndView delete(HttpSession session)
+	{
+		String e_mail = (String)session.getAttribute("e_mail");
+		service.delete(e_mail);
+		session.invalidate();
+		ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
+        mv.setViewName("/member/login_form");     //뷰의이름
+		return mv;
+	}
+	@RequestMapping(value="/pw_check", method=RequestMethod.POST )
+	public ModelAndView pw_check(HttpSession session,String user_pass,HttpServletResponse response) throws IOException
+	{
+		String e_mail = (String)session.getAttribute("e_mail");
+		MemberDTO dto = new MemberDTO();
+		dto.setE_mail(e_mail);
+		dto.setUser_pass(user_pass);
+		boolean flag=service.pw_check(dto);
+		 response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
+		if(flag)
+		{
+			mv.setViewName("/memberDetail/myInfo");     //뷰의이름
+		}else
+		{
+			out.println("<script>alert('로그인에 실패하였습니다 로그인창으로 돌아갑니다');</script>");
+			out.println("<script>history.back();</script>");
+			out.flush();
+		}
+		return mv;
+	}
+	@RequestMapping(value="/pw_check", method=RequestMethod.GET )
+	public String pwCheck()
+	{
+		return "/memberDetail/pw_check";
+	}
 	@GetMapping(value="/myScheduler")
 	public void myScheduler() {
 	}

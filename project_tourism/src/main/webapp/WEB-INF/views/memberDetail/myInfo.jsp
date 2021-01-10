@@ -5,7 +5,6 @@
 <head>
 	<title>Home</title>
 </head>
-<<<<<<< HEAD
 <script>
 //이메일 입력값 검증
 $('#user_nick').on('keyup', function(){
@@ -84,6 +83,23 @@ $('#user_nick').on('keyup', function(){
 		<button type="submit" class="btnGreen01">닉네임 변경</button>
 	</form>
 	</div>
+	<div align="center">
+		<h1>비밀번호 변경</h1>
+	
+		<form action="pw_update" method="post">
+		비밀번호 : <input type="password" class="form-control" id="user_pass" name="user_pass" placeholder="PW" required>
+		<br>
+		<br>
+		<button type="submit" class="btnGreen01">비밀번호 변경</button>
+	</form>
+	<br>
+	</div>
+	<div align="center">
+		<form action="delete" method="get">
+		<button type="submit" class="btnGreen01">회원 탈퇴</button>
+	</form>
+	</div>
+	
 <c:import url="../default/footer.jsp"></c:import>
 </body>
 <script type="text/javascript" src="/resources/js/memberDetail.js"></script>
