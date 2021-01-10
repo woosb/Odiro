@@ -46,12 +46,27 @@ public class memberController {
     private String e_mail=null;
     
     	@RequestMapping(value="/member/login.do", method=RequestMethod.POST)
-    	public String naver_login(String e_mail,String nick,HttpServletRequest req)
+    	public ModelAndView naver_login(String e_mail,String nick,HttpServletRequest req) throws Exception
     	{
     		HttpSession session = req.getSession();
     		session.setAttribute("e_mail", e_mail);
     		session.setAttribute("nick", nick);
-    		return "/memberDetail/detail";
+    		boolean flag = MemberService.email_check(e_mail);
+    		ModelAndView mv = new ModelAndView();
+    		if(flag)
+    		{
+     	        
+     	        mv.setViewName("/member/join");
+     	        
+     	        mv.addObject("e_mail",e_mail);
+     	        
+    		}else
+    		{
+     	        
+     	        mv.setViewName("/memberDetail/detail");
+   
+    		}
+    		return mv;
     	}
     	@RequestMapping(value="/member/idfind", method=RequestMethod.POST)
     	public ModelAndView idFind(String nick, HttpServletResponse response_equals) throws IOException

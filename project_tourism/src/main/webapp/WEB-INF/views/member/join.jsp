@@ -80,10 +80,17 @@
                                                     
                         </div>
                         <br>
+                        <c:if test="${nick==null }">
                         <div class="form-group">
 							닉네임 : <input type="text" class="form-control" id="user_nick" name="user_nick" placeholder="ID" required>
 					<div class="check_font" id="nick_check"></div>
 					</div>
+					</c:if>
+					 <c:if test="${nick!=null }">
+					 	<div>
+					 	닉네임 : <input type="text" class="form-control" id="user_nick" name="user_nick" placeholder="ID" value="${nick}" readonly/>
+					 	</div>
+					 </c:if>
                         <br>
                         <div>
                             비밀번호 : <input type="password" name="user_pass"
