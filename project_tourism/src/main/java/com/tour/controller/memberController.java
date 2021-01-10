@@ -290,9 +290,10 @@ public class memberController {
 	    public ModelAndView logout(HttpServletRequest req) {
 	    	HttpSession session = req.getSession();
 	    	session.removeAttribute("e_mail");
+	    	session.removeAttribute("nick");
 	    	session.removeAttribute("user_pass");
 	    	ModelAndView mv = new ModelAndView();    //ModelAndView로 보낼 페이지를 지정하고, 보낼 값을 지정한다.
-            mv.setViewName("/member/login");     //뷰의이름
+            mv.setViewName("/member/login_form");     //뷰의이름
             return mv;
 	    }
 	    //로그인 포스트
