@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+</head>
 <style type="text/css">
 	body {
 		max-width: 1200px;
@@ -14,39 +15,25 @@
 	}
 	.btnGreen01 { 
 		display:inline-block; 
-		width:80px; 
-		height:30px; 
+		width:100px; 
+		height:25px; 
 		padding:2px 0;
-		border-radius: 1pt;
+		border-radius: 0.5pt;
 		border-color: #262626; 
 		text-align:center; 
 		font-family:NGBold; 
-		font-size:15px; 
-		color:#fff; 
-		background: #069370; 
-	}
-	.btnGreen02 { 
-		display:inline-block; 
-		width:320px; 
-		height:30px; 
-		padding:2px 0;
-		border-radius: 1pt;
-		border-color: #262626; 
-		text-align:center; 
-		font-family:NGBold; 
-		font-size:15px; 
+		font-size:13px; 
 		color:#fff; 
 		background: #069370; 
 	}
 </style>
-</head>
 <body>
- <c:if test = "${e_mail == null}">
+<c:if test = "${e_mail == null}">
  <c:import url="../default/header.jsp"/>
  </c:if>
 <table border="1" width="300" height="300" align= "center">
 <center>
-<span style="color: green; font-weight: bold;">이메일 인증 (이메일을 인증 받아야 다음 단계로 넘어갈 수 있습니다.)</span> <br> <br>    
+<span style="color: green; font-weight: bold;"></span> <br> <br>    
         <br> <br>
         <div style="text-align:center;">
             <tr>        
@@ -54,20 +41,19 @@
                 <center>
                 <c:if test = "${e_mail == null}">
                         <div>
-                        <form action="email_check.do" method="post">
-                            이메일 : <input type="email" name="e_mail" placeholder="  이메일주소를 입력하세요. "><br><br> 
+                        <form action="idfind" method="post">
+                            닉네임 : <input type="nick" name="nick" placeholder="  닉네임을 입력하세요. "><br><br> 
                                 
-                                <button type="submit" name="submit" class="btnGreen01">중복확인</button></form>
+                                <button type="submit" name="submit" class="btnGreen01">아이디확인</button></form>
                         </div>                                                    
         </c:if>
         <c:if test = "${e_mail != null}">
  <div>
-                    <form action="auth.do${e_mail}" method="post">
                     
                     <center>
                         <br>이메일 : ${e_mail}
                         <br> <br>
-                        <button type="submit" name="submit" class="btnGreen02">이메일 인증받기 (이메일 보내기)</button>
+                        <a href="/member/login_form">로그인으로 가기</a>
  
                         </div>
                         </c:if>

@@ -6,12 +6,43 @@
 	<title>Home</title>
 </head>
 <style>
+	body {
+		max-width: 1200px;
+		margin : 20px auto;
+		padding : 10px;
+	}
     table
     {
         border:1px solid #BDBDBD;
         text-align:center;
         width:30%;
     }
+    .btnGreen01 { 
+		display:inline-block; 
+		width:80px; 
+		height:30px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:15px; 
+		color:#fff; 
+		background: #069370; 
+	}
+	.btnGreen02 { 
+		display:inline-block; 
+		width:40px; 
+		height:30px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:15px; 
+		color:#fff; 
+		background: #069370; 
+	}
 </style>
 <body onload="build();">
 <c:import url="../default/detailHeader.jsp"></c:import>
@@ -35,11 +66,19 @@
     </table>
 	<br><br>
 	<form id="addSchedul">
+		<div align="center">
+			<ul	style="list-style: none; flex-flow: row; display: flex; margin-left: 370px;">
+				<li> 시작일 </li>
+				<li style="margin-left: 100px;"> 종료일 </li>
+				<li style="margin-left: 100px;"> 해야할일</li>
+			</ul>
+		</div>
 		<input type="date" name="startTime" id="start">
 		<input type="date" name="endTime" id="end">
 		<input type="text" name="contents" id="text">
 	</form>
-	<input type="button" onclick="getContent();" value="추가하기">
+	<input type="button" onclick="getContent();" value="추가하기" class="btnGreen01">
+	<br>
 	<table id="content" style="width:100%">
 		<tr>
 			<td>start</td>
@@ -47,8 +86,6 @@
 			<td>text</td>
 		</tr>
 	</table>
-	
-	
 </div>
 <c:import url="../default/footer.jsp"></c:import>
 </body>
@@ -66,7 +103,7 @@
 					schedulData += "<td>"+result[i].startTime+"</td>";
 					schedulData += "<td>"+result[i].endTime+"</td>";
 					schedulData += "<td>"+result[i].contents+"</td>";
-					schedulData += "<td><input type='button' value='CLICK ME' onclick='remove(this.parentElement.parentElement, "+result[i].schedulId+");'/></td>";
+					schedulData += "<td><input type='button' value='삭제' class='btnGreen02' onclick='remove(this.parentElement.parentElement, "+result[i].schedulId+");'/></td>";
 					schedulData += "</tr>";
 				}
 				var content = document.getElementById("content").innerHTML = schedulData;

@@ -17,6 +17,10 @@ public class MemberDAO {
     @Inject
     SqlSession sqlSession;
     //회원가입 관련 메소드
+	public String get_email(String nick)
+	{
+		return sqlSession.selectOne("memberMapper.get_email",nick);
+	}
 
     public void join(MemberDTO dto) {
         
@@ -59,12 +63,12 @@ public class MemberDAO {
  
  
 
-    public void pass_change(Map<String, Object> map, MemberDTO dto)throws Exception{
-        
-        map.get("member_pass");
-        map.get("e_mail");
- 
-        sqlSession.update("memberMapper.pass_change", map);
+    public void pass_change(MemberDTO dto)throws Exception{
+
+    	System.out.println(dto.getE_mail());
+    	System.out.println(dto.getUser_pass());
+        sqlSession.update("memberMapper.passChange", dto);
+        System.out.println("실행완료");
     }
  
  
@@ -111,6 +115,22 @@ public class MemberDAO {
 	public void update(MemberDTO dto)
 	{
 		sqlSession.update("memberMapper.nickName_change",dto);
+	}
+
+
+	public boolean nick_check(String nick) {
+		System.out.println(nick);
+    	System.out.println(sqlSession);
+        String nick2
+        =sqlSession.selectOne("memberMapper.nickName_check", nick);
+    
+        //조건식 ? true일때의 값 : false일때의 값
+        return (nick2==null) ? true : false;
+	}
+
+	public String getnick(String e_mail) {
+		
+		return sqlSession.selectOne("memberMapper.getnick", e_mail);
 	}
 	
     

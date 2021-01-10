@@ -40,5 +40,18 @@ public interface MemberService {
     public void remove(String e_mail);
     
     public void update(MemberDTO dto);
+
+
+	public void passChange(MemberDTO dto) throws Exception;
+
+
+	public boolean nick_check(String nick);
+
+
+	public String get_email(String nick);
+
+
+	public String getnick(String e_mail);
+
  
 }

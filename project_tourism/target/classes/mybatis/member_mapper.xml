@@ -30,6 +30,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select nickname from member
         where e_mail=#{e_mail}
     </select>
+    <select id = "getnick" parameterType=
+    "String"
+    resultType="String">
+        select nickname from member
+        where e_mail=#{e_mail}
+    </select>
     
     <!-- 비밀번호 찾기 관련 mapper -->
     <select id = "find_pass_check" parameterType=
@@ -49,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     
     <!-- 비밀번호 변경 관련 mapper -->
-    <update id = "pass_change" parameterType="hashMap">
+    <update id = "passChange" parameterType="com.tour.dto.MemberDTO">
     update member set user_pass=#{user_pass} where e_mail=#{e_mail}
     </update>
     
@@ -71,7 +77,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select nickName from member
         where nickName=#{nickName}
     </select>        
-    
+    <select id = "get_email" resultType="String">
+    select e_mail
+    from member
+    where nickname=#{nick}
+    </select>
     
     <!-- 회원 프로필 확인 mapper -->
     <select id = "member_profile" resultType="com.tour.dto.MemberDTO">

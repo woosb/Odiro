@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Insert title here</title>
 <style type="text/css">
 	.btnGreen01 { 
 		display:inline-block; 
-		width:160px; 
-		height:30px; 
+		width:120px; 
+		height:25px; 
 		padding:2px 0;
-		border-radius: 1pt;
+		border-radius: 0.5pt;
 		border-color: #262626; 
 		text-align:center; 
 		font-family:NGBold; 
-		font-size:15px; 
+		font-size:13px; 
 		color:#fff; 
 		background: #069370; 
 	}
@@ -30,7 +31,7 @@
             <tr>        
                 <td>
                 <center>
-                    <form action="join_injeung.do${dice}" method="post"> //받아온 인증코드를 컨트롤러로 넘겨서 일치하는지 확인                  
+                    <form action="pass_injeung.do${dice}" method="post"> //받아온 인증코드를 컨트롤러로 넘겨서 일치하는지 확인                  
                     <center>
                         <br>
                         <div>
@@ -47,7 +48,5 @@
                     </center>
             </table>
         </form>
-</center>
- 
 </body>
 </html>

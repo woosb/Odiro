@@ -52,9 +52,8 @@ public class MemberServiceImpl implements MemberService {
  
     //비밀번호 찾기
     @Override
-    public String find_passCheck(MemberDTO dto) {
-        String pass = memberdao.find_passCheck(dto);
-        return pass;
+    public void passChange(MemberDTO dto) throws Exception {
+        memberdao.pass_change(dto);
     }
  
  
@@ -64,14 +63,7 @@ public class MemberServiceImpl implements MemberService {
         memberdao.authentication(dto);
     }
  
- 
-    @Override
-    public void pass_change(Map<String, Object> map, MemberDTO dto) throws Exception {
-        
-        
-        memberdao.pass_change(map,dto);
-    }
- 
+
  
     //이메일 중복 확인
     @Override
@@ -112,5 +104,31 @@ public class MemberServiceImpl implements MemberService {
     {
     	memberdao.update(dto);
     }
+
+	@Override
+	public String find_passCheck(MemberDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void pass_change(Map<String, Object> map, MemberDTO dto) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	public boolean nick_check(String nick)
+	{
+		boolean result = memberdao.nick_check(nick);
+        
+        return result;
+	}
+	public String get_email(String nick)
+	{
+		return memberdao.get_email(nick);
+	}
+	public String getnick(String e_mail)
+	{
+		return memberdao.getnick(e_mail);
+	}
     
 }

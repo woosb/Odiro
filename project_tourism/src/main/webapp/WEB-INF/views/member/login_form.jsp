@@ -87,8 +87,8 @@ width=device-width" />
 <br>
 아이디 : <input type = "text" name="e_mail" placeholder="  이메일을 입력하세요 "><br><br>
 비밀번호 : <input type = "password" name="user_pass" placeholder="  비밀번호를 입력하세요 "><br><br>
-<button type = "submit" name = "submit" class="btnGreen01" >로그인</button>
- 
+<button type = "submit" name = "submit" class="btnGreen01" >로그인</button><br><br>
+ <a href="/member/idfind" style="text-decoration: none;">아이디 찾기</a>&nbsp&nbsp<a href="/member/passwordFind" style="text-decoration: none;">비밀번호 찾기</a>
 <br>
 <br>
 <div class = "row">
@@ -120,9 +120,10 @@ width=device-width" />
         {
             //클라이언트 id와 콜백 url (결과페이지)
             clientId: "eiAQbH1r7I4HCKucdQLe",
-            callbackUrl: "http://localhost:8081/member/login",
+            callbackUrl: "http://localhost:8081/member/naverLogin",
             isPopup: false, /* 팝업을 통한 연동처리 여부 */
             loginButton: {color: "green", type: 3, height: 40} /* 로그인 버튼의 타입을 지정 */
+            
         }
     );
     
@@ -135,54 +136,6 @@ width=device-width" />
  
 </center>
  
-<center>
-<!-- 카카오톡 아이디 연동해서 로그인 -->
-<script src = "//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<a id="kakao-login-btn"></a>
-<a href="http://developers.kakao.com/logout"></a>
-<script type='text/javascript'>
- 
-Kakao.init('16a5e9f98830b7ff58f7449e5d28067e'); //아까 카카오개발자홈페이지에서 발급받은 자바스크립트 키를 입력함
- 
-//카카오 로그인 버튼을 생성합니다. 
- 
-Kakao.Auth.createLoginButton({ 
-    container: '#kakao-login-btn', 
-    success: function(authObj) { 
-           Kakao.API.request({
- 
-               url: '/v1/user/me',
- 
-               success: function(res) {
- 
-                     console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
- 
-                     console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
- 
-                     console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
-                             
-                 // res.properties.nickname으로도 접근 가능 )
-                     console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
-          
-          var id = res.id;    //카카오톡 닉네임을 변수에 저장
-          var kakaonickname = res.properties.nickname;    //카카오톡 닉네임을 변수에 저장
-          var kakaoe_mail = res.kaccount_email;    //카카오톡 이메일을 변수에 저장함
-         
-          
- 
-          window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/tour_project/home?kakaonickname="+kakaonickname+"kakaotalk"+"&kakaoe_mail="+kakaoe_mail);
-      
-                   }
-                 })
-               },
-               fail: function(error) {
-                 alert(JSON.stringify(error));
-               }
-             });
-</script>
-</center>
- 
- 
  
 </form>
 <br>
@@ -192,27 +145,13 @@ Kakao.Auth.createLoginButton({
 ${e_mail = null}
 <button class="btnGreen02">회원가입</button>
 </center>
-</form> 
-<br>
-<!-- 아이디 찾기 -->
-<form action ="find.user_id.do">
-<center>
-<button class="btnGreen03">아이디 찾기</button>
-</center>
 </form>
- 
-<br>
-<!-- 비밀번호 찾기 -->
-<form action ="find.member_pass.do">
-<center>
-<button class="btnGreen04">비밀번호찾기</button>
-</center>
-</form>
-<br>
- 
 </td>
 </tr>
+<tr>
+</tr>
 </table>
+<br>
  <c:import url="../default/footer.jsp"/>
  
 <body>

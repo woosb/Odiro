@@ -11,6 +11,19 @@
 		margin : 20px auto;
 		padding : 10px;
 	}
+	.btnGreen01 { 
+		display:inline-block; 
+		width:80px; 
+		height:30px; 
+		padding:2px 0;
+		border-radius: 1pt;
+		border-color: #262626; 
+		text-align:center; 
+		font-family:NGBold; 
+		font-size:15px; 
+		color:#fff; 
+		background: #069370; 
+	}
 </style>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -36,7 +49,7 @@
 							// 0 : 아이디 길이 / 문자열 검사
 							$("#user_nick").text("");
 							$("#reg_submit").attr("disabled", false);
-				`
+				
 						} else if(user_nick == ""){
 							
 							$('#user_nick').text('닉네임을 입력해주세요 :)');
@@ -54,7 +67,7 @@
 </script>
 <body>
 <center>
-<table border="1" width="450" height="400">
+<table width="450" height="400">
     
         <br> <br>
         <center>
@@ -67,10 +80,17 @@
                                                     
                         </div>
                         <br>
+                        <c:if test="${nick==null }">
                         <div class="form-group">
 							닉네임 : <input type="text" class="form-control" id="user_nick" name="user_nick" placeholder="ID" required>
 					<div class="check_font" id="nick_check"></div>
 					</div>
+					</c:if>
+					 <c:if test="${nick!=null }">
+					 	<div>
+					 	닉네임 : <input type="text" class="form-control" id="user_nick" name="user_nick" placeholder="ID" value="${nick}" readonly/>
+					 	</div>
+					 </c:if>
                         <br>
                         <div>
                             비밀번호 : <input type="password" name="user_pass"
@@ -81,7 +101,7 @@
                         <!-- 가져온후에 다시 컨트롤러로 넘긴후에 db에 저장하는 식으로 진행 -->
                         
                         <br> <br>
-                        <button type="submit" name="submit">회원가입</button>
+                        <button type="submit" name="submit" class="btnGreen01">회원가입</button>
                     </center>
                         </div>
                     </td>

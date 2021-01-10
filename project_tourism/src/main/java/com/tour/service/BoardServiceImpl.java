@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 
 import com.tour.controller.BoardController;
 import com.tour.dao.BoardDAO;
+import com.tour.dao.MemberDAO;
 import com.tour.dto.BoardDTO;
 import com.tour.dto.Criteria;
 import com.tour.dto.MemberDTO;
@@ -26,6 +27,8 @@ public class BoardServiceImpl implements BoardService{
 
 	@Autowired
 	BoardDAO dao;
+	@Autowired
+	MemberDAO dao2;
 	
 	public void getList2(Model model) {
 		List<BoardDTO> list = dao.getList2();
@@ -159,5 +162,19 @@ public class BoardServiceImpl implements BoardService{
 	public void update(MemberDTO dto) {
 		dao.update(dto);
 		
+	}
+	public void pw_update(MemberDTO dto) throws Exception
+	{
+		dao2.pass_change(dto);
+	}
+	public void delete(String e_mail)
+	{
+		dao2.remove(e_mail);
+	}
+	public boolean pw_check(MemberDTO dto)
+	{
+		 boolean result = dao2.loginCheck(dto);
+	        
+	        return result;
 	}
 }

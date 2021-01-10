@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 
 import com.tour.dao.MemberDetailDAO;
 import com.tour.dto.ContentInfoDTO;
+import com.tour.dto.MemberDTO;
 import com.tour.dto.MySchedulerDTO;
 
 @Service
@@ -49,4 +50,5 @@ public class MemberDetailServiceImpl implements MemberDetailService{
 		dao.removeMySchedul(id);
 		return 0;
 	}
+	
 }
